@@ -1,0 +1,8 @@
+// one line comments, OK,
+(* parser error, comment not closed (* this one closed *)
+x := (1);
+WHILE NOT y <= 0 DO
+  x := x * y;
+  y := y - 1x
+DONE
+

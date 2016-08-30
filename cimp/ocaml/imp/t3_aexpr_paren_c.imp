@@ -1,0 +1,2 @@
+(* test arith paren *) 
+a := 7 - (1 + 1)

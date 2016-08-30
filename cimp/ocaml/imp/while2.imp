@@ -1,0 +1,7 @@
+(* test if 1 <= 2 *)
+WHILE a <= 3 DO
+  a := a + 1
+DONE
+
+(* 
+*)

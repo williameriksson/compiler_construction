@@ -1,0 +1,356 @@
+"extract/nat__Nat.ml" 8 93 101 "extract/nat__Nat.ml" 8 93 104
+type(
+  nat -> nat -> nat
+)
+ident(
+  def add "extract/nat__Nat.ml" 8 93 93 "extract/nat__Nat.ml" 1 0 -1
+)
+"extract/nat__Nat.ml" 8 93 106 "extract/nat__Nat.ml" 8 93 107
+type(
+  nat
+)
+ident(
+  def n "extract/nat__Nat.ml" 8 93 114 "extract/nat__Nat.ml" 11 157 183
+)
+"extract/nat__Nat.ml" 8 93 115 "extract/nat__Nat.ml" 8 93 116
+type(
+  nat
+)
+ident(
+  def m "extract/nat__Nat.ml" 9 125 127 "extract/nat__Nat.ml" 11 157 183
+)
+"extract/nat__Nat.ml" 9 125 139 "extract/nat__Nat.ml" 9 125 140
+type(
+  nat
+)
+ident(
+  int_ref n "extract/nat__Nat.ml" 8 93 106 "extract/nat__Nat.ml" 8 93 107
+)
+"extract/nat__Nat.ml" 10 146 150 "extract/nat__Nat.ml" 10 146 151
+type(
+  nat
+)
+"extract/nat__Nat.ml" 10 146 155 "extract/nat__Nat.ml" 10 146 156
+type(
+  nat
+)
+ident(
+  int_ref m "extract/nat__Nat.ml" 8 93 115 "extract/nat__Nat.ml" 8 93 116
+)
+"extract/nat__Nat.ml" 11 157 163 "extract/nat__Nat.ml" 11 157 164
+type(
+  nat
+)
+ident(
+  def p "extract/nat__Nat.ml" 11 157 168 "extract/nat__Nat.ml" 11 157 179
+)
+"extract/nat__Nat.ml" 11 157 161 "extract/nat__Nat.ml" 11 157 164
+type(
+  nat
+)
+"extract/nat__Nat.ml" 11 157 171 "extract/nat__Nat.ml" 11 157 174
+type(
+  nat -> nat -> nat
+)
+ident(
+  int_ref add "extract/nat__Nat.ml" 8 93 101 "extract/nat__Nat.ml" 8 93 104
+)
+"extract/nat__Nat.ml" 11 157 175 "extract/nat__Nat.ml" 11 157 176
+type(
+  nat
+)
+ident(
+  int_ref p "extract/nat__Nat.ml" 11 157 163 "extract/nat__Nat.ml" 11 157 164
+)
+"extract/nat__Nat.ml" 11 157 177 "extract/nat__Nat.ml" 11 157 178
+type(
+  nat
+)
+ident(
+  int_ref m "extract/nat__Nat.ml" 8 93 115 "extract/nat__Nat.ml" 8 93 116
+)
+"extract/nat__Nat.ml" 11 157 170 "extract/nat__Nat.ml" 11 157 179
+call(
+  stack
+)
+type(
+  nat
+)
+"extract/nat__Nat.ml" 11 157 168 "extract/nat__Nat.ml" 11 157 179
+type(
+  nat
+)
+"extract/nat__Nat.ml" 9 125 127 "extract/nat__Nat.ml" 11 157 183
+type(
+  nat
+)
+"extract/nat__Nat.ml" 13 185 189 "extract/nat__Nat.ml" 13 185 193
+type(
+  nat -> nat
+)
+ident(
+  def pred "extract/nat__Nat.ml" 17 289 289 "extract/nat__Nat.ml" 1 0 -1
+)
+"extract/nat__Nat.ml" 13 185 195 "extract/nat__Nat.ml" 13 185 196
+type(
+  nat
+)
+ident(
+  def n "extract/nat__Nat.ml" 13 185 205 "extract/nat__Nat.ml" 15 253 287
+)
+"extract/nat__Nat.ml" 13 185 217 "extract/nat__Nat.ml" 13 185 218
+type(
+  nat
+)
+ident(
+  int_ref n "extract/nat__Nat.ml" 13 185 195 "extract/nat__Nat.ml" 13 185 196
+)
+"extract/nat__Nat.ml" 14 224 246 "extract/nat__Nat.ml" 14 224 247
+type(
+  nat
+)
+"extract/nat__Nat.ml" 14 224 251 "extract/nat__Nat.ml" 14 224 252
+type(
+  nat
+)
+ident(
+  int_ref n "extract/nat__Nat.ml" 13 185 195 "extract/nat__Nat.ml" 13 185 196
+)
+"extract/nat__Nat.ml" 15 253 277 "extract/nat__Nat.ml" 15 253 278
+type(
+  nat
+)
+ident(
+  def u "extract/nat__Nat.ml" 15 253 282 "extract/nat__Nat.ml" 15 253 283
+)
+"extract/nat__Nat.ml" 15 253 275 "extract/nat__Nat.ml" 15 253 278
+type(
+  nat
+)
+"extract/nat__Nat.ml" 15 253 282 "extract/nat__Nat.ml" 15 253 283
+type(
+  nat
+)
+ident(
+  int_ref u "extract/nat__Nat.ml" 15 253 277 "extract/nat__Nat.ml" 15 253 278
+)
+"extract/nat__Nat.ml" 13 185 205 "extract/nat__Nat.ml" 15 253 287
+type(
+  nat
+)
+"extract/nat__Nat.ml" 17 289 297 "extract/nat__Nat.ml" 17 289 300
+type(
+  nat -> nat -> nat
+)
+ident(
+  def sub "extract/nat__Nat.ml" 17 289 289 "extract/nat__Nat.ml" 1 0 -1
+)
+"extract/nat__Nat.ml" 17 289 302 "extract/nat__Nat.ml" 17 289 303
+type(
+  nat
+)
+ident(
+  def n "extract/nat__Nat.ml" 17 289 310 "extract/nat__Nat.ml" 20 373 392
+)
+"extract/nat__Nat.ml" 17 289 311 "extract/nat__Nat.ml" 17 289 312
+type(
+  nat
+)
+ident(
+  def m "extract/nat__Nat.ml" 18 321 323 "extract/nat__Nat.ml" 20 373 392
+)
+"extract/nat__Nat.ml" 18 321 336 "extract/nat__Nat.ml" 18 321 337
+type(
+  nat
+)
+ident(
+  int_ref n "extract/nat__Nat.ml" 17 289 302 "extract/nat__Nat.ml" 17 289 303
+)
+"extract/nat__Nat.ml" 18 321 339 "extract/nat__Nat.ml" 18 321 340
+type(
+  nat
+)
+ident(
+  int_ref m "extract/nat__Nat.ml" 17 289 311 "extract/nat__Nat.ml" 17 289 312
+)
+"extract/nat__Nat.ml" 18 321 335 "extract/nat__Nat.ml" 18 321 341
+type(
+  nat * nat
+)
+"extract/nat__Nat.ml" 19 347 354 "extract/nat__Nat.ml" 19 347 355
+type(
+  nat
+)
+ident(
+  def k "extract/nat__Nat.ml" 19 347 365 "extract/nat__Nat.ml" 19 347 372
+)
+"extract/nat__Nat.ml" 19 347 352 "extract/nat__Nat.ml" 19 347 355
+type(
+  nat
+)
+"extract/nat__Nat.ml" 19 347 359 "extract/nat__Nat.ml" 19 347 360
+type(
+  nat
+)
+ident(
+  def l "extract/nat__Nat.ml" 19 347 365 "extract/nat__Nat.ml" 19 347 372
+)
+"extract/nat__Nat.ml" 19 347 357 "extract/nat__Nat.ml" 19 347 360
+type(
+  nat
+)
+"extract/nat__Nat.ml" 19 347 351 "extract/nat__Nat.ml" 19 347 361
+type(
+  nat * nat
+)
+"extract/nat__Nat.ml" 19 347 365 "extract/nat__Nat.ml" 19 347 368
+type(
+  nat -> nat -> nat
+)
+ident(
+  int_ref sub "extract/nat__Nat.ml" 17 289 297 "extract/nat__Nat.ml" 17 289 300
+)
+"extract/nat__Nat.ml" 19 347 369 "extract/nat__Nat.ml" 19 347 370
+type(
+  nat
+)
+ident(
+  int_ref k "extract/nat__Nat.ml" 19 347 354 "extract/nat__Nat.ml" 19 347 355
+)
+"extract/nat__Nat.ml" 19 347 371 "extract/nat__Nat.ml" 19 347 372
+type(
+  nat
+)
+ident(
+  int_ref l "extract/nat__Nat.ml" 19 347 359 "extract/nat__Nat.ml" 19 347 360
+)
+"extract/nat__Nat.ml" 19 347 365 "extract/nat__Nat.ml" 19 347 372
+call(
+  tail
+)
+type(
+  nat
+)
+"extract/nat__Nat.ml" 20 373 378 "extract/nat__Nat.ml" 20 373 379
+type(
+  nat
+)
+"extract/nat__Nat.ml" 20 373 381 "extract/nat__Nat.ml" 20 373 382
+type(
+  nat
+)
+"extract/nat__Nat.ml" 20 373 377 "extract/nat__Nat.ml" 20 373 383
+type(
+  nat * nat
+)
+"extract/nat__Nat.ml" 20 373 387 "extract/nat__Nat.ml" 20 373 388
+type(
+  nat
+)
+ident(
+  int_ref n "extract/nat__Nat.ml" 17 289 302 "extract/nat__Nat.ml" 17 289 303
+)
+"extract/nat__Nat.ml" 18 321 323 "extract/nat__Nat.ml" 20 373 392
+type(
+  nat
+)
+"extract/nat__Nat.ml" 22 394 402 "extract/nat__Nat.ml" 22 394 405
+type(
+  nat -> nat -> nat
+)
+ident(
+  def mul "extract/nat__Nat.ml" 22 394 394 "extract/nat__Nat.ml" 1 0 -1
+)
+"extract/nat__Nat.ml" 22 394 407 "extract/nat__Nat.ml" 22 394 408
+type(
+  nat
+)
+ident(
+  def n "extract/nat__Nat.ml" 22 394 415 "extract/nat__Nat.ml" 25 458 488
+)
+"extract/nat__Nat.ml" 22 394 416 "extract/nat__Nat.ml" 22 394 417
+type(
+  nat
+)
+ident(
+  def m "extract/nat__Nat.ml" 23 426 428 "extract/nat__Nat.ml" 25 458 488
+)
+"extract/nat__Nat.ml" 23 426 440 "extract/nat__Nat.ml" 23 426 441
+type(
+  nat
+)
+ident(
+  int_ref n "extract/nat__Nat.ml" 22 394 407 "extract/nat__Nat.ml" 22 394 408
+)
+"extract/nat__Nat.ml" 24 447 451 "extract/nat__Nat.ml" 24 447 452
+type(
+  nat
+)
+"extract/nat__Nat.ml" 24 447 456 "extract/nat__Nat.ml" 24 447 457
+type(
+  nat
+)
+"extract/nat__Nat.ml" 25 458 464 "extract/nat__Nat.ml" 25 458 465
+type(
+  nat
+)
+ident(
+  def p "extract/nat__Nat.ml" 25 458 469 "extract/nat__Nat.ml" 25 458 484
+)
+"extract/nat__Nat.ml" 25 458 462 "extract/nat__Nat.ml" 25 458 465
+type(
+  nat
+)
+"extract/nat__Nat.ml" 25 458 469 "extract/nat__Nat.ml" 25 458 472
+type(
+  nat -> nat -> nat
+)
+ident(
+  int_ref add "extract/nat__Nat.ml" 8 93 101 "extract/nat__Nat.ml" 8 93 104
+)
+"extract/nat__Nat.ml" 25 458 473 "extract/nat__Nat.ml" 25 458 474
+type(
+  nat
+)
+ident(
+  int_ref m "extract/nat__Nat.ml" 22 394 416 "extract/nat__Nat.ml" 22 394 417
+)
+"extract/nat__Nat.ml" 25 458 476 "extract/nat__Nat.ml" 25 458 479
+type(
+  nat -> nat -> nat
+)
+ident(
+  int_ref mul "extract/nat__Nat.ml" 22 394 402 "extract/nat__Nat.ml" 22 394 405
+)
+"extract/nat__Nat.ml" 25 458 480 "extract/nat__Nat.ml" 25 458 481
+type(
+  nat
+)
+ident(
+  int_ref p "extract/nat__Nat.ml" 25 458 464 "extract/nat__Nat.ml" 25 458 465
+)
+"extract/nat__Nat.ml" 25 458 482 "extract/nat__Nat.ml" 25 458 483
+type(
+  nat
+)
+ident(
+  int_ref m "extract/nat__Nat.ml" 22 394 416 "extract/nat__Nat.ml" 22 394 417
+)
+"extract/nat__Nat.ml" 25 458 475 "extract/nat__Nat.ml" 25 458 484
+call(
+  stack
+)
+type(
+  nat
+)
+"extract/nat__Nat.ml" 25 458 469 "extract/nat__Nat.ml" 25 458 484
+call(
+  tail
+)
+type(
+  nat
+)
+"extract/nat__Nat.ml" 23 426 428 "extract/nat__Nat.ml" 25 458 488
+type(
+  nat
+)

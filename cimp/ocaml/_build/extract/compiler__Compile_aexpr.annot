@@ -1,0 +1,1130 @@
+"extract/compiler__Compile_aexpr.ml" 5 85 93 "extract/compiler__Compile_aexpr.ml" 5 85 106
+type(
+  Imp__Imp.aexpr -> 'a Logic__Compiler_logic.hl
+)
+ident(
+  def compile_aexpr "extract/compiler__Compile_aexpr.ml" 5 85 85 "extract/compiler__Compile_aexpr.ml" 1 0 -1
+)
+"extract/compiler__Compile_aexpr.ml" 5 85 108 "extract/compiler__Compile_aexpr.ml" 5 85 109
+type(
+  Imp__Imp.aexpr
+)
+ident(
+  def a "extract/compiler__Compile_aexpr.ml" 6 129 131 "extract/compiler__Compile_aexpr.ml" 45 1795 1827
+)
+"extract/compiler__Compile_aexpr.ml" 6 129 135 "extract/compiler__Compile_aexpr.ml" 6 129 136
+type(
+  'b Logic__Compiler_logic.wp
+)
+ident(
+  def c "extract/compiler__Compile_aexpr.ml" 45 1795 1797 "extract/compiler__Compile_aexpr.ml" 45 1795 1827
+)
+"extract/compiler__Compile_aexpr.ml" 7 139 155 "extract/compiler__Compile_aexpr.ml" 7 139 156
+type(
+  Imp__Imp.aexpr
+)
+ident(
+  int_ref a "extract/compiler__Compile_aexpr.ml" 5 85 108 "extract/compiler__Compile_aexpr.ml" 5 85 109
+)
+"extract/compiler__Compile_aexpr.ml" 8 162 182 "extract/compiler__Compile_aexpr.ml" 8 162 183
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  def n "extract/compiler__Compile_aexpr.ml" 8 162 187 "extract/compiler__Compile_aexpr.ml" 9 229 270
+)
+"extract/compiler__Compile_aexpr.ml" 8 162 168 "extract/compiler__Compile_aexpr.ml" 8 162 183
+type(
+  Imp__Imp.aexpr
+)
+"extract/compiler__Compile_aexpr.ml" 8 162 191 "extract/compiler__Compile_aexpr.ml" 8 162 192
+type(
+  'c Logic__Compiler_logic.hl
+)
+ident(
+  def o "extract/compiler__Compile_aexpr.ml" 9 229 237 "extract/compiler__Compile_aexpr.ml" 9 229 270
+)
+"extract/compiler__Compile_aexpr.ml" 8 162 195 "extract/compiler__Compile_aexpr.ml" 8 162 223
+type(
+  Why3extract.Why3__BigInt.t -> 'c Logic__Compiler_logic.hl
+)
+ident(
+  ext_ref Specs__VM_instr_spec.iconstf
+)
+"extract/compiler__Compile_aexpr.ml" 8 162 224 "extract/compiler__Compile_aexpr.ml" 8 162 225
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  int_ref n "extract/compiler__Compile_aexpr.ml" 8 162 182 "extract/compiler__Compile_aexpr.ml" 8 162 183
+)
+"extract/compiler__Compile_aexpr.ml" 8 162 195 "extract/compiler__Compile_aexpr.ml" 8 162 225
+call(
+  stack
+)
+type(
+  'c Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_aexpr.ml" 9 229 237 "extract/compiler__Compile_aexpr.ml" 9 229 268
+type(
+  '_d Logic__Compiler_logic.hl -> 'b Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.prefix_dl
+)
+"extract/compiler__Compile_aexpr.ml" 9 229 269 "extract/compiler__Compile_aexpr.ml" 9 229 270
+type(
+  '_d Logic__Compiler_logic.hl
+)
+ident(
+  int_ref o "extract/compiler__Compile_aexpr.ml" 8 162 191 "extract/compiler__Compile_aexpr.ml" 8 162 192
+)
+"extract/compiler__Compile_aexpr.ml" 9 229 237 "extract/compiler__Compile_aexpr.ml" 9 229 270
+call(
+  stack
+)
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 8 162 187 "extract/compiler__Compile_aexpr.ml" 9 229 270
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 10 271 291 "extract/compiler__Compile_aexpr.ml" 10 271 292
+type(
+  State__StateGen.id
+)
+ident(
+  def x "extract/compiler__Compile_aexpr.ml" 10 271 296 "extract/compiler__Compile_aexpr.ml" 11 336 377
+)
+"extract/compiler__Compile_aexpr.ml" 10 271 277 "extract/compiler__Compile_aexpr.ml" 10 271 292
+type(
+  Imp__Imp.aexpr
+)
+"extract/compiler__Compile_aexpr.ml" 10 271 300 "extract/compiler__Compile_aexpr.ml" 10 271 301
+type(
+  'e Logic__Compiler_logic.hl
+)
+ident(
+  def o "extract/compiler__Compile_aexpr.ml" 11 336 344 "extract/compiler__Compile_aexpr.ml" 11 336 377
+)
+"extract/compiler__Compile_aexpr.ml" 10 271 304 "extract/compiler__Compile_aexpr.ml" 10 271 330
+type(
+  State__StateGen.id -> 'e Logic__Compiler_logic.hl
+)
+ident(
+  ext_ref Specs__VM_instr_spec.ivarf
+)
+"extract/compiler__Compile_aexpr.ml" 10 271 331 "extract/compiler__Compile_aexpr.ml" 10 271 332
+type(
+  State__StateGen.id
+)
+ident(
+  int_ref x "extract/compiler__Compile_aexpr.ml" 10 271 291 "extract/compiler__Compile_aexpr.ml" 10 271 292
+)
+"extract/compiler__Compile_aexpr.ml" 10 271 304 "extract/compiler__Compile_aexpr.ml" 10 271 332
+call(
+  stack
+)
+type(
+  'e Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_aexpr.ml" 11 336 344 "extract/compiler__Compile_aexpr.ml" 11 336 375
+type(
+  '_f Logic__Compiler_logic.hl -> 'b Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.prefix_dl
+)
+"extract/compiler__Compile_aexpr.ml" 11 336 376 "extract/compiler__Compile_aexpr.ml" 11 336 377
+type(
+  '_f Logic__Compiler_logic.hl
+)
+ident(
+  int_ref o "extract/compiler__Compile_aexpr.ml" 10 271 300 "extract/compiler__Compile_aexpr.ml" 10 271 301
+)
+"extract/compiler__Compile_aexpr.ml" 11 336 344 "extract/compiler__Compile_aexpr.ml" 11 336 377
+call(
+  stack
+)
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 10 271 296 "extract/compiler__Compile_aexpr.ml" 11 336 377
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 12 378 399 "extract/compiler__Compile_aexpr.ml" 12 378 401
+type(
+  Imp__Imp.aexpr
+)
+ident(
+  def a1 "extract/compiler__Compile_aexpr.ml" 13 410 418 "extract/compiler__Compile_aexpr.ml" 22 804 847
+)
+"extract/compiler__Compile_aexpr.ml" 12 378 403 "extract/compiler__Compile_aexpr.ml" 12 378 405
+type(
+  Imp__Imp.aexpr
+)
+ident(
+  def a2 "extract/compiler__Compile_aexpr.ml" 13 410 418 "extract/compiler__Compile_aexpr.ml" 22 804 847
+)
+"extract/compiler__Compile_aexpr.ml" 12 378 384 "extract/compiler__Compile_aexpr.ml" 12 378 406
+type(
+  Imp__Imp.aexpr
+)
+"extract/compiler__Compile_aexpr.ml" 13 410 422 "extract/compiler__Compile_aexpr.ml" 13 410 423
+type(
+  'g Logic__Compiler_logic.wp
+)
+ident(
+  def o "extract/compiler__Compile_aexpr.ml" 16 541 549 "extract/compiler__Compile_aexpr.ml" 22 804 847
+)
+"extract/compiler__Compile_aexpr.ml" 14 426 440 "extract/compiler__Compile_aexpr.ml" 14 426 442
+type(
+  'h Logic__Compiler_logic.hl
+)
+ident(
+  def o1 "extract/compiler__Compile_aexpr.ml" 15 493 503 "extract/compiler__Compile_aexpr.ml" 15 493 537
+)
+"extract/compiler__Compile_aexpr.ml" 14 426 449 "extract/compiler__Compile_aexpr.ml" 14 426 451
+type(
+  unit
+)
+ident(
+  def o2 "extract/compiler__Compile_aexpr.ml" 14 426 460 "extract/compiler__Compile_aexpr.ml" 14 426 489
+)
+"extract/compiler__Compile_aexpr.ml" 14 426 454 "extract/compiler__Compile_aexpr.ml" 14 426 456
+type(
+  unit
+)
+"extract/compiler__Compile_aexpr.ml" 14 426 460 "extract/compiler__Compile_aexpr.ml" 14 426 486
+type(
+  unit -> 'h Logic__Compiler_logic.hl
+)
+ident(
+  ext_ref Specs__VM_instr_spec.iaddf
+)
+"extract/compiler__Compile_aexpr.ml" 14 426 487 "extract/compiler__Compile_aexpr.ml" 14 426 489
+type(
+  unit
+)
+ident(
+  int_ref o2 "extract/compiler__Compile_aexpr.ml" 14 426 449 "extract/compiler__Compile_aexpr.ml" 14 426 451
+)
+"extract/compiler__Compile_aexpr.ml" 14 426 460 "extract/compiler__Compile_aexpr.ml" 14 426 489
+call(
+  stack
+)
+type(
+  'h Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_aexpr.ml" 14 426 445 "extract/compiler__Compile_aexpr.ml" 14 426 489
+type(
+  'h Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_aexpr.ml" 15 493 503 "extract/compiler__Compile_aexpr.ml" 15 493 534
+type(
+  '_i Logic__Compiler_logic.hl -> 'g Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.prefix_dl
+)
+"extract/compiler__Compile_aexpr.ml" 15 493 535 "extract/compiler__Compile_aexpr.ml" 15 493 537
+type(
+  '_i Logic__Compiler_logic.hl
+)
+ident(
+  int_ref o1 "extract/compiler__Compile_aexpr.ml" 14 426 440 "extract/compiler__Compile_aexpr.ml" 14 426 442
+)
+"extract/compiler__Compile_aexpr.ml" 15 493 503 "extract/compiler__Compile_aexpr.ml" 15 493 537
+call(
+  stack
+)
+type(
+  'g Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 14 426 436 "extract/compiler__Compile_aexpr.ml" 15 493 537
+type(
+  'g Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 16 541 553 "extract/compiler__Compile_aexpr.ml" 16 541 555
+type(
+  'j Logic__Compiler_logic.wp
+)
+ident(
+  def o1 "extract/compiler__Compile_aexpr.ml" 22 804 812 "extract/compiler__Compile_aexpr.ml" 22 804 847
+)
+"extract/compiler__Compile_aexpr.ml" 17 558 572 "extract/compiler__Compile_aexpr.ml" 17 558 574
+type(
+  'k Logic__Compiler_logic.wp
+)
+ident(
+  def o2 "extract/compiler__Compile_aexpr.ml" 19 656 666 "extract/compiler__Compile_aexpr.ml" 21 754 800
+)
+"extract/compiler__Compile_aexpr.ml" 18 577 593 "extract/compiler__Compile_aexpr.ml" 18 577 595
+type(
+  'a Logic__Compiler_logic.hl
+)
+ident(
+  def o3 "extract/compiler__Compile_aexpr.ml" 18 577 618 "extract/compiler__Compile_aexpr.ml" 18 577 652
+)
+"extract/compiler__Compile_aexpr.ml" 18 577 598 "extract/compiler__Compile_aexpr.ml" 18 577 611
+type(
+  Imp__Imp.aexpr -> 'a Logic__Compiler_logic.hl
+)
+ident(
+  int_ref compile_aexpr "extract/compiler__Compile_aexpr.ml" 5 85 93 "extract/compiler__Compile_aexpr.ml" 5 85 106
+)
+"extract/compiler__Compile_aexpr.ml" 18 577 612 "extract/compiler__Compile_aexpr.ml" 18 577 614
+type(
+  Imp__Imp.aexpr
+)
+ident(
+  int_ref a2 "extract/compiler__Compile_aexpr.ml" 12 378 403 "extract/compiler__Compile_aexpr.ml" 12 378 405
+)
+"extract/compiler__Compile_aexpr.ml" 18 577 598 "extract/compiler__Compile_aexpr.ml" 18 577 614
+call(
+  stack
+)
+type(
+  'a Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_aexpr.ml" 18 577 618 "extract/compiler__Compile_aexpr.ml" 18 577 649
+type(
+  'a Logic__Compiler_logic.hl -> 'k Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.prefix_dl
+)
+"extract/compiler__Compile_aexpr.ml" 18 577 650 "extract/compiler__Compile_aexpr.ml" 18 577 652
+type(
+  'a Logic__Compiler_logic.hl
+)
+ident(
+  int_ref o3 "extract/compiler__Compile_aexpr.ml" 18 577 593 "extract/compiler__Compile_aexpr.ml" 18 577 595
+)
+"extract/compiler__Compile_aexpr.ml" 18 577 618 "extract/compiler__Compile_aexpr.ml" 18 577 652
+call(
+  stack
+)
+type(
+  'k Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 18 577 589 "extract/compiler__Compile_aexpr.ml" 18 577 652
+type(
+  'k Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 19 656 670 "extract/compiler__Compile_aexpr.ml" 19 656 672
+type(
+  'l Logic__Compiler_logic.wp
+)
+ident(
+  def o3 "extract/compiler__Compile_aexpr.ml" 21 754 764 "extract/compiler__Compile_aexpr.ml" 21 754 800
+)
+"extract/compiler__Compile_aexpr.ml" 20 675 691 "extract/compiler__Compile_aexpr.ml" 20 675 693
+type(
+  'a Logic__Compiler_logic.hl
+)
+ident(
+  def o4 "extract/compiler__Compile_aexpr.ml" 20 675 716 "extract/compiler__Compile_aexpr.ml" 20 675 750
+)
+"extract/compiler__Compile_aexpr.ml" 20 675 696 "extract/compiler__Compile_aexpr.ml" 20 675 709
+type(
+  Imp__Imp.aexpr -> 'a Logic__Compiler_logic.hl
+)
+ident(
+  int_ref compile_aexpr "extract/compiler__Compile_aexpr.ml" 5 85 93 "extract/compiler__Compile_aexpr.ml" 5 85 106
+)
+"extract/compiler__Compile_aexpr.ml" 20 675 710 "extract/compiler__Compile_aexpr.ml" 20 675 712
+type(
+  Imp__Imp.aexpr
+)
+ident(
+  int_ref a1 "extract/compiler__Compile_aexpr.ml" 12 378 399 "extract/compiler__Compile_aexpr.ml" 12 378 401
+)
+"extract/compiler__Compile_aexpr.ml" 20 675 696 "extract/compiler__Compile_aexpr.ml" 20 675 712
+call(
+  stack
+)
+type(
+  'a Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_aexpr.ml" 20 675 716 "extract/compiler__Compile_aexpr.ml" 20 675 747
+type(
+  'a Logic__Compiler_logic.hl -> 'l Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.prefix_dl
+)
+"extract/compiler__Compile_aexpr.ml" 20 675 748 "extract/compiler__Compile_aexpr.ml" 20 675 750
+type(
+  'a Logic__Compiler_logic.hl
+)
+ident(
+  int_ref o4 "extract/compiler__Compile_aexpr.ml" 20 675 691 "extract/compiler__Compile_aexpr.ml" 20 675 693
+)
+"extract/compiler__Compile_aexpr.ml" 20 675 716 "extract/compiler__Compile_aexpr.ml" 20 675 750
+call(
+  stack
+)
+type(
+  'l Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 20 675 687 "extract/compiler__Compile_aexpr.ml" 20 675 750
+type(
+  'l Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 21 754 764 "extract/compiler__Compile_aexpr.ml" 21 754 794
+type(
+  '_m Logic__Compiler_logic.wp ->
+  Vm__Vm.machine_state Logic__Compiler_logic.wp ->
+  'j Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.infix_tl
+)
+"extract/compiler__Compile_aexpr.ml" 21 754 795 "extract/compiler__Compile_aexpr.ml" 21 754 797
+type(
+  '_m Logic__Compiler_logic.wp
+)
+ident(
+  int_ref o3 "extract/compiler__Compile_aexpr.ml" 19 656 670 "extract/compiler__Compile_aexpr.ml" 19 656 672
+)
+"extract/compiler__Compile_aexpr.ml" 21 754 798 "extract/compiler__Compile_aexpr.ml" 21 754 800
+type(
+  Vm__Vm.machine_state Logic__Compiler_logic.wp
+)
+ident(
+  int_ref o2 "extract/compiler__Compile_aexpr.ml" 17 558 572 "extract/compiler__Compile_aexpr.ml" 17 558 574
+)
+"extract/compiler__Compile_aexpr.ml" 21 754 764 "extract/compiler__Compile_aexpr.ml" 21 754 800
+call(
+  stack
+)
+type(
+  'j Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 19 656 666 "extract/compiler__Compile_aexpr.ml" 21 754 800
+type(
+  'j Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 17 558 568 "extract/compiler__Compile_aexpr.ml" 21 754 800
+type(
+  'j Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 22 804 812 "extract/compiler__Compile_aexpr.ml" 22 804 842
+type(
+  '_n Logic__Compiler_logic.wp ->
+  Vm__Vm.machine_state Logic__Compiler_logic.wp ->
+  'b Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.infix_tl
+)
+"extract/compiler__Compile_aexpr.ml" 22 804 843 "extract/compiler__Compile_aexpr.ml" 22 804 845
+type(
+  '_n Logic__Compiler_logic.wp
+)
+ident(
+  int_ref o1 "extract/compiler__Compile_aexpr.ml" 16 541 553 "extract/compiler__Compile_aexpr.ml" 16 541 555
+)
+"extract/compiler__Compile_aexpr.ml" 22 804 846 "extract/compiler__Compile_aexpr.ml" 22 804 847
+type(
+  Vm__Vm.machine_state Logic__Compiler_logic.wp
+)
+ident(
+  int_ref o "extract/compiler__Compile_aexpr.ml" 13 410 422 "extract/compiler__Compile_aexpr.ml" 13 410 423
+)
+"extract/compiler__Compile_aexpr.ml" 22 804 812 "extract/compiler__Compile_aexpr.ml" 22 804 847
+call(
+  stack
+)
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 16 541 549 "extract/compiler__Compile_aexpr.ml" 22 804 847
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 13 410 418 "extract/compiler__Compile_aexpr.ml" 22 804 847
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 23 848 869 "extract/compiler__Compile_aexpr.ml" 23 848 871
+type(
+  Imp__Imp.aexpr
+)
+ident(
+  def a1 "extract/compiler__Compile_aexpr.ml" 24 880 888 "extract/compiler__Compile_aexpr.ml" 33 1274 1317
+)
+"extract/compiler__Compile_aexpr.ml" 23 848 873 "extract/compiler__Compile_aexpr.ml" 23 848 875
+type(
+  Imp__Imp.aexpr
+)
+ident(
+  def a2 "extract/compiler__Compile_aexpr.ml" 24 880 888 "extract/compiler__Compile_aexpr.ml" 33 1274 1317
+)
+"extract/compiler__Compile_aexpr.ml" 23 848 854 "extract/compiler__Compile_aexpr.ml" 23 848 876
+type(
+  Imp__Imp.aexpr
+)
+"extract/compiler__Compile_aexpr.ml" 24 880 892 "extract/compiler__Compile_aexpr.ml" 24 880 893
+type(
+  'o Logic__Compiler_logic.wp
+)
+ident(
+  def o "extract/compiler__Compile_aexpr.ml" 27 1011 1019 "extract/compiler__Compile_aexpr.ml" 33 1274 1317
+)
+"extract/compiler__Compile_aexpr.ml" 25 896 910 "extract/compiler__Compile_aexpr.ml" 25 896 912
+type(
+  'p Logic__Compiler_logic.hl
+)
+ident(
+  def o1 "extract/compiler__Compile_aexpr.ml" 26 963 973 "extract/compiler__Compile_aexpr.ml" 26 963 1007
+)
+"extract/compiler__Compile_aexpr.ml" 25 896 919 "extract/compiler__Compile_aexpr.ml" 25 896 921
+type(
+  unit
+)
+ident(
+  def o2 "extract/compiler__Compile_aexpr.ml" 25 896 930 "extract/compiler__Compile_aexpr.ml" 25 896 959
+)
+"extract/compiler__Compile_aexpr.ml" 25 896 924 "extract/compiler__Compile_aexpr.ml" 25 896 926
+type(
+  unit
+)
+"extract/compiler__Compile_aexpr.ml" 25 896 930 "extract/compiler__Compile_aexpr.ml" 25 896 956
+type(
+  unit -> 'p Logic__Compiler_logic.hl
+)
+ident(
+  ext_ref Specs__VM_instr_spec.isubf
+)
+"extract/compiler__Compile_aexpr.ml" 25 896 957 "extract/compiler__Compile_aexpr.ml" 25 896 959
+type(
+  unit
+)
+ident(
+  int_ref o2 "extract/compiler__Compile_aexpr.ml" 25 896 919 "extract/compiler__Compile_aexpr.ml" 25 896 921
+)
+"extract/compiler__Compile_aexpr.ml" 25 896 930 "extract/compiler__Compile_aexpr.ml" 25 896 959
+call(
+  stack
+)
+type(
+  'p Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_aexpr.ml" 25 896 915 "extract/compiler__Compile_aexpr.ml" 25 896 959
+type(
+  'p Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_aexpr.ml" 26 963 973 "extract/compiler__Compile_aexpr.ml" 26 963 1004
+type(
+  '_q Logic__Compiler_logic.hl -> 'o Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.prefix_dl
+)
+"extract/compiler__Compile_aexpr.ml" 26 963 1005 "extract/compiler__Compile_aexpr.ml" 26 963 1007
+type(
+  '_q Logic__Compiler_logic.hl
+)
+ident(
+  int_ref o1 "extract/compiler__Compile_aexpr.ml" 25 896 910 "extract/compiler__Compile_aexpr.ml" 25 896 912
+)
+"extract/compiler__Compile_aexpr.ml" 26 963 973 "extract/compiler__Compile_aexpr.ml" 26 963 1007
+call(
+  stack
+)
+type(
+  'o Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 25 896 906 "extract/compiler__Compile_aexpr.ml" 26 963 1007
+type(
+  'o Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 27 1011 1023 "extract/compiler__Compile_aexpr.ml" 27 1011 1025
+type(
+  'r Logic__Compiler_logic.wp
+)
+ident(
+  def o1 "extract/compiler__Compile_aexpr.ml" 33 1274 1282 "extract/compiler__Compile_aexpr.ml" 33 1274 1317
+)
+"extract/compiler__Compile_aexpr.ml" 28 1028 1042 "extract/compiler__Compile_aexpr.ml" 28 1028 1044
+type(
+  's Logic__Compiler_logic.wp
+)
+ident(
+  def o2 "extract/compiler__Compile_aexpr.ml" 30 1126 1136 "extract/compiler__Compile_aexpr.ml" 32 1224 1270
+)
+"extract/compiler__Compile_aexpr.ml" 29 1047 1063 "extract/compiler__Compile_aexpr.ml" 29 1047 1065
+type(
+  'a Logic__Compiler_logic.hl
+)
+ident(
+  def o3 "extract/compiler__Compile_aexpr.ml" 29 1047 1088 "extract/compiler__Compile_aexpr.ml" 29 1047 1122
+)
+"extract/compiler__Compile_aexpr.ml" 29 1047 1068 "extract/compiler__Compile_aexpr.ml" 29 1047 1081
+type(
+  Imp__Imp.aexpr -> 'a Logic__Compiler_logic.hl
+)
+ident(
+  int_ref compile_aexpr "extract/compiler__Compile_aexpr.ml" 5 85 93 "extract/compiler__Compile_aexpr.ml" 5 85 106
+)
+"extract/compiler__Compile_aexpr.ml" 29 1047 1082 "extract/compiler__Compile_aexpr.ml" 29 1047 1084
+type(
+  Imp__Imp.aexpr
+)
+ident(
+  int_ref a2 "extract/compiler__Compile_aexpr.ml" 23 848 873 "extract/compiler__Compile_aexpr.ml" 23 848 875
+)
+"extract/compiler__Compile_aexpr.ml" 29 1047 1068 "extract/compiler__Compile_aexpr.ml" 29 1047 1084
+call(
+  stack
+)
+type(
+  'a Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_aexpr.ml" 29 1047 1088 "extract/compiler__Compile_aexpr.ml" 29 1047 1119
+type(
+  'a Logic__Compiler_logic.hl -> 's Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.prefix_dl
+)
+"extract/compiler__Compile_aexpr.ml" 29 1047 1120 "extract/compiler__Compile_aexpr.ml" 29 1047 1122
+type(
+  'a Logic__Compiler_logic.hl
+)
+ident(
+  int_ref o3 "extract/compiler__Compile_aexpr.ml" 29 1047 1063 "extract/compiler__Compile_aexpr.ml" 29 1047 1065
+)
+"extract/compiler__Compile_aexpr.ml" 29 1047 1088 "extract/compiler__Compile_aexpr.ml" 29 1047 1122
+call(
+  stack
+)
+type(
+  's Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 29 1047 1059 "extract/compiler__Compile_aexpr.ml" 29 1047 1122
+type(
+  's Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 30 1126 1140 "extract/compiler__Compile_aexpr.ml" 30 1126 1142
+type(
+  't Logic__Compiler_logic.wp
+)
+ident(
+  def o3 "extract/compiler__Compile_aexpr.ml" 32 1224 1234 "extract/compiler__Compile_aexpr.ml" 32 1224 1270
+)
+"extract/compiler__Compile_aexpr.ml" 31 1145 1161 "extract/compiler__Compile_aexpr.ml" 31 1145 1163
+type(
+  'a Logic__Compiler_logic.hl
+)
+ident(
+  def o4 "extract/compiler__Compile_aexpr.ml" 31 1145 1186 "extract/compiler__Compile_aexpr.ml" 31 1145 1220
+)
+"extract/compiler__Compile_aexpr.ml" 31 1145 1166 "extract/compiler__Compile_aexpr.ml" 31 1145 1179
+type(
+  Imp__Imp.aexpr -> 'a Logic__Compiler_logic.hl
+)
+ident(
+  int_ref compile_aexpr "extract/compiler__Compile_aexpr.ml" 5 85 93 "extract/compiler__Compile_aexpr.ml" 5 85 106
+)
+"extract/compiler__Compile_aexpr.ml" 31 1145 1180 "extract/compiler__Compile_aexpr.ml" 31 1145 1182
+type(
+  Imp__Imp.aexpr
+)
+ident(
+  int_ref a1 "extract/compiler__Compile_aexpr.ml" 23 848 869 "extract/compiler__Compile_aexpr.ml" 23 848 871
+)
+"extract/compiler__Compile_aexpr.ml" 31 1145 1166 "extract/compiler__Compile_aexpr.ml" 31 1145 1182
+call(
+  stack
+)
+type(
+  'a Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_aexpr.ml" 31 1145 1186 "extract/compiler__Compile_aexpr.ml" 31 1145 1217
+type(
+  'a Logic__Compiler_logic.hl -> 't Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.prefix_dl
+)
+"extract/compiler__Compile_aexpr.ml" 31 1145 1218 "extract/compiler__Compile_aexpr.ml" 31 1145 1220
+type(
+  'a Logic__Compiler_logic.hl
+)
+ident(
+  int_ref o4 "extract/compiler__Compile_aexpr.ml" 31 1145 1161 "extract/compiler__Compile_aexpr.ml" 31 1145 1163
+)
+"extract/compiler__Compile_aexpr.ml" 31 1145 1186 "extract/compiler__Compile_aexpr.ml" 31 1145 1220
+call(
+  stack
+)
+type(
+  't Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 31 1145 1157 "extract/compiler__Compile_aexpr.ml" 31 1145 1220
+type(
+  't Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 32 1224 1234 "extract/compiler__Compile_aexpr.ml" 32 1224 1264
+type(
+  '_u Logic__Compiler_logic.wp ->
+  Vm__Vm.machine_state Logic__Compiler_logic.wp ->
+  'r Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.infix_tl
+)
+"extract/compiler__Compile_aexpr.ml" 32 1224 1265 "extract/compiler__Compile_aexpr.ml" 32 1224 1267
+type(
+  '_u Logic__Compiler_logic.wp
+)
+ident(
+  int_ref o3 "extract/compiler__Compile_aexpr.ml" 30 1126 1140 "extract/compiler__Compile_aexpr.ml" 30 1126 1142
+)
+"extract/compiler__Compile_aexpr.ml" 32 1224 1268 "extract/compiler__Compile_aexpr.ml" 32 1224 1270
+type(
+  Vm__Vm.machine_state Logic__Compiler_logic.wp
+)
+ident(
+  int_ref o2 "extract/compiler__Compile_aexpr.ml" 28 1028 1042 "extract/compiler__Compile_aexpr.ml" 28 1028 1044
+)
+"extract/compiler__Compile_aexpr.ml" 32 1224 1234 "extract/compiler__Compile_aexpr.ml" 32 1224 1270
+call(
+  stack
+)
+type(
+  'r Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 30 1126 1136 "extract/compiler__Compile_aexpr.ml" 32 1224 1270
+type(
+  'r Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 28 1028 1038 "extract/compiler__Compile_aexpr.ml" 32 1224 1270
+type(
+  'r Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 33 1274 1282 "extract/compiler__Compile_aexpr.ml" 33 1274 1312
+type(
+  '_v Logic__Compiler_logic.wp ->
+  Vm__Vm.machine_state Logic__Compiler_logic.wp ->
+  'b Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.infix_tl
+)
+"extract/compiler__Compile_aexpr.ml" 33 1274 1313 "extract/compiler__Compile_aexpr.ml" 33 1274 1315
+type(
+  '_v Logic__Compiler_logic.wp
+)
+ident(
+  int_ref o1 "extract/compiler__Compile_aexpr.ml" 27 1011 1023 "extract/compiler__Compile_aexpr.ml" 27 1011 1025
+)
+"extract/compiler__Compile_aexpr.ml" 33 1274 1316 "extract/compiler__Compile_aexpr.ml" 33 1274 1317
+type(
+  Vm__Vm.machine_state Logic__Compiler_logic.wp
+)
+ident(
+  int_ref o "extract/compiler__Compile_aexpr.ml" 24 880 892 "extract/compiler__Compile_aexpr.ml" 24 880 893
+)
+"extract/compiler__Compile_aexpr.ml" 33 1274 1282 "extract/compiler__Compile_aexpr.ml" 33 1274 1317
+call(
+  stack
+)
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 27 1011 1019 "extract/compiler__Compile_aexpr.ml" 33 1274 1317
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 24 880 888 "extract/compiler__Compile_aexpr.ml" 33 1274 1317
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 34 1318 1339 "extract/compiler__Compile_aexpr.ml" 34 1318 1341
+type(
+  Imp__Imp.aexpr
+)
+ident(
+  def a1 "extract/compiler__Compile_aexpr.ml" 35 1350 1358 "extract/compiler__Compile_aexpr.ml" 44 1744 1787
+)
+"extract/compiler__Compile_aexpr.ml" 34 1318 1343 "extract/compiler__Compile_aexpr.ml" 34 1318 1345
+type(
+  Imp__Imp.aexpr
+)
+ident(
+  def a2 "extract/compiler__Compile_aexpr.ml" 35 1350 1358 "extract/compiler__Compile_aexpr.ml" 44 1744 1787
+)
+"extract/compiler__Compile_aexpr.ml" 34 1318 1324 "extract/compiler__Compile_aexpr.ml" 34 1318 1346
+type(
+  Imp__Imp.aexpr
+)
+"extract/compiler__Compile_aexpr.ml" 35 1350 1362 "extract/compiler__Compile_aexpr.ml" 35 1350 1363
+type(
+  'w Logic__Compiler_logic.wp
+)
+ident(
+  def o "extract/compiler__Compile_aexpr.ml" 38 1481 1489 "extract/compiler__Compile_aexpr.ml" 44 1744 1787
+)
+"extract/compiler__Compile_aexpr.ml" 36 1366 1380 "extract/compiler__Compile_aexpr.ml" 36 1366 1382
+type(
+  'x Logic__Compiler_logic.hl
+)
+ident(
+  def o1 "extract/compiler__Compile_aexpr.ml" 37 1433 1443 "extract/compiler__Compile_aexpr.ml" 37 1433 1477
+)
+"extract/compiler__Compile_aexpr.ml" 36 1366 1389 "extract/compiler__Compile_aexpr.ml" 36 1366 1391
+type(
+  unit
+)
+ident(
+  def o2 "extract/compiler__Compile_aexpr.ml" 36 1366 1400 "extract/compiler__Compile_aexpr.ml" 36 1366 1429
+)
+"extract/compiler__Compile_aexpr.ml" 36 1366 1394 "extract/compiler__Compile_aexpr.ml" 36 1366 1396
+type(
+  unit
+)
+"extract/compiler__Compile_aexpr.ml" 36 1366 1400 "extract/compiler__Compile_aexpr.ml" 36 1366 1426
+type(
+  unit -> 'x Logic__Compiler_logic.hl
+)
+ident(
+  ext_ref Specs__VM_instr_spec.imulf
+)
+"extract/compiler__Compile_aexpr.ml" 36 1366 1427 "extract/compiler__Compile_aexpr.ml" 36 1366 1429
+type(
+  unit
+)
+ident(
+  int_ref o2 "extract/compiler__Compile_aexpr.ml" 36 1366 1389 "extract/compiler__Compile_aexpr.ml" 36 1366 1391
+)
+"extract/compiler__Compile_aexpr.ml" 36 1366 1400 "extract/compiler__Compile_aexpr.ml" 36 1366 1429
+call(
+  stack
+)
+type(
+  'x Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_aexpr.ml" 36 1366 1385 "extract/compiler__Compile_aexpr.ml" 36 1366 1429
+type(
+  'x Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_aexpr.ml" 37 1433 1443 "extract/compiler__Compile_aexpr.ml" 37 1433 1474
+type(
+  '_y Logic__Compiler_logic.hl -> 'w Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.prefix_dl
+)
+"extract/compiler__Compile_aexpr.ml" 37 1433 1475 "extract/compiler__Compile_aexpr.ml" 37 1433 1477
+type(
+  '_y Logic__Compiler_logic.hl
+)
+ident(
+  int_ref o1 "extract/compiler__Compile_aexpr.ml" 36 1366 1380 "extract/compiler__Compile_aexpr.ml" 36 1366 1382
+)
+"extract/compiler__Compile_aexpr.ml" 37 1433 1443 "extract/compiler__Compile_aexpr.ml" 37 1433 1477
+call(
+  stack
+)
+type(
+  'w Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 36 1366 1376 "extract/compiler__Compile_aexpr.ml" 37 1433 1477
+type(
+  'w Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 38 1481 1493 "extract/compiler__Compile_aexpr.ml" 38 1481 1495
+type(
+  'z Logic__Compiler_logic.wp
+)
+ident(
+  def o1 "extract/compiler__Compile_aexpr.ml" 44 1744 1752 "extract/compiler__Compile_aexpr.ml" 44 1744 1787
+)
+"extract/compiler__Compile_aexpr.ml" 39 1498 1512 "extract/compiler__Compile_aexpr.ml" 39 1498 1514
+type(
+  'a1 Logic__Compiler_logic.wp
+)
+ident(
+  def o2 "extract/compiler__Compile_aexpr.ml" 41 1596 1606 "extract/compiler__Compile_aexpr.ml" 43 1694 1740
+)
+"extract/compiler__Compile_aexpr.ml" 40 1517 1533 "extract/compiler__Compile_aexpr.ml" 40 1517 1535
+type(
+  'a Logic__Compiler_logic.hl
+)
+ident(
+  def o3 "extract/compiler__Compile_aexpr.ml" 40 1517 1558 "extract/compiler__Compile_aexpr.ml" 40 1517 1592
+)
+"extract/compiler__Compile_aexpr.ml" 40 1517 1538 "extract/compiler__Compile_aexpr.ml" 40 1517 1551
+type(
+  Imp__Imp.aexpr -> 'a Logic__Compiler_logic.hl
+)
+ident(
+  int_ref compile_aexpr "extract/compiler__Compile_aexpr.ml" 5 85 93 "extract/compiler__Compile_aexpr.ml" 5 85 106
+)
+"extract/compiler__Compile_aexpr.ml" 40 1517 1552 "extract/compiler__Compile_aexpr.ml" 40 1517 1554
+type(
+  Imp__Imp.aexpr
+)
+ident(
+  int_ref a2 "extract/compiler__Compile_aexpr.ml" 34 1318 1343 "extract/compiler__Compile_aexpr.ml" 34 1318 1345
+)
+"extract/compiler__Compile_aexpr.ml" 40 1517 1538 "extract/compiler__Compile_aexpr.ml" 40 1517 1554
+call(
+  stack
+)
+type(
+  'a Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_aexpr.ml" 40 1517 1558 "extract/compiler__Compile_aexpr.ml" 40 1517 1589
+type(
+  'a Logic__Compiler_logic.hl -> 'a1 Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.prefix_dl
+)
+"extract/compiler__Compile_aexpr.ml" 40 1517 1590 "extract/compiler__Compile_aexpr.ml" 40 1517 1592
+type(
+  'a Logic__Compiler_logic.hl
+)
+ident(
+  int_ref o3 "extract/compiler__Compile_aexpr.ml" 40 1517 1533 "extract/compiler__Compile_aexpr.ml" 40 1517 1535
+)
+"extract/compiler__Compile_aexpr.ml" 40 1517 1558 "extract/compiler__Compile_aexpr.ml" 40 1517 1592
+call(
+  stack
+)
+type(
+  'a1 Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 40 1517 1529 "extract/compiler__Compile_aexpr.ml" 40 1517 1592
+type(
+  'a1 Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 41 1596 1610 "extract/compiler__Compile_aexpr.ml" 41 1596 1612
+type(
+  'b1 Logic__Compiler_logic.wp
+)
+ident(
+  def o3 "extract/compiler__Compile_aexpr.ml" 43 1694 1704 "extract/compiler__Compile_aexpr.ml" 43 1694 1740
+)
+"extract/compiler__Compile_aexpr.ml" 42 1615 1631 "extract/compiler__Compile_aexpr.ml" 42 1615 1633
+type(
+  'a Logic__Compiler_logic.hl
+)
+ident(
+  def o4 "extract/compiler__Compile_aexpr.ml" 42 1615 1656 "extract/compiler__Compile_aexpr.ml" 42 1615 1690
+)
+"extract/compiler__Compile_aexpr.ml" 42 1615 1636 "extract/compiler__Compile_aexpr.ml" 42 1615 1649
+type(
+  Imp__Imp.aexpr -> 'a Logic__Compiler_logic.hl
+)
+ident(
+  int_ref compile_aexpr "extract/compiler__Compile_aexpr.ml" 5 85 93 "extract/compiler__Compile_aexpr.ml" 5 85 106
+)
+"extract/compiler__Compile_aexpr.ml" 42 1615 1650 "extract/compiler__Compile_aexpr.ml" 42 1615 1652
+type(
+  Imp__Imp.aexpr
+)
+ident(
+  int_ref a1 "extract/compiler__Compile_aexpr.ml" 34 1318 1339 "extract/compiler__Compile_aexpr.ml" 34 1318 1341
+)
+"extract/compiler__Compile_aexpr.ml" 42 1615 1636 "extract/compiler__Compile_aexpr.ml" 42 1615 1652
+call(
+  stack
+)
+type(
+  'a Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_aexpr.ml" 42 1615 1656 "extract/compiler__Compile_aexpr.ml" 42 1615 1687
+type(
+  'a Logic__Compiler_logic.hl -> 'b1 Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.prefix_dl
+)
+"extract/compiler__Compile_aexpr.ml" 42 1615 1688 "extract/compiler__Compile_aexpr.ml" 42 1615 1690
+type(
+  'a Logic__Compiler_logic.hl
+)
+ident(
+  int_ref o4 "extract/compiler__Compile_aexpr.ml" 42 1615 1631 "extract/compiler__Compile_aexpr.ml" 42 1615 1633
+)
+"extract/compiler__Compile_aexpr.ml" 42 1615 1656 "extract/compiler__Compile_aexpr.ml" 42 1615 1690
+call(
+  stack
+)
+type(
+  'b1 Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 42 1615 1627 "extract/compiler__Compile_aexpr.ml" 42 1615 1690
+type(
+  'b1 Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 43 1694 1704 "extract/compiler__Compile_aexpr.ml" 43 1694 1734
+type(
+  '_c1 Logic__Compiler_logic.wp ->
+  Vm__Vm.machine_state Logic__Compiler_logic.wp ->
+  'z Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.infix_tl
+)
+"extract/compiler__Compile_aexpr.ml" 43 1694 1735 "extract/compiler__Compile_aexpr.ml" 43 1694 1737
+type(
+  '_c1 Logic__Compiler_logic.wp
+)
+ident(
+  int_ref o3 "extract/compiler__Compile_aexpr.ml" 41 1596 1610 "extract/compiler__Compile_aexpr.ml" 41 1596 1612
+)
+"extract/compiler__Compile_aexpr.ml" 43 1694 1738 "extract/compiler__Compile_aexpr.ml" 43 1694 1740
+type(
+  Vm__Vm.machine_state Logic__Compiler_logic.wp
+)
+ident(
+  int_ref o2 "extract/compiler__Compile_aexpr.ml" 39 1498 1512 "extract/compiler__Compile_aexpr.ml" 39 1498 1514
+)
+"extract/compiler__Compile_aexpr.ml" 43 1694 1704 "extract/compiler__Compile_aexpr.ml" 43 1694 1740
+call(
+  stack
+)
+type(
+  'z Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 41 1596 1606 "extract/compiler__Compile_aexpr.ml" 43 1694 1740
+type(
+  'z Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 39 1498 1508 "extract/compiler__Compile_aexpr.ml" 43 1694 1740
+type(
+  'z Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 44 1744 1752 "extract/compiler__Compile_aexpr.ml" 44 1744 1782
+type(
+  '_d1 Logic__Compiler_logic.wp ->
+  Vm__Vm.machine_state Logic__Compiler_logic.wp ->
+  'b Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.infix_tl
+)
+"extract/compiler__Compile_aexpr.ml" 44 1744 1783 "extract/compiler__Compile_aexpr.ml" 44 1744 1785
+type(
+  '_d1 Logic__Compiler_logic.wp
+)
+ident(
+  int_ref o1 "extract/compiler__Compile_aexpr.ml" 38 1481 1493 "extract/compiler__Compile_aexpr.ml" 38 1481 1495
+)
+"extract/compiler__Compile_aexpr.ml" 44 1744 1786 "extract/compiler__Compile_aexpr.ml" 44 1744 1787
+type(
+  Vm__Vm.machine_state Logic__Compiler_logic.wp
+)
+ident(
+  int_ref o "extract/compiler__Compile_aexpr.ml" 35 1350 1362 "extract/compiler__Compile_aexpr.ml" 35 1350 1363
+)
+"extract/compiler__Compile_aexpr.ml" 44 1744 1752 "extract/compiler__Compile_aexpr.ml" 44 1744 1787
+call(
+  stack
+)
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 38 1481 1489 "extract/compiler__Compile_aexpr.ml" 44 1744 1787
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 35 1350 1358 "extract/compiler__Compile_aexpr.ml" 44 1744 1787
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 7 139 143 "extract/compiler__Compile_aexpr.ml" 44 1744 1791
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_aexpr.ml" 45 1795 1797 "extract/compiler__Compile_aexpr.ml" 45 1795 1824
+type(
+  '_e1 Logic__Compiler_logic.wp -> 'a Logic__Compiler_logic.hl
+)
+ident(
+  ext_ref Logic__Compiler_logic.hoare
+)
+"extract/compiler__Compile_aexpr.ml" 45 1795 1826 "extract/compiler__Compile_aexpr.ml" 45 1795 1827
+type(
+  '_e1 Logic__Compiler_logic.wp
+)
+ident(
+  int_ref c "extract/compiler__Compile_aexpr.ml" 6 129 135 "extract/compiler__Compile_aexpr.ml" 6 129 136
+)
+"extract/compiler__Compile_aexpr.ml" 45 1795 1797 "extract/compiler__Compile_aexpr.ml" 45 1795 1827
+call(
+  tail
+)
+type(
+  'a Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_aexpr.ml" 6 129 131 "extract/compiler__Compile_aexpr.ml" 45 1795 1827
+type(
+  'a Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_aexpr.ml" 47 1829 1833 "extract/compiler__Compile_aexpr.ml" 47 1829 1854
+type(
+  Imp__Imp.aexpr -> Vm__Vm.instr list
+)
+ident(
+  def compile_aexpr_natural "extract/compiler__Compile_aexpr.ml" 48 1906 1938 "extract/compiler__Compile_aexpr.ml" 1 0 -1
+)
+"extract/compiler__Compile_aexpr.ml" 47 1829 1856 "extract/compiler__Compile_aexpr.ml" 47 1829 1857
+type(
+  Imp__Imp.aexpr
+)
+ident(
+  def a "extract/compiler__Compile_aexpr.ml" 47 1829 1877 "extract/compiler__Compile_aexpr.ml" 48 1906 1938
+)
+"extract/compiler__Compile_aexpr.ml" 47 1829 1881 "extract/compiler__Compile_aexpr.ml" 47 1829 1884
+type(
+  'a Logic__Compiler_logic.hl
+)
+ident(
+  def res "extract/compiler__Compile_aexpr.ml" 48 1906 1908 "extract/compiler__Compile_aexpr.ml" 48 1906 1938
+)
+"extract/compiler__Compile_aexpr.ml" 47 1829 1887 "extract/compiler__Compile_aexpr.ml" 47 1829 1900
+type(
+  Imp__Imp.aexpr -> 'a Logic__Compiler_logic.hl
+)
+ident(
+  int_ref compile_aexpr "extract/compiler__Compile_aexpr.ml" 5 85 93 "extract/compiler__Compile_aexpr.ml" 5 85 106
+)
+"extract/compiler__Compile_aexpr.ml" 47 1829 1901 "extract/compiler__Compile_aexpr.ml" 47 1829 1902
+type(
+  Imp__Imp.aexpr
+)
+ident(
+  int_ref a "extract/compiler__Compile_aexpr.ml" 47 1829 1856 "extract/compiler__Compile_aexpr.ml" 47 1829 1857
+)
+"extract/compiler__Compile_aexpr.ml" 47 1829 1887 "extract/compiler__Compile_aexpr.ml" 47 1829 1902
+call(
+  stack
+)
+type(
+  'a Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_aexpr.ml" 48 1906 1908 "extract/compiler__Compile_aexpr.ml" 48 1906 1911
+type(
+  '_b Logic__Compiler_logic.hl
+)
+ident(
+  int_ref res "extract/compiler__Compile_aexpr.ml" 47 1829 1881 "extract/compiler__Compile_aexpr.ml" 47 1829 1884
+)
+"extract/compiler__Compile_aexpr.ml" 48 1906 1908 "extract/compiler__Compile_aexpr.ml" 48 1906 1938
+type(
+  Vm__Vm.instr list
+)
+"extract/compiler__Compile_aexpr.ml" 47 1829 1877 "extract/compiler__Compile_aexpr.ml" 48 1906 1938
+type(
+  Vm__Vm.instr list
+)

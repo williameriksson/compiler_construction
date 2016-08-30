@@ -1,0 +1,10 @@
+module Cimp
+use import int.Int
+use import ref.Ref
+let prog () = 
+  (* variable declarations *)
+  let a = ref 0 in
+
+  (* commands *)
+  a := 7
+end

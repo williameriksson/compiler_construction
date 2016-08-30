@@ -1,0 +1,7 @@
+(* parser error at 1x *)
+x := (1);
+WHILE NOT y <= 0 DO
+  x := x * y;
+  y := y - 1x
+DONE
+

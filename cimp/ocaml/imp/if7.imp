@@ -1,0 +1,9 @@
+(* test if 1 <= 1 *)
+IF 1 <= 1 THEN 
+  a := 10
+ELSE 
+  a := 20
+END
+
+(* 
+*)
