@@ -22,7 +22,7 @@ let white   = [' ' '\t']+
 let newline = '\r' | '\n' | "\r\n"
 let id      = ['A'-'Z' 'a'-'z' '_']['0'-'9' 'A'-'Z' 'a'-'z' '_']*  
 let digits  = ['0'-'9']+
-let strings = '"'['A'-'Z' 'a'-'z' '_']['0'-'9' 'A'-'Z' 'a'-'z' '_']*'"'
+let strings = '"'['0'-'9' 'A'-'Z' 'a'-'z' '_' ' ']*'"'
 
 
 (* lexing rules *)  
