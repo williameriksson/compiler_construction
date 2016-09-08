@@ -179,9 +179,9 @@ and _menhir_goto_com : _menhir_env -> 'ttv_tail -> _menhir_state -> (Imp__Imp.co
             let _ = _menhir_discard _menhir_env in
             let _menhir_stack = Obj.magic _menhir_stack in
             let ((((((_menhir_stack, _menhir_s), initID), _, initexp), _, cond), _, addcom), _, body) = _menhir_stack in
-            let _v : (Imp__Imp.com) =                                                                                                    (
-			 Cseq(Cassign(initID, initexp), Cwhile (cond, Cseq(body, addcom)))	 
-		) in
+            let _v : (Imp__Imp.com) =                                                                                                     (
+        Cseq(Cassign (initID, initexp), Cwhile (cond, Cseq (body, addcom)))	 
+    ) in
             _menhir_goto_com _menhir_env _menhir_stack _menhir_s _v
         | SC ->
             _menhir_run53 _menhir_env (Obj.magic _menhir_stack)
@@ -637,7 +637,7 @@ and _menhir_goto_aexpr : _menhir_env -> 'ttv_tail -> _menhir_state -> (Imp__Imp.
         | AND | BB | BBE | BEQ | BL | BLE | DO | DONE | ELSE | END | EOF | MINUS | PLUS | RP | SC | THEN ->
             let _menhir_stack = Obj.magic _menhir_stack in
             let ((_menhir_stack, _menhir_s), _, _2) = _menhir_stack in
-            let _v : (Imp__Imp.aexpr) =                           ( Asub (Anum (of_int 0), _2) ) in
+            let _v : (Imp__Imp.aexpr) =                                   ( Asub (Anum (of_int 0), _2) ) in
             _menhir_goto_aexpr _menhir_env _menhir_stack _menhir_s _v
         | _ ->
             assert (Pervasives.(<>) _menhir_env._menhir_shifted (-1));
@@ -708,7 +708,7 @@ and _menhir_goto_aexpr : _menhir_env -> 'ttv_tail -> _menhir_state -> (Imp__Imp.
         | AND | DO | RP | SC | THEN ->
             let _menhir_stack = Obj.magic _menhir_stack in
             let ((_menhir_stack, _menhir_s, _1), _, _3) = _menhir_stack in
-            let _v : (Imp__Imp.bexpr) =                           ( Ble (_1, Asub (_3, Anum (of_int 1))) ) in
+            let _v : (Imp__Imp.bexpr) =                                   ( Ble (_1, Asub (_3, Anum (of_int 1))) ) in
             _menhir_goto_bexpr _menhir_env _menhir_stack _menhir_s _v
         | _ ->
             assert (Pervasives.(<>) _menhir_env._menhir_shifted (-1));
@@ -752,7 +752,7 @@ and _menhir_goto_aexpr : _menhir_env -> 'ttv_tail -> _menhir_state -> (Imp__Imp.
         | AND | DO | RP | SC | THEN ->
             let _menhir_stack = Obj.magic _menhir_stack in
             let ((_menhir_stack, _menhir_s, _1), _, _3) = _menhir_stack in
-            let _v : (Imp__Imp.bexpr) =                            ( Ble (_3, _1) ) in
+            let _v : (Imp__Imp.bexpr) =                                   ( Ble (_3, _1) ) in
             _menhir_goto_bexpr _menhir_env _menhir_stack _menhir_s _v
         | _ ->
             assert (Pervasives.(<>) _menhir_env._menhir_shifted (-1));
@@ -774,7 +774,7 @@ and _menhir_goto_aexpr : _menhir_env -> 'ttv_tail -> _menhir_state -> (Imp__Imp.
         | AND | DO | RP | SC | THEN ->
             let _menhir_stack = Obj.magic _menhir_stack in
             let ((_menhir_stack, _menhir_s, _1), _, _3) = _menhir_stack in
-            let _v : (Imp__Imp.bexpr) =                           ( Ble (Aadd (_3, Anum (of_int 1)), _1 ) ) in
+            let _v : (Imp__Imp.bexpr) =                                   ( Ble (Aadd (_3, Anum (of_int 1)), _1 ) ) in
             _menhir_goto_bexpr _menhir_env _menhir_stack _menhir_s _v
         | _ ->
             assert (Pervasives.(<>) _menhir_env._menhir_shifted (-1));

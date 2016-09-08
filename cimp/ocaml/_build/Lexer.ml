@@ -868,7 +868,7 @@ and __ocaml_lex_lex_rec lexbuf __ocaml_lex_state =
 
   | 5 ->
 # 35 "Lexer.mll"
-                 ( FOR )
+                        ( FOR )
 # 873 "Lexer.ml"
 
   | 6 ->
@@ -908,12 +908,12 @@ and __ocaml_lex_lex_rec lexbuf __ocaml_lex_state =
 
   | 13 ->
 # 44 "Lexer.mll"
-                ( BL  )
+                        ( BL  )
 # 913 "Lexer.ml"
 
   | 14 ->
 # 45 "Lexer.mll"
-                ( BB	 )
+                        ( BB	 )
 # 918 "Lexer.ml"
 
   | 15 ->
@@ -923,7 +923,7 @@ and __ocaml_lex_lex_rec lexbuf __ocaml_lex_state =
 
   | 16 ->
 # 47 "Lexer.mll"
-                ( BBE )
+                        ( BBE )
 # 928 "Lexer.ml"
 
   | 17 ->
@@ -968,7 +968,7 @@ let
 # 969 "Lexer.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_curr_pos in
 # 56 "Lexer.mll"
-                    ( STRINGVAL a )
+                        ( STRINGVAL a )
 # 973 "Lexer.ml"
 
   | 24 ->

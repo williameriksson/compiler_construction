@@ -32,7 +32,7 @@ rule lex = parse
   | "ELSE"               { ELSE }
   | "END"                { END }
   | "WHILE"              { WHILE }
-	| "FOR"								 { FOR }
+	| "FOR"                { FOR }
   | "DO"                 { DO }
   | "DONE"               { DONE }
 
@@ -41,10 +41,10 @@ rule lex = parse
   | "&&"                 { AND } 
   | "NOT"                { NOT }
   | "="                  { BEQ }
-	| "<"									 { BL  }
-	| ">"									 { BB	 } 
+	| "<"                  { BL  }
+	| ">"                  { BB	 } 
   | "<="                 { BLE }  
-	| ">="								 { BBE }
+	| ">="                 { BBE }
  
   | ';'                  { SC } 
   | ":="                 { ASSIGN }
@@ -53,7 +53,7 @@ rule lex = parse
   | '*'                  { MULT }              
   
   | digits as i          { INTVAL (int_of_string i) }           (* literals/values *)
-	| strings as a				 { STRINGVAL a }
+	| strings as a         { STRINGVAL a }
   
   | id as s              { ID (Id (add_id s)) }
   | white                { lex lexbuf }                         (* white space *)
@@ -77,6 +77,4 @@ and comments level = parse
   | _                    { comments level lexbuf }
   | eof                  { bol lexbuf; raise (SyntaxError("Comment not closed.")) }
     
-                         
-    
-    
+
