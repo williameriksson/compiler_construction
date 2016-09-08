@@ -1,0 +1,93 @@
+"extract/list__Length.ml" 5 83 91 "extract/list__Length.ml" 5 83 97
+type(
+  'a list -> Z.t
+)
+ident(
+  def length "extract/list__Length.ml" 5 83 83 "extract/list__Length.ml" 1 0 -1
+)
+"extract/list__Length.ml" 5 83 99 "extract/list__Length.ml" 5 83 100
+type(
+  'a list
+)
+ident(
+  def l "extract/list__Length.ml" 6 113 115 "extract/list__Length.ml" 8 174 252
+)
+"extract/list__Length.ml" 6 113 127 "extract/list__Length.ml" 6 113 128
+type(
+  'a list
+)
+ident(
+  int_ref l "extract/list__Length.ml" 5 83 99 "extract/list__Length.ml" 5 83 100
+)
+"extract/list__Length.ml" 7 134 138 "extract/list__Length.ml" 7 134 140
+type(
+  'a list
+)
+"extract/list__Length.ml" 7 134 144 "extract/list__Length.ml" 7 134 173
+type(
+  Z.t
+)
+ident(
+  ext_ref Why3extract.Why3__BigInt.zero
+)
+"extract/list__Length.ml" 8 174 179 "extract/list__Length.ml" 8 174 180
+type(
+  'a
+)
+"extract/list__Length.ml" 8 174 184 "extract/list__Length.ml" 8 174 185
+type(
+  'a list
+)
+ident(
+  def r "extract/list__Length.ml" 8 174 190 "extract/list__Length.ml" 8 174 248
+)
+"extract/list__Length.ml" 8 174 178 "extract/list__Length.ml" 8 174 186
+type(
+  'a list
+)
+"extract/list__Length.ml" 8 174 191 "extract/list__Length.ml" 8 174 207
+type(
+  Z.t -> Z.t -> Z.t
+)
+ident(
+  ext_ref Why3extract.Why3__BigInt.add
+)
+"extract/list__Length.ml" 8 174 208 "extract/list__Length.ml" 8 174 236
+type(
+  Z.t
+)
+ident(
+  ext_ref Why3extract.Why3__BigInt.one
+)
+"extract/list__Length.ml" 8 174 238 "extract/list__Length.ml" 8 174 244
+type(
+  'a list -> Z.t
+)
+ident(
+  int_ref length "extract/list__Length.ml" 5 83 91 "extract/list__Length.ml" 5 83 97
+)
+"extract/list__Length.ml" 8 174 245 "extract/list__Length.ml" 8 174 246
+type(
+  'a list
+)
+ident(
+  int_ref r "extract/list__Length.ml" 8 174 184 "extract/list__Length.ml" 8 174 185
+)
+"extract/list__Length.ml" 8 174 237 "extract/list__Length.ml" 8 174 247
+call(
+  stack
+)
+type(
+  Z.t
+)
+"extract/list__Length.ml" 8 174 190 "extract/list__Length.ml" 8 174 248
+call(
+  tail
+)
+type(
+  Z.t
+)
+"extract/list__Length.ml" 6 113 115 "extract/list__Length.ml" 8 174 252
+type(
+  Z.t
+)

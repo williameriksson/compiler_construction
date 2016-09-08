@@ -1,0 +1,1461 @@
+"extract/compiler__Compile_bexpr.ml" 5 85 93 "extract/compiler__Compile_bexpr.ml" 5 85 106
+type(
+  Imp__Imp.bexpr ->
+  bool -> Why3extract.Why3__BigInt.t -> 'a Logic__Compiler_logic.hl
+)
+ident(
+  def compile_bexpr "extract/compiler__Compile_bexpr.ml" 5 85 85 "extract/compiler__Compile_bexpr.ml" 1 0 -1
+)
+"extract/compiler__Compile_bexpr.ml" 5 85 108 "extract/compiler__Compile_bexpr.ml" 5 85 109
+type(
+  Imp__Imp.bexpr
+)
+ident(
+  def b "extract/compiler__Compile_bexpr.ml" 5 85 127 "extract/compiler__Compile_bexpr.ml" 81 2754 2794
+)
+"extract/compiler__Compile_bexpr.ml" 5 85 128 "extract/compiler__Compile_bexpr.ml" 5 85 132
+type(
+  bool
+)
+ident(
+  def cond "extract/compiler__Compile_bexpr.ml" 6 140 142 "extract/compiler__Compile_bexpr.ml" 81 2754 2794
+)
+"extract/compiler__Compile_bexpr.ml" 6 140 143 "extract/compiler__Compile_bexpr.ml" 6 140 146
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  def ofs "extract/compiler__Compile_bexpr.ml" 7 178 180 "extract/compiler__Compile_bexpr.ml" 81 2754 2794
+)
+"extract/compiler__Compile_bexpr.ml" 7 178 184 "extract/compiler__Compile_bexpr.ml" 7 178 185
+type(
+  'b Logic__Compiler_logic.wp
+)
+ident(
+  def c "extract/compiler__Compile_bexpr.ml" 81 2754 2756 "extract/compiler__Compile_bexpr.ml" 81 2754 2794
+)
+"extract/compiler__Compile_bexpr.ml" 8 188 204 "extract/compiler__Compile_bexpr.ml" 8 188 205
+type(
+  Imp__Imp.bexpr
+)
+ident(
+  int_ref b "extract/compiler__Compile_bexpr.ml" 5 85 108 "extract/compiler__Compile_bexpr.ml" 5 85 109
+)
+"extract/compiler__Compile_bexpr.ml" 9 211 217 "extract/compiler__Compile_bexpr.ml" 9 211 231
+type(
+  Imp__Imp.bexpr
+)
+"extract/compiler__Compile_bexpr.ml" 10 235 247 "extract/compiler__Compile_bexpr.ml" 10 235 248
+type(
+  'c Logic__Compiler_logic.hl
+)
+ident(
+  def o "extract/compiler__Compile_bexpr.ml" 16 404 412 "extract/compiler__Compile_bexpr.ml" 16 404 445
+)
+"extract/compiler__Compile_bexpr.ml" 11 251 264 "extract/compiler__Compile_bexpr.ml" 11 251 268
+type(
+  bool
+)
+ident(
+  int_ref cond "extract/compiler__Compile_bexpr.ml" 5 85 128 "extract/compiler__Compile_bexpr.ml" 5 85 132
+)
+"extract/compiler__Compile_bexpr.ml" 13 284 296 "extract/compiler__Compile_bexpr.ml" 13 284 325
+type(
+  Why3extract.Why3__BigInt.t -> 'c Logic__Compiler_logic.hl
+)
+ident(
+  ext_ref Specs__VM_instr_spec.ibranchf
+)
+"extract/compiler__Compile_bexpr.ml" 13 284 326 "extract/compiler__Compile_bexpr.ml" 13 284 329
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  int_ref ofs "extract/compiler__Compile_bexpr.ml" 6 140 143 "extract/compiler__Compile_bexpr.ml" 6 140 146
+)
+"extract/compiler__Compile_bexpr.ml" 13 284 296 "extract/compiler__Compile_bexpr.ml" 13 284 329
+call(
+  stack
+)
+type(
+  'c Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_bexpr.ml" 15 345 361 "extract/compiler__Compile_bexpr.ml" 15 345 363
+type(
+  unit
+)
+ident(
+  def o1 "extract/compiler__Compile_bexpr.ml" 15 345 372 "extract/compiler__Compile_bexpr.ml" 15 345 400
+)
+"extract/compiler__Compile_bexpr.ml" 15 345 366 "extract/compiler__Compile_bexpr.ml" 15 345 368
+type(
+  unit
+)
+"extract/compiler__Compile_bexpr.ml" 15 345 372 "extract/compiler__Compile_bexpr.ml" 15 345 397
+type(
+  unit -> 'c Logic__Compiler_logic.hl
+)
+ident(
+  ext_ref Specs__VM_instr_spec.inil
+)
+"extract/compiler__Compile_bexpr.ml" 15 345 398 "extract/compiler__Compile_bexpr.ml" 15 345 400
+type(
+  unit
+)
+ident(
+  int_ref o1 "extract/compiler__Compile_bexpr.ml" 15 345 361 "extract/compiler__Compile_bexpr.ml" 15 345 363
+)
+"extract/compiler__Compile_bexpr.ml" 15 345 372 "extract/compiler__Compile_bexpr.ml" 15 345 400
+call(
+  stack
+)
+type(
+  'c Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_bexpr.ml" 15 345 357 "extract/compiler__Compile_bexpr.ml" 15 345 400
+type(
+  'c Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_bexpr.ml" 11 251 261 "extract/compiler__Compile_bexpr.ml" 15 345 400
+type(
+  'c Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_bexpr.ml" 16 404 412 "extract/compiler__Compile_bexpr.ml" 16 404 443
+type(
+  '_d Logic__Compiler_logic.hl -> 'b Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.prefix_dl
+)
+"extract/compiler__Compile_bexpr.ml" 16 404 444 "extract/compiler__Compile_bexpr.ml" 16 404 445
+type(
+  '_d Logic__Compiler_logic.hl
+)
+ident(
+  int_ref o "extract/compiler__Compile_bexpr.ml" 10 235 247 "extract/compiler__Compile_bexpr.ml" 10 235 248
+)
+"extract/compiler__Compile_bexpr.ml" 16 404 412 "extract/compiler__Compile_bexpr.ml" 16 404 445
+call(
+  stack
+)
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 10 235 243 "extract/compiler__Compile_bexpr.ml" 16 404 445
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 17 446 452 "extract/compiler__Compile_bexpr.ml" 17 446 467
+type(
+  Imp__Imp.bexpr
+)
+"extract/compiler__Compile_bexpr.ml" 18 471 483 "extract/compiler__Compile_bexpr.ml" 18 471 484
+type(
+  'e Logic__Compiler_logic.hl
+)
+ident(
+  def o "extract/compiler__Compile_bexpr.ml" 24 640 648 "extract/compiler__Compile_bexpr.ml" 24 640 681
+)
+"extract/compiler__Compile_bexpr.ml" 19 487 500 "extract/compiler__Compile_bexpr.ml" 19 487 504
+type(
+  bool
+)
+ident(
+  int_ref cond "extract/compiler__Compile_bexpr.ml" 5 85 128 "extract/compiler__Compile_bexpr.ml" 5 85 132
+)
+"extract/compiler__Compile_bexpr.ml" 21 520 536 "extract/compiler__Compile_bexpr.ml" 21 520 538
+type(
+  unit
+)
+ident(
+  def o1 "extract/compiler__Compile_bexpr.ml" 21 520 547 "extract/compiler__Compile_bexpr.ml" 21 520 575
+)
+"extract/compiler__Compile_bexpr.ml" 21 520 541 "extract/compiler__Compile_bexpr.ml" 21 520 543
+type(
+  unit
+)
+"extract/compiler__Compile_bexpr.ml" 21 520 547 "extract/compiler__Compile_bexpr.ml" 21 520 572
+type(
+  unit -> 'e Logic__Compiler_logic.hl
+)
+ident(
+  ext_ref Specs__VM_instr_spec.inil
+)
+"extract/compiler__Compile_bexpr.ml" 21 520 573 "extract/compiler__Compile_bexpr.ml" 21 520 575
+type(
+  unit
+)
+ident(
+  int_ref o1 "extract/compiler__Compile_bexpr.ml" 21 520 536 "extract/compiler__Compile_bexpr.ml" 21 520 538
+)
+"extract/compiler__Compile_bexpr.ml" 21 520 547 "extract/compiler__Compile_bexpr.ml" 21 520 575
+call(
+  stack
+)
+type(
+  'e Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_bexpr.ml" 21 520 532 "extract/compiler__Compile_bexpr.ml" 21 520 575
+type(
+  'e Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_bexpr.ml" 23 591 603 "extract/compiler__Compile_bexpr.ml" 23 591 632
+type(
+  Why3extract.Why3__BigInt.t -> 'e Logic__Compiler_logic.hl
+)
+ident(
+  ext_ref Specs__VM_instr_spec.ibranchf
+)
+"extract/compiler__Compile_bexpr.ml" 23 591 633 "extract/compiler__Compile_bexpr.ml" 23 591 636
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  int_ref ofs "extract/compiler__Compile_bexpr.ml" 6 140 143 "extract/compiler__Compile_bexpr.ml" 6 140 146
+)
+"extract/compiler__Compile_bexpr.ml" 23 591 603 "extract/compiler__Compile_bexpr.ml" 23 591 636
+call(
+  stack
+)
+type(
+  'e Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_bexpr.ml" 19 487 497 "extract/compiler__Compile_bexpr.ml" 23 591 636
+type(
+  'e Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_bexpr.ml" 24 640 648 "extract/compiler__Compile_bexpr.ml" 24 640 679
+type(
+  '_f Logic__Compiler_logic.hl -> 'b Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.prefix_dl
+)
+"extract/compiler__Compile_bexpr.ml" 24 640 680 "extract/compiler__Compile_bexpr.ml" 24 640 681
+type(
+  '_f Logic__Compiler_logic.hl
+)
+ident(
+  int_ref o "extract/compiler__Compile_bexpr.ml" 18 471 483 "extract/compiler__Compile_bexpr.ml" 18 471 484
+)
+"extract/compiler__Compile_bexpr.ml" 24 640 648 "extract/compiler__Compile_bexpr.ml" 24 640 681
+call(
+  stack
+)
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 18 471 479 "extract/compiler__Compile_bexpr.ml" 24 640 681
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 25 682 702 "extract/compiler__Compile_bexpr.ml" 25 682 704
+type(
+  Imp__Imp.bexpr
+)
+ident(
+  def b1 "extract/compiler__Compile_bexpr.ml" 26 708 716 "extract/compiler__Compile_bexpr.ml" 27 781 822
+)
+"extract/compiler__Compile_bexpr.ml" 25 682 688 "extract/compiler__Compile_bexpr.ml" 25 682 704
+type(
+  Imp__Imp.bexpr
+)
+"extract/compiler__Compile_bexpr.ml" 26 708 720 "extract/compiler__Compile_bexpr.ml" 26 708 721
+type(
+  'a Logic__Compiler_logic.hl
+)
+ident(
+  def o "extract/compiler__Compile_bexpr.ml" 27 781 789 "extract/compiler__Compile_bexpr.ml" 27 781 822
+)
+"extract/compiler__Compile_bexpr.ml" 26 708 728 "extract/compiler__Compile_bexpr.ml" 26 708 730
+type(
+  bool
+)
+ident(
+  def o1 "extract/compiler__Compile_bexpr.ml" 26 708 754 "extract/compiler__Compile_bexpr.ml" 26 708 777
+)
+"extract/compiler__Compile_bexpr.ml" 26 708 733 "extract/compiler__Compile_bexpr.ml" 26 708 736
+type(
+  bool -> bool
+)
+ident(
+  ext_ref Pervasives.not
+)
+"extract/compiler__Compile_bexpr.ml" 26 708 738 "extract/compiler__Compile_bexpr.ml" 26 708 742
+type(
+  bool
+)
+ident(
+  int_ref cond "extract/compiler__Compile_bexpr.ml" 5 85 128 "extract/compiler__Compile_bexpr.ml" 5 85 132
+)
+"extract/compiler__Compile_bexpr.ml" 26 708 743 "extract/compiler__Compile_bexpr.ml" 26 708 744
+type(
+  bool -> bool -> bool
+)
+ident(
+  ext_ref Pervasives.( = )
+)
+"extract/compiler__Compile_bexpr.ml" 26 708 745 "extract/compiler__Compile_bexpr.ml" 26 708 749
+type(
+  bool
+)
+"extract/compiler__Compile_bexpr.ml" 26 708 737 "extract/compiler__Compile_bexpr.ml" 26 708 750
+type(
+  bool
+)
+"extract/compiler__Compile_bexpr.ml" 26 708 733 "extract/compiler__Compile_bexpr.ml" 26 708 750
+type(
+  bool
+)
+"extract/compiler__Compile_bexpr.ml" 26 708 754 "extract/compiler__Compile_bexpr.ml" 26 708 767
+type(
+  Imp__Imp.bexpr ->
+  bool -> Why3extract.Why3__BigInt.t -> 'a Logic__Compiler_logic.hl
+)
+ident(
+  int_ref compile_bexpr "extract/compiler__Compile_bexpr.ml" 5 85 93 "extract/compiler__Compile_bexpr.ml" 5 85 106
+)
+"extract/compiler__Compile_bexpr.ml" 26 708 768 "extract/compiler__Compile_bexpr.ml" 26 708 770
+type(
+  Imp__Imp.bexpr
+)
+ident(
+  int_ref b1 "extract/compiler__Compile_bexpr.ml" 25 682 702 "extract/compiler__Compile_bexpr.ml" 25 682 704
+)
+"extract/compiler__Compile_bexpr.ml" 26 708 771 "extract/compiler__Compile_bexpr.ml" 26 708 773
+type(
+  bool
+)
+ident(
+  int_ref o1 "extract/compiler__Compile_bexpr.ml" 26 708 728 "extract/compiler__Compile_bexpr.ml" 26 708 730
+)
+"extract/compiler__Compile_bexpr.ml" 26 708 774 "extract/compiler__Compile_bexpr.ml" 26 708 777
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  int_ref ofs "extract/compiler__Compile_bexpr.ml" 6 140 143 "extract/compiler__Compile_bexpr.ml" 6 140 146
+)
+"extract/compiler__Compile_bexpr.ml" 26 708 754 "extract/compiler__Compile_bexpr.ml" 26 708 777
+call(
+  stack
+)
+type(
+  'a Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_bexpr.ml" 26 708 724 "extract/compiler__Compile_bexpr.ml" 26 708 777
+type(
+  'a Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_bexpr.ml" 27 781 789 "extract/compiler__Compile_bexpr.ml" 27 781 820
+type(
+  'a Logic__Compiler_logic.hl -> 'b Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.prefix_dl
+)
+"extract/compiler__Compile_bexpr.ml" 27 781 821 "extract/compiler__Compile_bexpr.ml" 27 781 822
+type(
+  'a Logic__Compiler_logic.hl
+)
+ident(
+  int_ref o "extract/compiler__Compile_bexpr.ml" 26 708 720 "extract/compiler__Compile_bexpr.ml" 26 708 721
+)
+"extract/compiler__Compile_bexpr.ml" 27 781 789 "extract/compiler__Compile_bexpr.ml" 27 781 822
+call(
+  stack
+)
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 26 708 716 "extract/compiler__Compile_bexpr.ml" 27 781 822
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 28 823 844 "extract/compiler__Compile_bexpr.ml" 28 823 846
+type(
+  Imp__Imp.bexpr
+)
+ident(
+  def b1 "extract/compiler__Compile_bexpr.ml" 29 855 863 "extract/compiler__Compile_bexpr.ml" 44 1423 1466
+)
+"extract/compiler__Compile_bexpr.ml" 28 823 848 "extract/compiler__Compile_bexpr.ml" 28 823 850
+type(
+  Imp__Imp.bexpr
+)
+ident(
+  def b2 "extract/compiler__Compile_bexpr.ml" 29 855 863 "extract/compiler__Compile_bexpr.ml" 44 1423 1466
+)
+"extract/compiler__Compile_bexpr.ml" 28 823 829 "extract/compiler__Compile_bexpr.ml" 28 823 851
+type(
+  Imp__Imp.bexpr
+)
+"extract/compiler__Compile_bexpr.ml" 29 855 867 "extract/compiler__Compile_bexpr.ml" 29 855 869
+type(
+  'g Logic__Compiler_logic.wp
+)
+ident(
+  def c2 "extract/compiler__Compile_bexpr.ml" 34 1036 1044 "extract/compiler__Compile_bexpr.ml" 44 1423 1466
+)
+"extract/compiler__Compile_bexpr.ml" 30 872 886 "extract/compiler__Compile_bexpr.ml" 30 872 887
+type(
+  'h Logic__Compiler_logic.wp
+)
+ident(
+  def o "extract/compiler__Compile_bexpr.ml" 33 990 1000 "extract/compiler__Compile_bexpr.ml" 33 990 1032
+)
+"extract/compiler__Compile_bexpr.ml" 31 890 906 "extract/compiler__Compile_bexpr.ml" 31 890 908
+type(
+  'a Logic__Compiler_logic.hl
+)
+ident(
+  def o1 "extract/compiler__Compile_bexpr.ml" 32 940 952 "extract/compiler__Compile_bexpr.ml" 32 940 986
+)
+"extract/compiler__Compile_bexpr.ml" 31 890 911 "extract/compiler__Compile_bexpr.ml" 31 890 924
+type(
+  Imp__Imp.bexpr ->
+  bool -> Why3extract.Why3__BigInt.t -> 'a Logic__Compiler_logic.hl
+)
+ident(
+  int_ref compile_bexpr "extract/compiler__Compile_bexpr.ml" 5 85 93 "extract/compiler__Compile_bexpr.ml" 5 85 106
+)
+"extract/compiler__Compile_bexpr.ml" 31 890 925 "extract/compiler__Compile_bexpr.ml" 31 890 927
+type(
+  Imp__Imp.bexpr
+)
+ident(
+  int_ref b2 "extract/compiler__Compile_bexpr.ml" 28 823 848 "extract/compiler__Compile_bexpr.ml" 28 823 850
+)
+"extract/compiler__Compile_bexpr.ml" 31 890 928 "extract/compiler__Compile_bexpr.ml" 31 890 932
+type(
+  bool
+)
+ident(
+  int_ref cond "extract/compiler__Compile_bexpr.ml" 5 85 128 "extract/compiler__Compile_bexpr.ml" 5 85 132
+)
+"extract/compiler__Compile_bexpr.ml" 31 890 933 "extract/compiler__Compile_bexpr.ml" 31 890 936
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  int_ref ofs "extract/compiler__Compile_bexpr.ml" 6 140 143 "extract/compiler__Compile_bexpr.ml" 6 140 146
+)
+"extract/compiler__Compile_bexpr.ml" 31 890 911 "extract/compiler__Compile_bexpr.ml" 31 890 936
+call(
+  stack
+)
+type(
+  'a Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_bexpr.ml" 32 940 952 "extract/compiler__Compile_bexpr.ml" 32 940 983
+type(
+  'a Logic__Compiler_logic.hl -> 'h Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.prefix_dl
+)
+"extract/compiler__Compile_bexpr.ml" 32 940 984 "extract/compiler__Compile_bexpr.ml" 32 940 986
+type(
+  'a Logic__Compiler_logic.hl
+)
+ident(
+  int_ref o1 "extract/compiler__Compile_bexpr.ml" 31 890 906 "extract/compiler__Compile_bexpr.ml" 31 890 908
+)
+"extract/compiler__Compile_bexpr.ml" 32 940 952 "extract/compiler__Compile_bexpr.ml" 32 940 986
+call(
+  stack
+)
+type(
+  'h Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 31 890 902 "extract/compiler__Compile_bexpr.ml" 32 940 986
+type(
+  'h Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 33 990 1000 "extract/compiler__Compile_bexpr.ml" 33 990 1030
+type(
+  '_i Logic__Compiler_logic.wp -> 'g Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.infix_pc
+)
+"extract/compiler__Compile_bexpr.ml" 33 990 1031 "extract/compiler__Compile_bexpr.ml" 33 990 1032
+type(
+  '_i Logic__Compiler_logic.wp
+)
+ident(
+  int_ref o "extract/compiler__Compile_bexpr.ml" 30 872 886 "extract/compiler__Compile_bexpr.ml" 30 872 887
+)
+"extract/compiler__Compile_bexpr.ml" 33 990 1000 "extract/compiler__Compile_bexpr.ml" 33 990 1032
+call(
+  stack
+)
+type(
+  'g Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 30 872 882 "extract/compiler__Compile_bexpr.ml" 33 990 1032
+type(
+  'g Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 34 1036 1048 "extract/compiler__Compile_bexpr.ml" 34 1036 1052
+type(
+  Z.t
+)
+ident(
+  def ofs1 "extract/compiler__Compile_bexpr.ml" 41 1294 1302 "extract/compiler__Compile_bexpr.ml" 44 1423 1466
+)
+"extract/compiler__Compile_bexpr.ml" 35 1055 1068 "extract/compiler__Compile_bexpr.ml" 35 1055 1072
+type(
+  bool
+)
+ident(
+  int_ref cond "extract/compiler__Compile_bexpr.ml" 5 85 128 "extract/compiler__Compile_bexpr.ml" 5 85 132
+)
+"extract/compiler__Compile_bexpr.ml" 37 1088 1100 "extract/compiler__Compile_bexpr.ml" 37 1088 1119
+type(
+  Vm__Vm.instr list -> Z.t
+)
+ident(
+  ext_ref List__Length.length
+)
+"extract/compiler__Compile_bexpr.ml" 37 1088 1120 "extract/compiler__Compile_bexpr.ml" 37 1088 1122
+type(
+  '_j Logic__Compiler_logic.wp
+)
+ident(
+  int_ref c2 "extract/compiler__Compile_bexpr.ml" 29 855 867 "extract/compiler__Compile_bexpr.ml" 29 855 869
+)
+"extract/compiler__Compile_bexpr.ml" 37 1088 1120 "extract/compiler__Compile_bexpr.ml" 37 1088 1150
+type(
+  Vm__Vm.instr list
+)
+"extract/compiler__Compile_bexpr.ml" 37 1088 1100 "extract/compiler__Compile_bexpr.ml" 37 1088 1150
+call(
+  stack
+)
+type(
+  Z.t
+)
+"extract/compiler__Compile_bexpr.ml" 39 1166 1179 "extract/compiler__Compile_bexpr.ml" 39 1166 1195
+type(
+  Why3extract.Why3__BigInt.t -> Z.t -> Z.t
+)
+ident(
+  ext_ref Why3extract.Why3__BigInt.add
+)
+"extract/compiler__Compile_bexpr.ml" 39 1166 1196 "extract/compiler__Compile_bexpr.ml" 39 1166 1199
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  int_ref ofs "extract/compiler__Compile_bexpr.ml" 6 140 143 "extract/compiler__Compile_bexpr.ml" 6 140 146
+)
+"extract/compiler__Compile_bexpr.ml" 39 1166 1201 "extract/compiler__Compile_bexpr.ml" 39 1166 1220
+type(
+  Vm__Vm.instr list -> Z.t
+)
+ident(
+  ext_ref List__Length.length
+)
+"extract/compiler__Compile_bexpr.ml" 40 1221 1258 "extract/compiler__Compile_bexpr.ml" 40 1221 1260
+type(
+  '_k Logic__Compiler_logic.wp
+)
+ident(
+  int_ref c2 "extract/compiler__Compile_bexpr.ml" 29 855 867 "extract/compiler__Compile_bexpr.ml" 29 855 869
+)
+"extract/compiler__Compile_bexpr.ml" 40 1221 1258 "extract/compiler__Compile_bexpr.ml" 40 1221 1288
+type(
+  Vm__Vm.instr list
+)
+"extract/compiler__Compile_bexpr.ml" 39 1166 1200 "extract/compiler__Compile_bexpr.ml" 40 1221 1289
+call(
+  stack
+)
+type(
+  Z.t
+)
+"extract/compiler__Compile_bexpr.ml" 39 1166 1178 "extract/compiler__Compile_bexpr.ml" 40 1221 1290
+call(
+  stack
+)
+type(
+  Z.t
+)
+"extract/compiler__Compile_bexpr.ml" 35 1055 1065 "extract/compiler__Compile_bexpr.ml" 40 1221 1290
+type(
+  Z.t
+)
+"extract/compiler__Compile_bexpr.ml" 41 1294 1306 "extract/compiler__Compile_bexpr.ml" 41 1294 1307
+type(
+  'l Logic__Compiler_logic.wp
+)
+ident(
+  def o "extract/compiler__Compile_bexpr.ml" 44 1423 1431 "extract/compiler__Compile_bexpr.ml" 44 1423 1466
+)
+"extract/compiler__Compile_bexpr.ml" 42 1310 1324 "extract/compiler__Compile_bexpr.ml" 42 1310 1326
+type(
+  'a Logic__Compiler_logic.hl
+)
+ident(
+  def o1 "extract/compiler__Compile_bexpr.ml" 43 1375 1385 "extract/compiler__Compile_bexpr.ml" 43 1375 1419
+)
+"extract/compiler__Compile_bexpr.ml" 42 1310 1333 "extract/compiler__Compile_bexpr.ml" 42 1310 1335
+type(
+  bool
+)
+ident(
+  def o2 "extract/compiler__Compile_bexpr.ml" 42 1310 1347 "extract/compiler__Compile_bexpr.ml" 42 1310 1371
+)
+"extract/compiler__Compile_bexpr.ml" 42 1310 1338 "extract/compiler__Compile_bexpr.ml" 42 1310 1343
+type(
+  bool
+)
+"extract/compiler__Compile_bexpr.ml" 42 1310 1347 "extract/compiler__Compile_bexpr.ml" 42 1310 1360
+type(
+  Imp__Imp.bexpr ->
+  bool -> Why3extract.Why3__BigInt.t -> 'a Logic__Compiler_logic.hl
+)
+ident(
+  int_ref compile_bexpr "extract/compiler__Compile_bexpr.ml" 5 85 93 "extract/compiler__Compile_bexpr.ml" 5 85 106
+)
+"extract/compiler__Compile_bexpr.ml" 42 1310 1361 "extract/compiler__Compile_bexpr.ml" 42 1310 1363
+type(
+  Imp__Imp.bexpr
+)
+ident(
+  int_ref b1 "extract/compiler__Compile_bexpr.ml" 28 823 844 "extract/compiler__Compile_bexpr.ml" 28 823 846
+)
+"extract/compiler__Compile_bexpr.ml" 42 1310 1364 "extract/compiler__Compile_bexpr.ml" 42 1310 1366
+type(
+  bool
+)
+ident(
+  int_ref o2 "extract/compiler__Compile_bexpr.ml" 42 1310 1333 "extract/compiler__Compile_bexpr.ml" 42 1310 1335
+)
+"extract/compiler__Compile_bexpr.ml" 42 1310 1367 "extract/compiler__Compile_bexpr.ml" 42 1310 1371
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  int_ref ofs1 "extract/compiler__Compile_bexpr.ml" 34 1036 1048 "extract/compiler__Compile_bexpr.ml" 34 1036 1052
+)
+"extract/compiler__Compile_bexpr.ml" 42 1310 1347 "extract/compiler__Compile_bexpr.ml" 42 1310 1371
+call(
+  stack
+)
+type(
+  'a Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_bexpr.ml" 42 1310 1329 "extract/compiler__Compile_bexpr.ml" 42 1310 1371
+type(
+  'a Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_bexpr.ml" 43 1375 1385 "extract/compiler__Compile_bexpr.ml" 43 1375 1416
+type(
+  'a Logic__Compiler_logic.hl -> 'l Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.prefix_dl
+)
+"extract/compiler__Compile_bexpr.ml" 43 1375 1417 "extract/compiler__Compile_bexpr.ml" 43 1375 1419
+type(
+  'a Logic__Compiler_logic.hl
+)
+ident(
+  int_ref o1 "extract/compiler__Compile_bexpr.ml" 42 1310 1324 "extract/compiler__Compile_bexpr.ml" 42 1310 1326
+)
+"extract/compiler__Compile_bexpr.ml" 43 1375 1385 "extract/compiler__Compile_bexpr.ml" 43 1375 1419
+call(
+  stack
+)
+type(
+  'l Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 42 1310 1320 "extract/compiler__Compile_bexpr.ml" 43 1375 1419
+type(
+  'l Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 44 1423 1431 "extract/compiler__Compile_bexpr.ml" 44 1423 1461
+type(
+  '_m Logic__Compiler_logic.wp ->
+  Vm__Vm.machine_state Logic__Compiler_logic.wp ->
+  'b Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.infix_tl
+)
+"extract/compiler__Compile_bexpr.ml" 44 1423 1462 "extract/compiler__Compile_bexpr.ml" 44 1423 1463
+type(
+  '_m Logic__Compiler_logic.wp
+)
+ident(
+  int_ref o "extract/compiler__Compile_bexpr.ml" 41 1294 1306 "extract/compiler__Compile_bexpr.ml" 41 1294 1307
+)
+"extract/compiler__Compile_bexpr.ml" 44 1423 1464 "extract/compiler__Compile_bexpr.ml" 44 1423 1466
+type(
+  Vm__Vm.machine_state Logic__Compiler_logic.wp
+)
+ident(
+  int_ref c2 "extract/compiler__Compile_bexpr.ml" 29 855 867 "extract/compiler__Compile_bexpr.ml" 29 855 869
+)
+"extract/compiler__Compile_bexpr.ml" 44 1423 1431 "extract/compiler__Compile_bexpr.ml" 44 1423 1466
+call(
+  stack
+)
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 41 1294 1302 "extract/compiler__Compile_bexpr.ml" 44 1423 1466
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 34 1036 1044 "extract/compiler__Compile_bexpr.ml" 44 1423 1466
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 29 855 863 "extract/compiler__Compile_bexpr.ml" 44 1423 1466
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 45 1467 1487 "extract/compiler__Compile_bexpr.ml" 45 1467 1489
+type(
+  Imp__Imp.aexpr
+)
+ident(
+  def a1 "extract/compiler__Compile_bexpr.ml" 46 1498 1506 "extract/compiler__Compile_bexpr.ml" 62 2063 2106
+)
+"extract/compiler__Compile_bexpr.ml" 45 1467 1491 "extract/compiler__Compile_bexpr.ml" 45 1467 1493
+type(
+  Imp__Imp.aexpr
+)
+ident(
+  def a2 "extract/compiler__Compile_bexpr.ml" 46 1498 1506 "extract/compiler__Compile_bexpr.ml" 62 2063 2106
+)
+"extract/compiler__Compile_bexpr.ml" 45 1467 1473 "extract/compiler__Compile_bexpr.ml" 45 1467 1494
+type(
+  Imp__Imp.bexpr
+)
+"extract/compiler__Compile_bexpr.ml" 46 1498 1510 "extract/compiler__Compile_bexpr.ml" 46 1498 1511
+type(
+  'n Logic__Compiler_logic.wp
+)
+ident(
+  def o "extract/compiler__Compile_bexpr.ml" 54 1728 1736 "extract/compiler__Compile_bexpr.ml" 62 2063 2106
+)
+"extract/compiler__Compile_bexpr.ml" 47 1514 1528 "extract/compiler__Compile_bexpr.ml" 47 1514 1530
+type(
+  'o Logic__Compiler_logic.hl
+)
+ident(
+  def o1 "extract/compiler__Compile_bexpr.ml" 53 1680 1690 "extract/compiler__Compile_bexpr.ml" 53 1680 1724
+)
+"extract/compiler__Compile_bexpr.ml" 48 1533 1548 "extract/compiler__Compile_bexpr.ml" 48 1533 1552
+type(
+  bool
+)
+ident(
+  int_ref cond "extract/compiler__Compile_bexpr.ml" 5 85 128 "extract/compiler__Compile_bexpr.ml" 5 85 132
+)
+"extract/compiler__Compile_bexpr.ml" 50 1570 1584 "extract/compiler__Compile_bexpr.ml" 50 1570 1610
+type(
+  Why3extract.Why3__BigInt.t -> 'o Logic__Compiler_logic.hl
+)
+ident(
+  ext_ref Specs__VM_instr_spec.ibeqf
+)
+"extract/compiler__Compile_bexpr.ml" 50 1570 1611 "extract/compiler__Compile_bexpr.ml" 50 1570 1614
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  int_ref ofs "extract/compiler__Compile_bexpr.ml" 6 140 143 "extract/compiler__Compile_bexpr.ml" 6 140 146
+)
+"extract/compiler__Compile_bexpr.ml" 50 1570 1584 "extract/compiler__Compile_bexpr.ml" 50 1570 1614
+call(
+  stack
+)
+type(
+  'o Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_bexpr.ml" 52 1632 1646 "extract/compiler__Compile_bexpr.ml" 52 1632 1672
+type(
+  Why3extract.Why3__BigInt.t -> 'o Logic__Compiler_logic.hl
+)
+ident(
+  ext_ref Specs__VM_instr_spec.ibnef
+)
+"extract/compiler__Compile_bexpr.ml" 52 1632 1673 "extract/compiler__Compile_bexpr.ml" 52 1632 1676
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  int_ref ofs "extract/compiler__Compile_bexpr.ml" 6 140 143 "extract/compiler__Compile_bexpr.ml" 6 140 146
+)
+"extract/compiler__Compile_bexpr.ml" 52 1632 1646 "extract/compiler__Compile_bexpr.ml" 52 1632 1676
+call(
+  stack
+)
+type(
+  'o Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_bexpr.ml" 48 1533 1545 "extract/compiler__Compile_bexpr.ml" 52 1632 1676
+type(
+  'o Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_bexpr.ml" 53 1680 1690 "extract/compiler__Compile_bexpr.ml" 53 1680 1721
+type(
+  '_p Logic__Compiler_logic.hl -> 'n Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.prefix_dl
+)
+"extract/compiler__Compile_bexpr.ml" 53 1680 1722 "extract/compiler__Compile_bexpr.ml" 53 1680 1724
+type(
+  '_p Logic__Compiler_logic.hl
+)
+ident(
+  int_ref o1 "extract/compiler__Compile_bexpr.ml" 47 1514 1528 "extract/compiler__Compile_bexpr.ml" 47 1514 1530
+)
+"extract/compiler__Compile_bexpr.ml" 53 1680 1690 "extract/compiler__Compile_bexpr.ml" 53 1680 1724
+call(
+  stack
+)
+type(
+  'n Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 47 1514 1524 "extract/compiler__Compile_bexpr.ml" 53 1680 1724
+type(
+  'n Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 54 1728 1740 "extract/compiler__Compile_bexpr.ml" 54 1728 1742
+type(
+  'q Logic__Compiler_logic.wp
+)
+ident(
+  def o1 "extract/compiler__Compile_bexpr.ml" 62 2063 2071 "extract/compiler__Compile_bexpr.ml" 62 2063 2106
+)
+"extract/compiler__Compile_bexpr.ml" 55 1745 1759 "extract/compiler__Compile_bexpr.ml" 55 1745 1761
+type(
+  'r Logic__Compiler_logic.wp
+)
+ident(
+  def o2 "extract/compiler__Compile_bexpr.ml" 58 1879 1889 "extract/compiler__Compile_bexpr.ml" 61 2013 2059
+)
+"extract/compiler__Compile_bexpr.ml" 56 1764 1780 "extract/compiler__Compile_bexpr.ml" 56 1764 1782
+type(
+  's Logic__Compiler_logic.hl
+)
+ident(
+  def o3 "extract/compiler__Compile_bexpr.ml" 57 1829 1841 "extract/compiler__Compile_bexpr.ml" 57 1829 1875
+)
+"extract/compiler__Compile_bexpr.ml" 56 1764 1785 "extract/compiler__Compile_bexpr.ml" 56 1764 1822
+type(
+  Imp__Imp.aexpr -> 's Logic__Compiler_logic.hl
+)
+ident(
+  ext_ref Compiler__Compile_aexpr.compile_aexpr
+)
+"extract/compiler__Compile_bexpr.ml" 56 1764 1823 "extract/compiler__Compile_bexpr.ml" 56 1764 1825
+type(
+  Imp__Imp.aexpr
+)
+ident(
+  int_ref a2 "extract/compiler__Compile_bexpr.ml" 45 1467 1491 "extract/compiler__Compile_bexpr.ml" 45 1467 1493
+)
+"extract/compiler__Compile_bexpr.ml" 56 1764 1785 "extract/compiler__Compile_bexpr.ml" 56 1764 1825
+call(
+  stack
+)
+type(
+  's Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_bexpr.ml" 57 1829 1841 "extract/compiler__Compile_bexpr.ml" 57 1829 1872
+type(
+  '_t Logic__Compiler_logic.hl -> 'r Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.prefix_dl
+)
+"extract/compiler__Compile_bexpr.ml" 57 1829 1873 "extract/compiler__Compile_bexpr.ml" 57 1829 1875
+type(
+  '_t Logic__Compiler_logic.hl
+)
+ident(
+  int_ref o3 "extract/compiler__Compile_bexpr.ml" 56 1764 1780 "extract/compiler__Compile_bexpr.ml" 56 1764 1782
+)
+"extract/compiler__Compile_bexpr.ml" 57 1829 1841 "extract/compiler__Compile_bexpr.ml" 57 1829 1875
+call(
+  stack
+)
+type(
+  'r Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 56 1764 1776 "extract/compiler__Compile_bexpr.ml" 57 1829 1875
+type(
+  'r Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 58 1879 1893 "extract/compiler__Compile_bexpr.ml" 58 1879 1895
+type(
+  'u Logic__Compiler_logic.wp
+)
+ident(
+  def o3 "extract/compiler__Compile_bexpr.ml" 61 2013 2023 "extract/compiler__Compile_bexpr.ml" 61 2013 2059
+)
+"extract/compiler__Compile_bexpr.ml" 59 1898 1914 "extract/compiler__Compile_bexpr.ml" 59 1898 1916
+type(
+  'v Logic__Compiler_logic.hl
+)
+ident(
+  def o4 "extract/compiler__Compile_bexpr.ml" 60 1963 1975 "extract/compiler__Compile_bexpr.ml" 60 1963 2009
+)
+"extract/compiler__Compile_bexpr.ml" 59 1898 1919 "extract/compiler__Compile_bexpr.ml" 59 1898 1956
+type(
+  Imp__Imp.aexpr -> 'v Logic__Compiler_logic.hl
+)
+ident(
+  ext_ref Compiler__Compile_aexpr.compile_aexpr
+)
+"extract/compiler__Compile_bexpr.ml" 59 1898 1957 "extract/compiler__Compile_bexpr.ml" 59 1898 1959
+type(
+  Imp__Imp.aexpr
+)
+ident(
+  int_ref a1 "extract/compiler__Compile_bexpr.ml" 45 1467 1487 "extract/compiler__Compile_bexpr.ml" 45 1467 1489
+)
+"extract/compiler__Compile_bexpr.ml" 59 1898 1919 "extract/compiler__Compile_bexpr.ml" 59 1898 1959
+call(
+  stack
+)
+type(
+  'v Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_bexpr.ml" 60 1963 1975 "extract/compiler__Compile_bexpr.ml" 60 1963 2006
+type(
+  '_w Logic__Compiler_logic.hl -> 'u Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.prefix_dl
+)
+"extract/compiler__Compile_bexpr.ml" 60 1963 2007 "extract/compiler__Compile_bexpr.ml" 60 1963 2009
+type(
+  '_w Logic__Compiler_logic.hl
+)
+ident(
+  int_ref o4 "extract/compiler__Compile_bexpr.ml" 59 1898 1914 "extract/compiler__Compile_bexpr.ml" 59 1898 1916
+)
+"extract/compiler__Compile_bexpr.ml" 60 1963 1975 "extract/compiler__Compile_bexpr.ml" 60 1963 2009
+call(
+  stack
+)
+type(
+  'u Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 59 1898 1910 "extract/compiler__Compile_bexpr.ml" 60 1963 2009
+type(
+  'u Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 61 2013 2023 "extract/compiler__Compile_bexpr.ml" 61 2013 2053
+type(
+  '_x Logic__Compiler_logic.wp ->
+  Vm__Vm.machine_state Logic__Compiler_logic.wp ->
+  'q Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.infix_tl
+)
+"extract/compiler__Compile_bexpr.ml" 61 2013 2054 "extract/compiler__Compile_bexpr.ml" 61 2013 2056
+type(
+  '_x Logic__Compiler_logic.wp
+)
+ident(
+  int_ref o3 "extract/compiler__Compile_bexpr.ml" 58 1879 1893 "extract/compiler__Compile_bexpr.ml" 58 1879 1895
+)
+"extract/compiler__Compile_bexpr.ml" 61 2013 2057 "extract/compiler__Compile_bexpr.ml" 61 2013 2059
+type(
+  Vm__Vm.machine_state Logic__Compiler_logic.wp
+)
+ident(
+  int_ref o2 "extract/compiler__Compile_bexpr.ml" 55 1745 1759 "extract/compiler__Compile_bexpr.ml" 55 1745 1761
+)
+"extract/compiler__Compile_bexpr.ml" 61 2013 2023 "extract/compiler__Compile_bexpr.ml" 61 2013 2059
+call(
+  stack
+)
+type(
+  'q Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 58 1879 1889 "extract/compiler__Compile_bexpr.ml" 61 2013 2059
+type(
+  'q Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 55 1745 1755 "extract/compiler__Compile_bexpr.ml" 61 2013 2059
+type(
+  'q Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 62 2063 2071 "extract/compiler__Compile_bexpr.ml" 62 2063 2101
+type(
+  '_y Logic__Compiler_logic.wp ->
+  Vm__Vm.machine_state Logic__Compiler_logic.wp ->
+  'b Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.infix_tl
+)
+"extract/compiler__Compile_bexpr.ml" 62 2063 2102 "extract/compiler__Compile_bexpr.ml" 62 2063 2104
+type(
+  '_y Logic__Compiler_logic.wp
+)
+ident(
+  int_ref o1 "extract/compiler__Compile_bexpr.ml" 54 1728 1740 "extract/compiler__Compile_bexpr.ml" 54 1728 1742
+)
+"extract/compiler__Compile_bexpr.ml" 62 2063 2105 "extract/compiler__Compile_bexpr.ml" 62 2063 2106
+type(
+  Vm__Vm.machine_state Logic__Compiler_logic.wp
+)
+ident(
+  int_ref o "extract/compiler__Compile_bexpr.ml" 46 1498 1510 "extract/compiler__Compile_bexpr.ml" 46 1498 1511
+)
+"extract/compiler__Compile_bexpr.ml" 62 2063 2071 "extract/compiler__Compile_bexpr.ml" 62 2063 2106
+call(
+  stack
+)
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 54 1728 1736 "extract/compiler__Compile_bexpr.ml" 62 2063 2106
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 46 1498 1506 "extract/compiler__Compile_bexpr.ml" 62 2063 2106
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 63 2107 2127 "extract/compiler__Compile_bexpr.ml" 63 2107 2129
+type(
+  Imp__Imp.aexpr
+)
+ident(
+  def a1 "extract/compiler__Compile_bexpr.ml" 64 2138 2146 "extract/compiler__Compile_bexpr.ml" 80 2703 2746
+)
+"extract/compiler__Compile_bexpr.ml" 63 2107 2131 "extract/compiler__Compile_bexpr.ml" 63 2107 2133
+type(
+  Imp__Imp.aexpr
+)
+ident(
+  def a2 "extract/compiler__Compile_bexpr.ml" 64 2138 2146 "extract/compiler__Compile_bexpr.ml" 80 2703 2746
+)
+"extract/compiler__Compile_bexpr.ml" 63 2107 2113 "extract/compiler__Compile_bexpr.ml" 63 2107 2134
+type(
+  Imp__Imp.bexpr
+)
+"extract/compiler__Compile_bexpr.ml" 64 2138 2150 "extract/compiler__Compile_bexpr.ml" 64 2138 2151
+type(
+  'z Logic__Compiler_logic.wp
+)
+ident(
+  def o "extract/compiler__Compile_bexpr.ml" 72 2368 2376 "extract/compiler__Compile_bexpr.ml" 80 2703 2746
+)
+"extract/compiler__Compile_bexpr.ml" 65 2154 2168 "extract/compiler__Compile_bexpr.ml" 65 2154 2170
+type(
+  'a1 Logic__Compiler_logic.hl
+)
+ident(
+  def o1 "extract/compiler__Compile_bexpr.ml" 71 2320 2330 "extract/compiler__Compile_bexpr.ml" 71 2320 2364
+)
+"extract/compiler__Compile_bexpr.ml" 66 2173 2188 "extract/compiler__Compile_bexpr.ml" 66 2173 2192
+type(
+  bool
+)
+ident(
+  int_ref cond "extract/compiler__Compile_bexpr.ml" 5 85 128 "extract/compiler__Compile_bexpr.ml" 5 85 132
+)
+"extract/compiler__Compile_bexpr.ml" 68 2210 2224 "extract/compiler__Compile_bexpr.ml" 68 2210 2250
+type(
+  Why3extract.Why3__BigInt.t -> 'a1 Logic__Compiler_logic.hl
+)
+ident(
+  ext_ref Specs__VM_instr_spec.iblef
+)
+"extract/compiler__Compile_bexpr.ml" 68 2210 2251 "extract/compiler__Compile_bexpr.ml" 68 2210 2254
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  int_ref ofs "extract/compiler__Compile_bexpr.ml" 6 140 143 "extract/compiler__Compile_bexpr.ml" 6 140 146
+)
+"extract/compiler__Compile_bexpr.ml" 68 2210 2224 "extract/compiler__Compile_bexpr.ml" 68 2210 2254
+call(
+  stack
+)
+type(
+  'a1 Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_bexpr.ml" 70 2272 2286 "extract/compiler__Compile_bexpr.ml" 70 2272 2312
+type(
+  Why3extract.Why3__BigInt.t -> 'a1 Logic__Compiler_logic.hl
+)
+ident(
+  ext_ref Specs__VM_instr_spec.ibgtf
+)
+"extract/compiler__Compile_bexpr.ml" 70 2272 2313 "extract/compiler__Compile_bexpr.ml" 70 2272 2316
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  int_ref ofs "extract/compiler__Compile_bexpr.ml" 6 140 143 "extract/compiler__Compile_bexpr.ml" 6 140 146
+)
+"extract/compiler__Compile_bexpr.ml" 70 2272 2286 "extract/compiler__Compile_bexpr.ml" 70 2272 2316
+call(
+  stack
+)
+type(
+  'a1 Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_bexpr.ml" 66 2173 2185 "extract/compiler__Compile_bexpr.ml" 70 2272 2316
+type(
+  'a1 Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_bexpr.ml" 71 2320 2330 "extract/compiler__Compile_bexpr.ml" 71 2320 2361
+type(
+  '_b1 Logic__Compiler_logic.hl -> 'z Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.prefix_dl
+)
+"extract/compiler__Compile_bexpr.ml" 71 2320 2362 "extract/compiler__Compile_bexpr.ml" 71 2320 2364
+type(
+  '_b1 Logic__Compiler_logic.hl
+)
+ident(
+  int_ref o1 "extract/compiler__Compile_bexpr.ml" 65 2154 2168 "extract/compiler__Compile_bexpr.ml" 65 2154 2170
+)
+"extract/compiler__Compile_bexpr.ml" 71 2320 2330 "extract/compiler__Compile_bexpr.ml" 71 2320 2364
+call(
+  stack
+)
+type(
+  'z Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 65 2154 2164 "extract/compiler__Compile_bexpr.ml" 71 2320 2364
+type(
+  'z Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 72 2368 2380 "extract/compiler__Compile_bexpr.ml" 72 2368 2382
+type(
+  'c1 Logic__Compiler_logic.wp
+)
+ident(
+  def o1 "extract/compiler__Compile_bexpr.ml" 80 2703 2711 "extract/compiler__Compile_bexpr.ml" 80 2703 2746
+)
+"extract/compiler__Compile_bexpr.ml" 73 2385 2399 "extract/compiler__Compile_bexpr.ml" 73 2385 2401
+type(
+  'd1 Logic__Compiler_logic.wp
+)
+ident(
+  def o2 "extract/compiler__Compile_bexpr.ml" 76 2519 2529 "extract/compiler__Compile_bexpr.ml" 79 2653 2699
+)
+"extract/compiler__Compile_bexpr.ml" 74 2404 2420 "extract/compiler__Compile_bexpr.ml" 74 2404 2422
+type(
+  'e1 Logic__Compiler_logic.hl
+)
+ident(
+  def o3 "extract/compiler__Compile_bexpr.ml" 75 2469 2481 "extract/compiler__Compile_bexpr.ml" 75 2469 2515
+)
+"extract/compiler__Compile_bexpr.ml" 74 2404 2425 "extract/compiler__Compile_bexpr.ml" 74 2404 2462
+type(
+  Imp__Imp.aexpr -> 'e1 Logic__Compiler_logic.hl
+)
+ident(
+  ext_ref Compiler__Compile_aexpr.compile_aexpr
+)
+"extract/compiler__Compile_bexpr.ml" 74 2404 2463 "extract/compiler__Compile_bexpr.ml" 74 2404 2465
+type(
+  Imp__Imp.aexpr
+)
+ident(
+  int_ref a2 "extract/compiler__Compile_bexpr.ml" 63 2107 2131 "extract/compiler__Compile_bexpr.ml" 63 2107 2133
+)
+"extract/compiler__Compile_bexpr.ml" 74 2404 2425 "extract/compiler__Compile_bexpr.ml" 74 2404 2465
+call(
+  stack
+)
+type(
+  'e1 Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_bexpr.ml" 75 2469 2481 "extract/compiler__Compile_bexpr.ml" 75 2469 2512
+type(
+  '_f1 Logic__Compiler_logic.hl -> 'd1 Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.prefix_dl
+)
+"extract/compiler__Compile_bexpr.ml" 75 2469 2513 "extract/compiler__Compile_bexpr.ml" 75 2469 2515
+type(
+  '_f1 Logic__Compiler_logic.hl
+)
+ident(
+  int_ref o3 "extract/compiler__Compile_bexpr.ml" 74 2404 2420 "extract/compiler__Compile_bexpr.ml" 74 2404 2422
+)
+"extract/compiler__Compile_bexpr.ml" 75 2469 2481 "extract/compiler__Compile_bexpr.ml" 75 2469 2515
+call(
+  stack
+)
+type(
+  'd1 Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 74 2404 2416 "extract/compiler__Compile_bexpr.ml" 75 2469 2515
+type(
+  'd1 Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 76 2519 2533 "extract/compiler__Compile_bexpr.ml" 76 2519 2535
+type(
+  'g1 Logic__Compiler_logic.wp
+)
+ident(
+  def o3 "extract/compiler__Compile_bexpr.ml" 79 2653 2663 "extract/compiler__Compile_bexpr.ml" 79 2653 2699
+)
+"extract/compiler__Compile_bexpr.ml" 77 2538 2554 "extract/compiler__Compile_bexpr.ml" 77 2538 2556
+type(
+  'h1 Logic__Compiler_logic.hl
+)
+ident(
+  def o4 "extract/compiler__Compile_bexpr.ml" 78 2603 2615 "extract/compiler__Compile_bexpr.ml" 78 2603 2649
+)
+"extract/compiler__Compile_bexpr.ml" 77 2538 2559 "extract/compiler__Compile_bexpr.ml" 77 2538 2596
+type(
+  Imp__Imp.aexpr -> 'h1 Logic__Compiler_logic.hl
+)
+ident(
+  ext_ref Compiler__Compile_aexpr.compile_aexpr
+)
+"extract/compiler__Compile_bexpr.ml" 77 2538 2597 "extract/compiler__Compile_bexpr.ml" 77 2538 2599
+type(
+  Imp__Imp.aexpr
+)
+ident(
+  int_ref a1 "extract/compiler__Compile_bexpr.ml" 63 2107 2127 "extract/compiler__Compile_bexpr.ml" 63 2107 2129
+)
+"extract/compiler__Compile_bexpr.ml" 77 2538 2559 "extract/compiler__Compile_bexpr.ml" 77 2538 2599
+call(
+  stack
+)
+type(
+  'h1 Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_bexpr.ml" 78 2603 2615 "extract/compiler__Compile_bexpr.ml" 78 2603 2646
+type(
+  '_i1 Logic__Compiler_logic.hl -> 'g1 Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.prefix_dl
+)
+"extract/compiler__Compile_bexpr.ml" 78 2603 2647 "extract/compiler__Compile_bexpr.ml" 78 2603 2649
+type(
+  '_i1 Logic__Compiler_logic.hl
+)
+ident(
+  int_ref o4 "extract/compiler__Compile_bexpr.ml" 77 2538 2554 "extract/compiler__Compile_bexpr.ml" 77 2538 2556
+)
+"extract/compiler__Compile_bexpr.ml" 78 2603 2615 "extract/compiler__Compile_bexpr.ml" 78 2603 2649
+call(
+  stack
+)
+type(
+  'g1 Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 77 2538 2550 "extract/compiler__Compile_bexpr.ml" 78 2603 2649
+type(
+  'g1 Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 79 2653 2663 "extract/compiler__Compile_bexpr.ml" 79 2653 2693
+type(
+  '_j1 Logic__Compiler_logic.wp ->
+  Vm__Vm.machine_state Logic__Compiler_logic.wp ->
+  'c1 Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.infix_tl
+)
+"extract/compiler__Compile_bexpr.ml" 79 2653 2694 "extract/compiler__Compile_bexpr.ml" 79 2653 2696
+type(
+  '_j1 Logic__Compiler_logic.wp
+)
+ident(
+  int_ref o3 "extract/compiler__Compile_bexpr.ml" 76 2519 2533 "extract/compiler__Compile_bexpr.ml" 76 2519 2535
+)
+"extract/compiler__Compile_bexpr.ml" 79 2653 2697 "extract/compiler__Compile_bexpr.ml" 79 2653 2699
+type(
+  Vm__Vm.machine_state Logic__Compiler_logic.wp
+)
+ident(
+  int_ref o2 "extract/compiler__Compile_bexpr.ml" 73 2385 2399 "extract/compiler__Compile_bexpr.ml" 73 2385 2401
+)
+"extract/compiler__Compile_bexpr.ml" 79 2653 2663 "extract/compiler__Compile_bexpr.ml" 79 2653 2699
+call(
+  stack
+)
+type(
+  'c1 Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 76 2519 2529 "extract/compiler__Compile_bexpr.ml" 79 2653 2699
+type(
+  'c1 Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 73 2385 2395 "extract/compiler__Compile_bexpr.ml" 79 2653 2699
+type(
+  'c1 Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 80 2703 2711 "extract/compiler__Compile_bexpr.ml" 80 2703 2741
+type(
+  '_k1 Logic__Compiler_logic.wp ->
+  Vm__Vm.machine_state Logic__Compiler_logic.wp ->
+  'b Logic__Compiler_logic.wp
+)
+ident(
+  ext_ref Logic__Compiler_logic.infix_tl
+)
+"extract/compiler__Compile_bexpr.ml" 80 2703 2742 "extract/compiler__Compile_bexpr.ml" 80 2703 2744
+type(
+  '_k1 Logic__Compiler_logic.wp
+)
+ident(
+  int_ref o1 "extract/compiler__Compile_bexpr.ml" 72 2368 2380 "extract/compiler__Compile_bexpr.ml" 72 2368 2382
+)
+"extract/compiler__Compile_bexpr.ml" 80 2703 2745 "extract/compiler__Compile_bexpr.ml" 80 2703 2746
+type(
+  Vm__Vm.machine_state Logic__Compiler_logic.wp
+)
+ident(
+  int_ref o "extract/compiler__Compile_bexpr.ml" 64 2138 2150 "extract/compiler__Compile_bexpr.ml" 64 2138 2151
+)
+"extract/compiler__Compile_bexpr.ml" 80 2703 2711 "extract/compiler__Compile_bexpr.ml" 80 2703 2746
+call(
+  stack
+)
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 72 2368 2376 "extract/compiler__Compile_bexpr.ml" 80 2703 2746
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 64 2138 2146 "extract/compiler__Compile_bexpr.ml" 80 2703 2746
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 8 188 192 "extract/compiler__Compile_bexpr.ml" 80 2703 2750
+type(
+  'b Logic__Compiler_logic.wp
+)
+"extract/compiler__Compile_bexpr.ml" 81 2754 2756 "extract/compiler__Compile_bexpr.ml" 81 2754 2783
+type(
+  '_l1 Logic__Compiler_logic.wp -> 'a Logic__Compiler_logic.hl
+)
+ident(
+  ext_ref Logic__Compiler_logic.hoare
+)
+"extract/compiler__Compile_bexpr.ml" 81 2754 2793 "extract/compiler__Compile_bexpr.ml" 81 2754 2794
+type(
+  '_l1 Logic__Compiler_logic.wp
+)
+ident(
+  int_ref c "extract/compiler__Compile_bexpr.ml" 7 178 184 "extract/compiler__Compile_bexpr.ml" 7 178 185
+)
+"extract/compiler__Compile_bexpr.ml" 81 2754 2756 "extract/compiler__Compile_bexpr.ml" 81 2754 2794
+call(
+  tail
+)
+type(
+  'a Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_bexpr.ml" 7 178 180 "extract/compiler__Compile_bexpr.ml" 81 2754 2794
+type(
+  'a Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_bexpr.ml" 83 2796 2800 "extract/compiler__Compile_bexpr.ml" 83 2796 2821
+type(
+  Imp__Imp.bexpr -> bool -> Why3extract.Why3__BigInt.t -> Vm__Vm.instr list
+)
+ident(
+  def compile_bexpr_natural "extract/compiler__Compile_bexpr.ml" 85 2931 2963 "extract/compiler__Compile_bexpr.ml" 1 0 -1
+)
+"extract/compiler__Compile_bexpr.ml" 83 2796 2823 "extract/compiler__Compile_bexpr.ml" 83 2796 2824
+type(
+  Imp__Imp.bexpr
+)
+ident(
+  def b "extract/compiler__Compile_bexpr.ml" 83 2796 2842 "extract/compiler__Compile_bexpr.ml" 85 2931 2963
+)
+"extract/compiler__Compile_bexpr.ml" 83 2796 2843 "extract/compiler__Compile_bexpr.ml" 83 2796 2847
+type(
+  bool
+)
+ident(
+  def cond "extract/compiler__Compile_bexpr.ml" 84 2855 2857 "extract/compiler__Compile_bexpr.ml" 85 2931 2963
+)
+"extract/compiler__Compile_bexpr.ml" 84 2855 2858 "extract/compiler__Compile_bexpr.ml" 84 2855 2861
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  def ofs "extract/compiler__Compile_bexpr.ml" 84 2855 2893 "extract/compiler__Compile_bexpr.ml" 85 2931 2963
+)
+"extract/compiler__Compile_bexpr.ml" 84 2855 2897 "extract/compiler__Compile_bexpr.ml" 84 2855 2900
+type(
+  'a Logic__Compiler_logic.hl
+)
+ident(
+  def res "extract/compiler__Compile_bexpr.ml" 85 2931 2933 "extract/compiler__Compile_bexpr.ml" 85 2931 2963
+)
+"extract/compiler__Compile_bexpr.ml" 84 2855 2903 "extract/compiler__Compile_bexpr.ml" 84 2855 2916
+type(
+  Imp__Imp.bexpr ->
+  bool -> Why3extract.Why3__BigInt.t -> 'a Logic__Compiler_logic.hl
+)
+ident(
+  int_ref compile_bexpr "extract/compiler__Compile_bexpr.ml" 5 85 93 "extract/compiler__Compile_bexpr.ml" 5 85 106
+)
+"extract/compiler__Compile_bexpr.ml" 84 2855 2917 "extract/compiler__Compile_bexpr.ml" 84 2855 2918
+type(
+  Imp__Imp.bexpr
+)
+ident(
+  int_ref b "extract/compiler__Compile_bexpr.ml" 83 2796 2823 "extract/compiler__Compile_bexpr.ml" 83 2796 2824
+)
+"extract/compiler__Compile_bexpr.ml" 84 2855 2919 "extract/compiler__Compile_bexpr.ml" 84 2855 2923
+type(
+  bool
+)
+ident(
+  int_ref cond "extract/compiler__Compile_bexpr.ml" 83 2796 2843 "extract/compiler__Compile_bexpr.ml" 83 2796 2847
+)
+"extract/compiler__Compile_bexpr.ml" 84 2855 2924 "extract/compiler__Compile_bexpr.ml" 84 2855 2927
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  int_ref ofs "extract/compiler__Compile_bexpr.ml" 84 2855 2858 "extract/compiler__Compile_bexpr.ml" 84 2855 2861
+)
+"extract/compiler__Compile_bexpr.ml" 84 2855 2903 "extract/compiler__Compile_bexpr.ml" 84 2855 2927
+call(
+  stack
+)
+type(
+  'a Logic__Compiler_logic.hl
+)
+"extract/compiler__Compile_bexpr.ml" 85 2931 2933 "extract/compiler__Compile_bexpr.ml" 85 2931 2936
+type(
+  '_b Logic__Compiler_logic.hl
+)
+ident(
+  int_ref res "extract/compiler__Compile_bexpr.ml" 84 2855 2897 "extract/compiler__Compile_bexpr.ml" 84 2855 2900
+)
+"extract/compiler__Compile_bexpr.ml" 85 2931 2933 "extract/compiler__Compile_bexpr.ml" 85 2931 2963
+type(
+  Vm__Vm.instr list
+)
+"extract/compiler__Compile_bexpr.ml" 84 2855 2893 "extract/compiler__Compile_bexpr.ml" 85 2931 2963
+type(
+  Vm__Vm.instr list
+)

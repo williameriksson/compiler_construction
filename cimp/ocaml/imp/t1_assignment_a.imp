@@ -1,0 +1,5 @@
+(* test assignment *)
+(* a := 7 b:= "jaja"*)
+(*a := "hej"*)
+a := 1*2+2+3-5;
+b := (5+3)

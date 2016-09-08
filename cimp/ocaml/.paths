@@ -1,0 +1,17 @@
+.
+imp
+extract
+.metadata
+.metadata/.plugins
+.metadata/.plugins/org.eclipse.ui.workbench
+.metadata/.plugins/org.eclipse.ui.intro
+.metadata/.plugins/org.eclipse.ui.ide
+.metadata/.plugins/org.eclipse.jdt.ui
+.metadata/.plugins/org.eclipse.jdt.core
+.metadata/.plugins/org.eclipse.core.runtime
+.metadata/.plugins/org.eclipse.core.resources
+.metadata/.plugins/org.eclipse.core.resources/.safetable
+.metadata/.plugins/org.eclipse.core.resources/.root
+.metadata/.plugins/org.eclipse.core.resources/.root/.indexes
+.metadata/.plugins/org.eclipse.core.resources/.history
+/usr/lib/ocaml

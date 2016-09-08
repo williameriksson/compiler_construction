@@ -1,0 +1,3 @@
+IF TRUE THEN a := 1 ELSE b := 2 END
+
+

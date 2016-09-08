@@ -1,0 +1,912 @@
+"extract/listaux__TakeDrop.ml" 5 80 88 "extract/listaux__TakeDrop.ml" 5 80 92
+type(
+  Nat__Nat.nat -> 'a list -> 'a list
+)
+ident(
+  def take "extract/listaux__TakeDrop.ml" 5 80 80 "extract/listaux__TakeDrop.ml" 1 0 -1
+)
+"extract/listaux__TakeDrop.ml" 5 80 94 "extract/listaux__TakeDrop.ml" 5 80 95
+type(
+  Nat__Nat.nat
+)
+ident(
+  def n "extract/listaux__TakeDrop.ml" 5 80 111 "extract/listaux__TakeDrop.ml" 11 257 281
+)
+"extract/listaux__TakeDrop.ml" 5 80 112 "extract/listaux__TakeDrop.ml" 5 80 113
+type(
+  'a list
+)
+ident(
+  def l "extract/listaux__TakeDrop.ml" 6 126 128 "extract/listaux__TakeDrop.ml" 11 257 281
+)
+"extract/listaux__TakeDrop.ml" 6 126 140 "extract/listaux__TakeDrop.ml" 6 126 141
+type(
+  Nat__Nat.nat
+)
+ident(
+  int_ref n "extract/listaux__TakeDrop.ml" 5 80 94 "extract/listaux__TakeDrop.ml" 5 80 95
+)
+"extract/listaux__TakeDrop.ml" 7 147 162 "extract/listaux__TakeDrop.ml" 7 147 165
+type(
+  Nat__Nat.nat
+)
+ident(
+  def nqt "extract/listaux__TakeDrop.ml" 8 169 175 "extract/listaux__TakeDrop.ml" 10 211 256
+)
+"extract/listaux__TakeDrop.ml" 7 147 151 "extract/listaux__TakeDrop.ml" 7 147 165
+type(
+  Nat__Nat.nat
+)
+"extract/listaux__TakeDrop.ml" 8 169 187 "extract/listaux__TakeDrop.ml" 8 169 188
+type(
+  'a list
+)
+ident(
+  int_ref l "extract/listaux__TakeDrop.ml" 5 80 112 "extract/listaux__TakeDrop.ml" 5 80 113
+)
+"extract/listaux__TakeDrop.ml" 9 194 202 "extract/listaux__TakeDrop.ml" 9 194 204
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 9 194 208 "extract/listaux__TakeDrop.ml" 9 194 210
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 10 211 220 "extract/listaux__TakeDrop.ml" 10 211 221
+type(
+  'a
+)
+ident(
+  def e "extract/listaux__TakeDrop.ml" 10 211 232 "extract/listaux__TakeDrop.ml" 10 211 252
+)
+"extract/listaux__TakeDrop.ml" 10 211 225 "extract/listaux__TakeDrop.ml" 10 211 227
+type(
+  'a list
+)
+ident(
+  def ll "extract/listaux__TakeDrop.ml" 10 211 232 "extract/listaux__TakeDrop.ml" 10 211 252
+)
+"extract/listaux__TakeDrop.ml" 10 211 219 "extract/listaux__TakeDrop.ml" 10 211 228
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 10 211 233 "extract/listaux__TakeDrop.ml" 10 211 234
+type(
+  'a
+)
+ident(
+  int_ref e "extract/listaux__TakeDrop.ml" 10 211 220 "extract/listaux__TakeDrop.ml" 10 211 221
+)
+"extract/listaux__TakeDrop.ml" 10 211 239 "extract/listaux__TakeDrop.ml" 10 211 243
+type(
+  Nat__Nat.nat -> 'a list -> 'a list
+)
+ident(
+  int_ref take "extract/listaux__TakeDrop.ml" 5 80 88 "extract/listaux__TakeDrop.ml" 5 80 92
+)
+"extract/listaux__TakeDrop.ml" 10 211 244 "extract/listaux__TakeDrop.ml" 10 211 247
+type(
+  Nat__Nat.nat
+)
+ident(
+  int_ref nqt "extract/listaux__TakeDrop.ml" 7 147 162 "extract/listaux__TakeDrop.ml" 7 147 165
+)
+"extract/listaux__TakeDrop.ml" 10 211 248 "extract/listaux__TakeDrop.ml" 10 211 250
+type(
+  'a list
+)
+ident(
+  int_ref ll "extract/listaux__TakeDrop.ml" 10 211 225 "extract/listaux__TakeDrop.ml" 10 211 227
+)
+"extract/listaux__TakeDrop.ml" 10 211 238 "extract/listaux__TakeDrop.ml" 10 211 251
+call(
+  stack
+)
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 10 211 232 "extract/listaux__TakeDrop.ml" 10 211 252
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 8 169 175 "extract/listaux__TakeDrop.ml" 10 211 256
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 11 257 261 "extract/listaux__TakeDrop.ml" 11 257 271
+type(
+  Nat__Nat.nat
+)
+"extract/listaux__TakeDrop.ml" 11 257 275 "extract/listaux__TakeDrop.ml" 11 257 277
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 6 126 128 "extract/listaux__TakeDrop.ml" 11 257 281
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 13 283 291 "extract/listaux__TakeDrop.ml" 13 283 295
+type(
+  Nat__Nat.nat -> 'a list -> 'a list
+)
+ident(
+  def drop "extract/listaux__TakeDrop.ml" 13 283 283 "extract/listaux__TakeDrop.ml" 1 0 -1
+)
+"extract/listaux__TakeDrop.ml" 13 283 297 "extract/listaux__TakeDrop.ml" 13 283 298
+type(
+  Nat__Nat.nat
+)
+ident(
+  def n "extract/listaux__TakeDrop.ml" 13 283 314 "extract/listaux__TakeDrop.ml" 19 451 474
+)
+"extract/listaux__TakeDrop.ml" 13 283 315 "extract/listaux__TakeDrop.ml" 13 283 316
+type(
+  'a list
+)
+ident(
+  def l "extract/listaux__TakeDrop.ml" 14 329 331 "extract/listaux__TakeDrop.ml" 19 451 474
+)
+"extract/listaux__TakeDrop.ml" 14 329 343 "extract/listaux__TakeDrop.ml" 14 329 344
+type(
+  Nat__Nat.nat
+)
+ident(
+  int_ref n "extract/listaux__TakeDrop.ml" 13 283 297 "extract/listaux__TakeDrop.ml" 13 283 298
+)
+"extract/listaux__TakeDrop.ml" 15 350 365 "extract/listaux__TakeDrop.ml" 15 350 368
+type(
+  Nat__Nat.nat
+)
+ident(
+  def nqt "extract/listaux__TakeDrop.ml" 16 372 378 "extract/listaux__TakeDrop.ml" 18 414 450
+)
+"extract/listaux__TakeDrop.ml" 15 350 354 "extract/listaux__TakeDrop.ml" 15 350 368
+type(
+  Nat__Nat.nat
+)
+"extract/listaux__TakeDrop.ml" 16 372 390 "extract/listaux__TakeDrop.ml" 16 372 391
+type(
+  'a list
+)
+ident(
+  int_ref l "extract/listaux__TakeDrop.ml" 13 283 315 "extract/listaux__TakeDrop.ml" 13 283 316
+)
+"extract/listaux__TakeDrop.ml" 17 397 405 "extract/listaux__TakeDrop.ml" 17 397 407
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 17 397 411 "extract/listaux__TakeDrop.ml" 17 397 413
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 18 414 423 "extract/listaux__TakeDrop.ml" 18 414 424
+type(
+  'a
+)
+"extract/listaux__TakeDrop.ml" 18 414 428 "extract/listaux__TakeDrop.ml" 18 414 430
+type(
+  'a list
+)
+ident(
+  def ll "extract/listaux__TakeDrop.ml" 18 414 435 "extract/listaux__TakeDrop.ml" 18 414 446
+)
+"extract/listaux__TakeDrop.ml" 18 414 422 "extract/listaux__TakeDrop.ml" 18 414 431
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 18 414 435 "extract/listaux__TakeDrop.ml" 18 414 439
+type(
+  Nat__Nat.nat -> 'a list -> 'a list
+)
+ident(
+  int_ref drop "extract/listaux__TakeDrop.ml" 13 283 291 "extract/listaux__TakeDrop.ml" 13 283 295
+)
+"extract/listaux__TakeDrop.ml" 18 414 440 "extract/listaux__TakeDrop.ml" 18 414 443
+type(
+  Nat__Nat.nat
+)
+ident(
+  int_ref nqt "extract/listaux__TakeDrop.ml" 15 350 365 "extract/listaux__TakeDrop.ml" 15 350 368
+)
+"extract/listaux__TakeDrop.ml" 18 414 444 "extract/listaux__TakeDrop.ml" 18 414 446
+type(
+  'a list
+)
+ident(
+  int_ref ll "extract/listaux__TakeDrop.ml" 18 414 428 "extract/listaux__TakeDrop.ml" 18 414 430
+)
+"extract/listaux__TakeDrop.ml" 18 414 435 "extract/listaux__TakeDrop.ml" 18 414 446
+call(
+  tail
+)
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 16 372 378 "extract/listaux__TakeDrop.ml" 18 414 450
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 19 451 455 "extract/listaux__TakeDrop.ml" 19 451 465
+type(
+  Nat__Nat.nat
+)
+"extract/listaux__TakeDrop.ml" 19 451 469 "extract/listaux__TakeDrop.ml" 19 451 470
+type(
+  'a list
+)
+ident(
+  int_ref l "extract/listaux__TakeDrop.ml" 13 283 315 "extract/listaux__TakeDrop.ml" 13 283 316
+)
+"extract/listaux__TakeDrop.ml" 14 329 331 "extract/listaux__TakeDrop.ml" 19 451 474
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 21 476 484 "extract/listaux__TakeDrop.ml" 21 476 490
+type(
+  Nat__Nat.nat -> Z.t
+)
+ident(
+  def to_int "extract/listaux__TakeDrop.ml" 21 476 476 "extract/listaux__TakeDrop.ml" 1 0 -1
+)
+"extract/listaux__TakeDrop.ml" 21 476 492 "extract/listaux__TakeDrop.ml" 21 476 493
+type(
+  Nat__Nat.nat
+)
+ident(
+  def n "extract/listaux__TakeDrop.ml" 22 511 513 "extract/listaux__TakeDrop.ml" 25 602 672
+)
+"extract/listaux__TakeDrop.ml" 22 511 525 "extract/listaux__TakeDrop.ml" 22 511 526
+type(
+  Nat__Nat.nat
+)
+ident(
+  int_ref n "extract/listaux__TakeDrop.ml" 21 476 492 "extract/listaux__TakeDrop.ml" 21 476 493
+)
+"extract/listaux__TakeDrop.ml" 23 532 536 "extract/listaux__TakeDrop.ml" 23 532 546
+type(
+  Nat__Nat.nat
+)
+"extract/listaux__TakeDrop.ml" 23 532 550 "extract/listaux__TakeDrop.ml" 23 532 579
+type(
+  Z.t
+)
+ident(
+  ext_ref Why3extract.Why3__BigInt.zero
+)
+"extract/listaux__TakeDrop.ml" 24 580 595 "extract/listaux__TakeDrop.ml" 24 580 598
+type(
+  Nat__Nat.nat
+)
+ident(
+  def nqt "extract/listaux__TakeDrop.ml" 25 602 608 "extract/listaux__TakeDrop.ml" 25 602 668
+)
+"extract/listaux__TakeDrop.ml" 24 580 584 "extract/listaux__TakeDrop.ml" 24 580 598
+type(
+  Nat__Nat.nat
+)
+"extract/listaux__TakeDrop.ml" 25 602 609 "extract/listaux__TakeDrop.ml" 25 602 625
+type(
+  Z.t -> Z.t -> Z.t
+)
+ident(
+  ext_ref Why3extract.Why3__BigInt.add
+)
+"extract/listaux__TakeDrop.ml" 25 602 626 "extract/listaux__TakeDrop.ml" 25 602 654
+type(
+  Z.t
+)
+ident(
+  ext_ref Why3extract.Why3__BigInt.one
+)
+"extract/listaux__TakeDrop.ml" 25 602 656 "extract/listaux__TakeDrop.ml" 25 602 662
+type(
+  Nat__Nat.nat -> Z.t
+)
+ident(
+  int_ref to_int "extract/listaux__TakeDrop.ml" 21 476 484 "extract/listaux__TakeDrop.ml" 21 476 490
+)
+"extract/listaux__TakeDrop.ml" 25 602 663 "extract/listaux__TakeDrop.ml" 25 602 666
+type(
+  Nat__Nat.nat
+)
+ident(
+  int_ref nqt "extract/listaux__TakeDrop.ml" 24 580 595 "extract/listaux__TakeDrop.ml" 24 580 598
+)
+"extract/listaux__TakeDrop.ml" 25 602 655 "extract/listaux__TakeDrop.ml" 25 602 667
+call(
+  stack
+)
+type(
+  Z.t
+)
+"extract/listaux__TakeDrop.ml" 25 602 608 "extract/listaux__TakeDrop.ml" 25 602 668
+call(
+  tail
+)
+type(
+  Z.t
+)
+"extract/listaux__TakeDrop.ml" 22 511 513 "extract/listaux__TakeDrop.ml" 25 602 672
+type(
+  Z.t
+)
+"extract/listaux__TakeDrop.ml" 27 674 682 "extract/listaux__TakeDrop.ml" 27 674 690
+type(
+  'a list -> Nat__Nat.nat
+)
+ident(
+  def length_n "extract/listaux__TakeDrop.ml" 27 674 674 "extract/listaux__TakeDrop.ml" 1 0 -1
+)
+"extract/listaux__TakeDrop.ml" 27 674 692 "extract/listaux__TakeDrop.ml" 27 674 693
+type(
+  'a list
+)
+ident(
+  def l "extract/listaux__TakeDrop.ml" 28 706 708 "extract/listaux__TakeDrop.ml" 30 748 793
+)
+"extract/listaux__TakeDrop.ml" 28 706 720 "extract/listaux__TakeDrop.ml" 28 706 721
+type(
+  'a list
+)
+ident(
+  int_ref l "extract/listaux__TakeDrop.ml" 27 674 692 "extract/listaux__TakeDrop.ml" 27 674 693
+)
+"extract/listaux__TakeDrop.ml" 29 727 731 "extract/listaux__TakeDrop.ml" 29 727 733
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 29 727 737 "extract/listaux__TakeDrop.ml" 29 727 747
+type(
+  Nat__Nat.nat
+)
+"extract/listaux__TakeDrop.ml" 30 748 753 "extract/listaux__TakeDrop.ml" 30 748 754
+type(
+  'a
+)
+"extract/listaux__TakeDrop.ml" 30 748 758 "extract/listaux__TakeDrop.ml" 30 748 760
+type(
+  'a list
+)
+ident(
+  def ll "extract/listaux__TakeDrop.ml" 30 748 765 "extract/listaux__TakeDrop.ml" 30 748 789
+)
+"extract/listaux__TakeDrop.ml" 30 748 752 "extract/listaux__TakeDrop.ml" 30 748 761
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 30 748 777 "extract/listaux__TakeDrop.ml" 30 748 785
+type(
+  'a list -> Nat__Nat.nat
+)
+ident(
+  int_ref length_n "extract/listaux__TakeDrop.ml" 27 674 682 "extract/listaux__TakeDrop.ml" 27 674 690
+)
+"extract/listaux__TakeDrop.ml" 30 748 786 "extract/listaux__TakeDrop.ml" 30 748 788
+type(
+  'a list
+)
+ident(
+  int_ref ll "extract/listaux__TakeDrop.ml" 30 748 758 "extract/listaux__TakeDrop.ml" 30 748 760
+)
+"extract/listaux__TakeDrop.ml" 30 748 776 "extract/listaux__TakeDrop.ml" 30 748 789
+call(
+  stack
+)
+type(
+  Nat__Nat.nat
+)
+"extract/listaux__TakeDrop.ml" 30 748 765 "extract/listaux__TakeDrop.ml" 30 748 789
+type(
+  Nat__Nat.nat
+)
+"extract/listaux__TakeDrop.ml" 28 706 708 "extract/listaux__TakeDrop.ml" 30 748 793
+type(
+  Nat__Nat.nat
+)
+"extract/listaux__TakeDrop.ml" 32 795 803 "extract/listaux__TakeDrop.ml" 32 795 809
+type(
+  Why3extract.Why3__BigInt.t -> Nat__Nat.nat
+)
+ident(
+  def of_int "extract/listaux__TakeDrop.ml" 32 795 795 "extract/listaux__TakeDrop.ml" 1 0 -1
+)
+"extract/listaux__TakeDrop.ml" 32 795 811 "extract/listaux__TakeDrop.ml" 32 795 812
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  def i "extract/listaux__TakeDrop.ml" 33 844 846 "extract/listaux__TakeDrop.ml" 38 1043 1066
+)
+"extract/listaux__TakeDrop.ml" 33 844 859 "extract/listaux__TakeDrop.ml" 33 844 874
+type(
+  Why3extract.Why3__BigInt.t -> Z.t -> bool
+)
+ident(
+  ext_ref Why3extract.Why3__BigInt.gt
+)
+"extract/listaux__TakeDrop.ml" 33 844 875 "extract/listaux__TakeDrop.ml" 33 844 876
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  int_ref i "extract/listaux__TakeDrop.ml" 32 795 811 "extract/listaux__TakeDrop.ml" 32 795 812
+)
+"extract/listaux__TakeDrop.ml" 33 844 877 "extract/listaux__TakeDrop.ml" 33 844 906
+type(
+  Z.t
+)
+ident(
+  ext_ref Why3extract.Why3__BigInt.zero
+)
+"extract/listaux__TakeDrop.ml" 33 844 858 "extract/listaux__TakeDrop.ml" 33 844 907
+call(
+  stack
+)
+type(
+  bool
+)
+"extract/listaux__TakeDrop.ml" 34 913 917 "extract/listaux__TakeDrop.ml" 34 913 921
+type(
+  bool
+)
+"extract/listaux__TakeDrop.ml" 35 925 935 "extract/listaux__TakeDrop.ml" 35 925 936
+type(
+  Nat__Nat.nat
+)
+ident(
+  def o "extract/listaux__TakeDrop.ml" 37 1009 1030 "extract/listaux__TakeDrop.ml" 37 1009 1042
+)
+"extract/listaux__TakeDrop.ml" 36 939 951 "extract/listaux__TakeDrop.ml" 36 939 953
+type(
+  Z.t
+)
+ident(
+  def o1 "extract/listaux__TakeDrop.ml" 37 1009 1017 "extract/listaux__TakeDrop.ml" 37 1009 1026
+)
+"extract/listaux__TakeDrop.ml" 36 939 957 "extract/listaux__TakeDrop.ml" 36 939 973
+type(
+  Why3extract.Why3__BigInt.t -> Z.t -> Z.t
+)
+ident(
+  ext_ref Why3extract.Why3__BigInt.sub
+)
+"extract/listaux__TakeDrop.ml" 36 939 974 "extract/listaux__TakeDrop.ml" 36 939 975
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  int_ref i "extract/listaux__TakeDrop.ml" 32 795 811 "extract/listaux__TakeDrop.ml" 32 795 812
+)
+"extract/listaux__TakeDrop.ml" 36 939 976 "extract/listaux__TakeDrop.ml" 36 939 1004
+type(
+  Z.t
+)
+ident(
+  ext_ref Why3extract.Why3__BigInt.one
+)
+"extract/listaux__TakeDrop.ml" 36 939 956 "extract/listaux__TakeDrop.ml" 36 939 1005
+call(
+  stack
+)
+type(
+  Z.t
+)
+"extract/listaux__TakeDrop.ml" 37 1009 1017 "extract/listaux__TakeDrop.ml" 37 1009 1023
+type(
+  Why3extract.Why3__BigInt.t -> Nat__Nat.nat
+)
+ident(
+  int_ref of_int "extract/listaux__TakeDrop.ml" 32 795 803 "extract/listaux__TakeDrop.ml" 32 795 809
+)
+"extract/listaux__TakeDrop.ml" 37 1009 1024 "extract/listaux__TakeDrop.ml" 37 1009 1026
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  int_ref o1 "extract/listaux__TakeDrop.ml" 36 939 951 "extract/listaux__TakeDrop.ml" 36 939 953
+)
+"extract/listaux__TakeDrop.ml" 37 1009 1017 "extract/listaux__TakeDrop.ml" 37 1009 1026
+call(
+  stack
+)
+type(
+  Nat__Nat.nat
+)
+"extract/listaux__TakeDrop.ml" 36 939 947 "extract/listaux__TakeDrop.ml" 37 1009 1026
+type(
+  Nat__Nat.nat
+)
+"extract/listaux__TakeDrop.ml" 37 1009 1041 "extract/listaux__TakeDrop.ml" 37 1009 1042
+type(
+  Nat__Nat.nat
+)
+ident(
+  int_ref o "extract/listaux__TakeDrop.ml" 35 925 935 "extract/listaux__TakeDrop.ml" 35 925 936
+)
+"extract/listaux__TakeDrop.ml" 37 1009 1030 "extract/listaux__TakeDrop.ml" 37 1009 1042
+type(
+  Nat__Nat.nat
+)
+"extract/listaux__TakeDrop.ml" 35 925 931 "extract/listaux__TakeDrop.ml" 37 1009 1042
+type(
+  Nat__Nat.nat
+)
+"extract/listaux__TakeDrop.ml" 38 1043 1047 "extract/listaux__TakeDrop.ml" 38 1043 1048
+type(
+  bool
+)
+"extract/listaux__TakeDrop.ml" 38 1043 1052 "extract/listaux__TakeDrop.ml" 38 1043 1062
+type(
+  Nat__Nat.nat
+)
+"extract/listaux__TakeDrop.ml" 33 844 846 "extract/listaux__TakeDrop.ml" 38 1043 1066
+type(
+  Nat__Nat.nat
+)
+"extract/listaux__TakeDrop.ml" 40 1068 1076 "extract/listaux__TakeDrop.ml" 40 1068 1080
+type(
+  Why3extract.Why3__BigInt.t -> 'a list -> 'a list
+)
+ident(
+  def take "extract/listaux__TakeDrop.ml" 40 1068 1068 "extract/listaux__TakeDrop.ml" 1 0 -1
+)
+"extract/listaux__TakeDrop.ml" 40 1068 1082 "extract/listaux__TakeDrop.ml" 40 1068 1083
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  def i "extract/listaux__TakeDrop.ml" 40 1068 1113 "extract/listaux__TakeDrop.ml" 49 1403 1422
+)
+"extract/listaux__TakeDrop.ml" 40 1068 1114 "extract/listaux__TakeDrop.ml" 40 1068 1115
+type(
+  'a list
+)
+ident(
+  def l "extract/listaux__TakeDrop.ml" 41 1128 1130 "extract/listaux__TakeDrop.ml" 49 1403 1422
+)
+"extract/listaux__TakeDrop.ml" 41 1128 1143 "extract/listaux__TakeDrop.ml" 41 1128 1158
+type(
+  Z.t -> Why3extract.Why3__BigInt.t -> bool
+)
+ident(
+  ext_ref Why3extract.Why3__BigInt.lt
+)
+"extract/listaux__TakeDrop.ml" 41 1128 1159 "extract/listaux__TakeDrop.ml" 41 1128 1188
+type(
+  Z.t
+)
+ident(
+  ext_ref Why3extract.Why3__BigInt.zero
+)
+"extract/listaux__TakeDrop.ml" 41 1128 1189 "extract/listaux__TakeDrop.ml" 41 1128 1190
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  int_ref i "extract/listaux__TakeDrop.ml" 40 1068 1082 "extract/listaux__TakeDrop.ml" 40 1068 1083
+)
+"extract/listaux__TakeDrop.ml" 41 1128 1142 "extract/listaux__TakeDrop.ml" 41 1128 1191
+call(
+  stack
+)
+type(
+  bool
+)
+"extract/listaux__TakeDrop.ml" 42 1197 1201 "extract/listaux__TakeDrop.ml" 42 1197 1205
+type(
+  bool
+)
+"extract/listaux__TakeDrop.ml" 43 1209 1227 "extract/listaux__TakeDrop.ml" 43 1209 1228
+type(
+  'a list
+)
+ident(
+  int_ref l "extract/listaux__TakeDrop.ml" 40 1068 1114 "extract/listaux__TakeDrop.ml" 40 1068 1115
+)
+"extract/listaux__TakeDrop.ml" 44 1234 1242 "extract/listaux__TakeDrop.ml" 44 1234 1244
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 44 1234 1248 "extract/listaux__TakeDrop.ml" 44 1234 1250
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 45 1251 1260 "extract/listaux__TakeDrop.ml" 45 1251 1261
+type(
+  'a
+)
+ident(
+  def e "extract/listaux__TakeDrop.ml" 46 1272 1282 "extract/listaux__TakeDrop.ml" 48 1364 1398
+)
+"extract/listaux__TakeDrop.ml" 45 1251 1265 "extract/listaux__TakeDrop.ml" 45 1251 1267
+type(
+  'a list
+)
+ident(
+  def ll "extract/listaux__TakeDrop.ml" 46 1272 1282 "extract/listaux__TakeDrop.ml" 48 1364 1398
+)
+"extract/listaux__TakeDrop.ml" 45 1251 1259 "extract/listaux__TakeDrop.ml" 45 1251 1268
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 46 1272 1286 "extract/listaux__TakeDrop.ml" 46 1272 1287
+type(
+  'a list
+)
+ident(
+  def o "extract/listaux__TakeDrop.ml" 48 1364 1390 "extract/listaux__TakeDrop.ml" 48 1364 1398
+)
+"extract/listaux__TakeDrop.ml" 47 1290 1306 "extract/listaux__TakeDrop.ml" 47 1290 1308
+type(
+  Z.t
+)
+ident(
+  def o1 "extract/listaux__TakeDrop.ml" 48 1364 1376 "extract/listaux__TakeDrop.ml" 48 1364 1386
+)
+"extract/listaux__TakeDrop.ml" 47 1290 1312 "extract/listaux__TakeDrop.ml" 47 1290 1328
+type(
+  Why3extract.Why3__BigInt.t -> Z.t -> Z.t
+)
+ident(
+  ext_ref Why3extract.Why3__BigInt.sub
+)
+"extract/listaux__TakeDrop.ml" 47 1290 1329 "extract/listaux__TakeDrop.ml" 47 1290 1330
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  int_ref i "extract/listaux__TakeDrop.ml" 40 1068 1082 "extract/listaux__TakeDrop.ml" 40 1068 1083
+)
+"extract/listaux__TakeDrop.ml" 47 1290 1331 "extract/listaux__TakeDrop.ml" 47 1290 1359
+type(
+  Z.t
+)
+ident(
+  ext_ref Why3extract.Why3__BigInt.one
+)
+"extract/listaux__TakeDrop.ml" 47 1290 1311 "extract/listaux__TakeDrop.ml" 47 1290 1360
+call(
+  stack
+)
+type(
+  Z.t
+)
+"extract/listaux__TakeDrop.ml" 48 1364 1376 "extract/listaux__TakeDrop.ml" 48 1364 1380
+type(
+  Why3extract.Why3__BigInt.t -> 'a list -> 'a list
+)
+ident(
+  int_ref take "extract/listaux__TakeDrop.ml" 40 1068 1076 "extract/listaux__TakeDrop.ml" 40 1068 1080
+)
+"extract/listaux__TakeDrop.ml" 48 1364 1381 "extract/listaux__TakeDrop.ml" 48 1364 1383
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  int_ref o1 "extract/listaux__TakeDrop.ml" 47 1290 1306 "extract/listaux__TakeDrop.ml" 47 1290 1308
+)
+"extract/listaux__TakeDrop.ml" 48 1364 1384 "extract/listaux__TakeDrop.ml" 48 1364 1386
+type(
+  'a list
+)
+ident(
+  int_ref ll "extract/listaux__TakeDrop.ml" 45 1251 1265 "extract/listaux__TakeDrop.ml" 45 1251 1267
+)
+"extract/listaux__TakeDrop.ml" 48 1364 1376 "extract/listaux__TakeDrop.ml" 48 1364 1386
+call(
+  stack
+)
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 47 1290 1302 "extract/listaux__TakeDrop.ml" 48 1364 1386
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 48 1364 1391 "extract/listaux__TakeDrop.ml" 48 1364 1392
+type(
+  'a
+)
+ident(
+  int_ref e "extract/listaux__TakeDrop.ml" 45 1251 1260 "extract/listaux__TakeDrop.ml" 45 1251 1261
+)
+"extract/listaux__TakeDrop.ml" 48 1364 1396 "extract/listaux__TakeDrop.ml" 48 1364 1397
+type(
+  'a list
+)
+ident(
+  int_ref o "extract/listaux__TakeDrop.ml" 46 1272 1286 "extract/listaux__TakeDrop.ml" 46 1272 1287
+)
+"extract/listaux__TakeDrop.ml" 48 1364 1390 "extract/listaux__TakeDrop.ml" 48 1364 1398
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 46 1272 1282 "extract/listaux__TakeDrop.ml" 48 1364 1398
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 43 1209 1215 "extract/listaux__TakeDrop.ml" 48 1364 1402
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 49 1403 1407 "extract/listaux__TakeDrop.ml" 49 1403 1412
+type(
+  bool
+)
+"extract/listaux__TakeDrop.ml" 49 1403 1416 "extract/listaux__TakeDrop.ml" 49 1403 1418
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 41 1128 1130 "extract/listaux__TakeDrop.ml" 49 1403 1422
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 51 1424 1432 "extract/listaux__TakeDrop.ml" 51 1424 1436
+type(
+  Why3extract.Why3__BigInt.t -> 'a list -> 'a list
+)
+ident(
+  def drop "extract/listaux__TakeDrop.ml" 51 1424 1424 "extract/listaux__TakeDrop.ml" 1 0 -1
+)
+"extract/listaux__TakeDrop.ml" 51 1424 1438 "extract/listaux__TakeDrop.ml" 51 1424 1439
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  def i "extract/listaux__TakeDrop.ml" 51 1424 1469 "extract/listaux__TakeDrop.ml" 59 1723 1741
+)
+"extract/listaux__TakeDrop.ml" 51 1424 1470 "extract/listaux__TakeDrop.ml" 51 1424 1471
+type(
+  'a list
+)
+ident(
+  def l "extract/listaux__TakeDrop.ml" 52 1484 1486 "extract/listaux__TakeDrop.ml" 59 1723 1741
+)
+"extract/listaux__TakeDrop.ml" 52 1484 1499 "extract/listaux__TakeDrop.ml" 52 1484 1514
+type(
+  Z.t -> Why3extract.Why3__BigInt.t -> bool
+)
+ident(
+  ext_ref Why3extract.Why3__BigInt.lt
+)
+"extract/listaux__TakeDrop.ml" 52 1484 1515 "extract/listaux__TakeDrop.ml" 52 1484 1544
+type(
+  Z.t
+)
+ident(
+  ext_ref Why3extract.Why3__BigInt.zero
+)
+"extract/listaux__TakeDrop.ml" 52 1484 1545 "extract/listaux__TakeDrop.ml" 52 1484 1546
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  int_ref i "extract/listaux__TakeDrop.ml" 51 1424 1438 "extract/listaux__TakeDrop.ml" 51 1424 1439
+)
+"extract/listaux__TakeDrop.ml" 52 1484 1498 "extract/listaux__TakeDrop.ml" 52 1484 1547
+call(
+  stack
+)
+type(
+  bool
+)
+"extract/listaux__TakeDrop.ml" 53 1553 1557 "extract/listaux__TakeDrop.ml" 53 1553 1561
+type(
+  bool
+)
+"extract/listaux__TakeDrop.ml" 54 1565 1583 "extract/listaux__TakeDrop.ml" 54 1565 1584
+type(
+  'a list
+)
+ident(
+  int_ref l "extract/listaux__TakeDrop.ml" 51 1424 1470 "extract/listaux__TakeDrop.ml" 51 1424 1471
+)
+"extract/listaux__TakeDrop.ml" 55 1590 1598 "extract/listaux__TakeDrop.ml" 55 1590 1600
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 55 1590 1604 "extract/listaux__TakeDrop.ml" 55 1590 1606
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 56 1607 1616 "extract/listaux__TakeDrop.ml" 56 1607 1617
+type(
+  'a
+)
+"extract/listaux__TakeDrop.ml" 56 1607 1621 "extract/listaux__TakeDrop.ml" 56 1607 1623
+type(
+  'a list
+)
+ident(
+  def ll "extract/listaux__TakeDrop.ml" 57 1628 1638 "extract/listaux__TakeDrop.ml" 58 1699 1718
+)
+"extract/listaux__TakeDrop.ml" 56 1607 1615 "extract/listaux__TakeDrop.ml" 56 1607 1624
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 57 1628 1642 "extract/listaux__TakeDrop.ml" 57 1628 1643
+type(
+  Z.t
+)
+ident(
+  def o "extract/listaux__TakeDrop.ml" 58 1699 1709 "extract/listaux__TakeDrop.ml" 58 1699 1718
+)
+"extract/listaux__TakeDrop.ml" 57 1628 1647 "extract/listaux__TakeDrop.ml" 57 1628 1663
+type(
+  Why3extract.Why3__BigInt.t -> Z.t -> Z.t
+)
+ident(
+  ext_ref Why3extract.Why3__BigInt.sub
+)
+"extract/listaux__TakeDrop.ml" 57 1628 1664 "extract/listaux__TakeDrop.ml" 57 1628 1665
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  int_ref i "extract/listaux__TakeDrop.ml" 51 1424 1438 "extract/listaux__TakeDrop.ml" 51 1424 1439
+)
+"extract/listaux__TakeDrop.ml" 57 1628 1666 "extract/listaux__TakeDrop.ml" 57 1628 1694
+type(
+  Z.t
+)
+ident(
+  ext_ref Why3extract.Why3__BigInt.one
+)
+"extract/listaux__TakeDrop.ml" 57 1628 1646 "extract/listaux__TakeDrop.ml" 57 1628 1695
+call(
+  stack
+)
+type(
+  Z.t
+)
+"extract/listaux__TakeDrop.ml" 58 1699 1709 "extract/listaux__TakeDrop.ml" 58 1699 1713
+type(
+  Why3extract.Why3__BigInt.t -> 'a list -> 'a list
+)
+ident(
+  int_ref drop "extract/listaux__TakeDrop.ml" 51 1424 1432 "extract/listaux__TakeDrop.ml" 51 1424 1436
+)
+"extract/listaux__TakeDrop.ml" 58 1699 1714 "extract/listaux__TakeDrop.ml" 58 1699 1715
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  int_ref o "extract/listaux__TakeDrop.ml" 57 1628 1642 "extract/listaux__TakeDrop.ml" 57 1628 1643
+)
+"extract/listaux__TakeDrop.ml" 58 1699 1716 "extract/listaux__TakeDrop.ml" 58 1699 1718
+type(
+  'a list
+)
+ident(
+  int_ref ll "extract/listaux__TakeDrop.ml" 56 1607 1621 "extract/listaux__TakeDrop.ml" 56 1607 1623
+)
+"extract/listaux__TakeDrop.ml" 58 1699 1709 "extract/listaux__TakeDrop.ml" 58 1699 1718
+call(
+  tail
+)
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 57 1628 1638 "extract/listaux__TakeDrop.ml" 58 1699 1718
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 54 1565 1571 "extract/listaux__TakeDrop.ml" 58 1699 1722
+type(
+  'a list
+)
+"extract/listaux__TakeDrop.ml" 59 1723 1727 "extract/listaux__TakeDrop.ml" 59 1723 1732
+type(
+  bool
+)
+"extract/listaux__TakeDrop.ml" 59 1723 1736 "extract/listaux__TakeDrop.ml" 59 1723 1737
+type(
+  'a list
+)
+ident(
+  int_ref l "extract/listaux__TakeDrop.ml" 51 1424 1470 "extract/listaux__TakeDrop.ml" 51 1424 1471
+)
+"extract/listaux__TakeDrop.ml" 52 1484 1486 "extract/listaux__TakeDrop.ml" 59 1723 1741
+type(
+  'a list
+)

@@ -1,0 +1,8 @@
+(* test seq, imp_ex 7 steps, vm_ex 44 steps *)
+x := 1;
+y := 4;
+WHILE NOT (y <= 0) DO
+  x := x * y;
+  y := y - 1
+DONE
+

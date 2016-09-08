@@ -1,0 +1,150 @@
+"extract/list__Nth.ml" 5 80 88 "extract/list__Nth.ml" 5 80 91
+type(
+  Why3extract.Why3__BigInt.t -> 'a list -> 'a option
+)
+ident(
+  def nth "extract/list__Nth.ml" 5 80 80 "extract/list__Nth.ml" 1 0 -1
+)
+"extract/list__Nth.ml" 5 80 93 "extract/list__Nth.ml" 5 80 94
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  def n "extract/list__Nth.ml" 5 80 124 "extract/list__Nth.ml" 13 301 368
+)
+"extract/list__Nth.ml" 5 80 125 "extract/list__Nth.ml" 5 80 126
+type(
+  'a list
+)
+ident(
+  def l "extract/list__Nth.ml" 6 139 141 "extract/list__Nth.ml" 13 301 368
+)
+"extract/list__Nth.ml" 6 139 153 "extract/list__Nth.ml" 6 139 154
+type(
+  'a list
+)
+ident(
+  int_ref l "extract/list__Nth.ml" 5 80 125 "extract/list__Nth.ml" 5 80 126
+)
+"extract/list__Nth.ml" 7 160 164 "extract/list__Nth.ml" 7 160 166
+type(
+  'a list
+)
+"extract/list__Nth.ml" 7 160 170 "extract/list__Nth.ml" 7 160 174
+type(
+  'a option
+)
+"extract/list__Nth.ml" 8 175 180 "extract/list__Nth.ml" 8 175 181
+type(
+  'a
+)
+ident(
+  def x "extract/list__Nth.ml" 9 191 197 "extract/list__Nth.ml" 13 301 364
+)
+"extract/list__Nth.ml" 8 175 185 "extract/list__Nth.ml" 8 175 186
+type(
+  'a list
+)
+ident(
+  def r "extract/list__Nth.ml" 9 191 197 "extract/list__Nth.ml" 13 301 364
+)
+"extract/list__Nth.ml" 8 175 179 "extract/list__Nth.ml" 8 175 187
+type(
+  'a list
+)
+"extract/list__Nth.ml" 9 191 201 "extract/list__Nth.ml" 9 191 228
+type(
+  Why3extract.Why3__BigInt.t -> Z.t -> bool
+)
+ident(
+  ext_ref Why3extract.Why3__BigInt.eq
+)
+"extract/list__Nth.ml" 9 191 229 "extract/list__Nth.ml" 9 191 230
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  int_ref n "extract/list__Nth.ml" 5 80 93 "extract/list__Nth.ml" 5 80 94
+)
+"extract/list__Nth.ml" 9 191 231 "extract/list__Nth.ml" 9 191 260
+type(
+  Z.t
+)
+ident(
+  ext_ref Why3extract.Why3__BigInt.zero
+)
+"extract/list__Nth.ml" 9 191 200 "extract/list__Nth.ml" 9 191 261
+call(
+  stack
+)
+type(
+  bool
+)
+"extract/list__Nth.ml" 11 273 287 "extract/list__Nth.ml" 11 273 288
+type(
+  'a
+)
+ident(
+  int_ref x "extract/list__Nth.ml" 8 175 180 "extract/list__Nth.ml" 8 175 181
+)
+"extract/list__Nth.ml" 11 273 281 "extract/list__Nth.ml" 11 273 289
+type(
+  'a option
+)
+"extract/list__Nth.ml" 13 301 309 "extract/list__Nth.ml" 13 301 312
+type(
+  Why3extract.Why3__BigInt.t -> 'a list -> 'a option
+)
+ident(
+  int_ref nth "extract/list__Nth.ml" 5 80 88 "extract/list__Nth.ml" 5 80 91
+)
+"extract/list__Nth.ml" 13 301 314 "extract/list__Nth.ml" 13 301 330
+type(
+  Why3extract.Why3__BigInt.t -> Z.t -> Why3extract.Why3__BigInt.t
+)
+ident(
+  ext_ref Why3extract.Why3__BigInt.sub
+)
+"extract/list__Nth.ml" 13 301 331 "extract/list__Nth.ml" 13 301 332
+type(
+  Why3extract.Why3__BigInt.t
+)
+ident(
+  int_ref n "extract/list__Nth.ml" 5 80 93 "extract/list__Nth.ml" 5 80 94
+)
+"extract/list__Nth.ml" 13 301 333 "extract/list__Nth.ml" 13 301 361
+type(
+  Z.t
+)
+ident(
+  ext_ref Why3extract.Why3__BigInt.one
+)
+"extract/list__Nth.ml" 13 301 313 "extract/list__Nth.ml" 13 301 362
+call(
+  stack
+)
+type(
+  Why3extract.Why3__BigInt.t
+)
+"extract/list__Nth.ml" 13 301 363 "extract/list__Nth.ml" 13 301 364
+type(
+  'a list
+)
+ident(
+  int_ref r "extract/list__Nth.ml" 8 175 185 "extract/list__Nth.ml" 8 175 186
+)
+"extract/list__Nth.ml" 13 301 309 "extract/list__Nth.ml" 13 301 364
+call(
+  tail
+)
+type(
+  'a option
+)
+"extract/list__Nth.ml" 9 191 197 "extract/list__Nth.ml" 13 301 364
+type(
+  'a option
+)
+"extract/list__Nth.ml" 6 139 141 "extract/list__Nth.ml" 13 301 368
+type(
+  'a option
+)
