@@ -1,4 +1,0 @@
-(* test assignment *)
-(* a := 7 b:= "jaja"*)
-(*a := "hej"*)
-a := 1*2+2+3

@@ -1,7 +1,0 @@
-(* syntax error at &; *)
-x := &;
-WHILE NOT (y <= 0) DO
-  x := x * y;
-  y := y - 1
-DONE
-
