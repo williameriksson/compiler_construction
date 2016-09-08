@@ -5,7 +5,7 @@
 
 %token <State__StateGen.id> ID 
 %token <int> INTVAL
-%token IF THEN ELSE END WHILE DO DONE 
+%token IF THEN ELSE END WHILE DO DONE FOR
 %token TRUE FALSE AND NOT BEQ BLE BBE BL BB
 %token SC LP RP ASSIGN PLUS MINUS MULT
 %token EOF
@@ -32,7 +32,6 @@
 
 %%
 
-
 prog:
   | com EOF                        { $1 }
   
@@ -41,7 +40,10 @@ com:
   | ID ASSIGN aexpr                { Cassign ($1, $3) }
   | IF bexpr THEN com ELSE com END { Cif ($2, $4, $6) }  
   | IF bexpr THEN com END          { Cif ($2, $4, Cskip) }  
-  | WHILE bexpr DO com DONE        { Cwhile ($2, $4) }  
+  | WHILE bexpr DO com DONE        { Cwhile ($2, $4) }
+	| FOR LP initID = ID ASSIGN initexp = aexpr SC cond = bexpr SC addcom = com RP DO body = com DONE {
+			 Cseq(Cassign(initID, initexp), Cwhile (cond, Cseq(body, addcom)))	 
+		}  
 
 bexpr:
   | LP bexpr RP                    { $2 }

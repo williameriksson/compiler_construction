@@ -15,6 +15,7 @@ type token =
   | INTVAL of (int)
   | IF
   | ID of (State__StateGen.id)
+  | FOR
   | FALSE
   | EOF
   | END

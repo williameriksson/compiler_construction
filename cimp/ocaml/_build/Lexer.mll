@@ -32,6 +32,7 @@ rule lex = parse
   | "ELSE"               { ELSE }
   | "END"                { END }
   | "WHILE"              { WHILE }
+	| "FOR"								 { FOR }
   | "DO"                 { DO }
   | "DONE"               { DONE }
 

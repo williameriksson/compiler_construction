@@ -15,4 +15,9 @@ END;
 
 WHILE NOT TRUE DO
 	h := 1
+DONE;
+k := 0;
+
+FOR (j := 1; j <= 2; j := j + 1) DO
+    k := k + 1
 DONE

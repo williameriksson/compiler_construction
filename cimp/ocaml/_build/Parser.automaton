@@ -3,11 +3,12 @@ prog' -> . prog [ # ]
 -- On WHILE shift to state 1
 -- On IF shift to state 38
 -- On ID shift to state 41
--- On prog shift to state 53
--- On com shift to state 54
+-- On FOR shift to state 44
+-- On prog shift to state 66
+-- On com shift to state 67
 
 State 1:
-com -> WHILE . bexpr DO com DONE [ SC EOF END ELSE DONE ]
+com -> WHILE . bexpr DO com DONE [ SC RP EOF END ELSE DONE ]
 -- On TRUE shift to state 2
 -- On NOT shift to state 3
 -- On MINUS shift to state 4
@@ -19,14 +20,15 @@ com -> WHILE . bexpr DO com DONE [ SC EOF END ELSE DONE ]
 -- On aexpr shift to state 23
 
 State 2:
-bexpr -> TRUE . [ THEN RP DO AND ]
+bexpr -> TRUE . [ THEN SC RP DO AND ]
 -- On THEN reduce production bexpr -> TRUE 
+-- On SC reduce production bexpr -> TRUE 
 -- On RP reduce production bexpr -> TRUE 
 -- On DO reduce production bexpr -> TRUE 
 -- On AND reduce production bexpr -> TRUE 
 
 State 3:
-bexpr -> NOT . bexpr [ THEN RP DO AND ]
+bexpr -> NOT . bexpr [ THEN SC RP DO AND ]
 -- On TRUE shift to state 2
 -- On NOT shift to state 3
 -- On MINUS shift to state 4
@@ -241,7 +243,7 @@ aexpr -> MINUS aexpr . [ THEN SC RP PLUS MULT MINUS EOF END ELSE DONE DO BLE BL 
 
 State 17:
 aexpr -> LP . aexpr RP [ RP PLUS MULT MINUS BLE BL BEQ BBE BB ]
-bexpr -> LP . bexpr RP [ THEN RP DO AND ]
+bexpr -> LP . bexpr RP [ THEN SC RP DO AND ]
 -- On TRUE shift to state 2
 -- On NOT shift to state 3
 -- On MINUS shift to state 4
@@ -253,27 +255,29 @@ bexpr -> LP . bexpr RP [ THEN RP DO AND ]
 -- On aexpr shift to state 34
 
 State 18:
-bexpr -> FALSE . [ THEN RP DO AND ]
+bexpr -> FALSE . [ THEN SC RP DO AND ]
 -- On THEN reduce production bexpr -> FALSE 
+-- On SC reduce production bexpr -> FALSE 
 -- On RP reduce production bexpr -> FALSE 
 -- On DO reduce production bexpr -> FALSE 
 -- On AND reduce production bexpr -> FALSE 
 
 State 19:
-bexpr -> LP bexpr . RP [ THEN RP DO AND ]
+bexpr -> LP bexpr . RP [ THEN SC RP DO AND ]
 bexpr -> bexpr . AND bexpr [ RP AND ]
 -- On RP shift to state 20
 -- On AND shift to state 21
 
 State 20:
-bexpr -> LP bexpr RP . [ THEN RP DO AND ]
+bexpr -> LP bexpr RP . [ THEN SC RP DO AND ]
 -- On THEN reduce production bexpr -> LP bexpr RP 
+-- On SC reduce production bexpr -> LP bexpr RP 
 -- On RP reduce production bexpr -> LP bexpr RP 
 -- On DO reduce production bexpr -> LP bexpr RP 
 -- On AND reduce production bexpr -> LP bexpr RP 
 
 State 21:
-bexpr -> bexpr AND . bexpr [ THEN RP DO AND ]
+bexpr -> bexpr AND . bexpr [ THEN SC RP DO AND ]
 -- On TRUE shift to state 2
 -- On NOT shift to state 3
 -- On MINUS shift to state 4
@@ -285,9 +289,10 @@ bexpr -> bexpr AND . bexpr [ THEN RP DO AND ]
 -- On aexpr shift to state 23
 
 State 22:
-bexpr -> bexpr . AND bexpr [ THEN RP DO AND ]
-bexpr -> bexpr AND bexpr . [ THEN RP DO AND ]
+bexpr -> bexpr . AND bexpr [ THEN SC RP DO AND ]
+bexpr -> bexpr AND bexpr . [ THEN SC RP DO AND ]
 -- On THEN reduce production bexpr -> bexpr AND bexpr 
+-- On SC reduce production bexpr -> bexpr AND bexpr 
 -- On RP reduce production bexpr -> bexpr AND bexpr 
 -- On DO reduce production bexpr -> bexpr AND bexpr 
 -- On AND reduce production bexpr -> bexpr AND bexpr 
@@ -296,11 +301,11 @@ State 23:
 aexpr -> aexpr . PLUS aexpr [ PLUS MULT MINUS BLE BL BEQ BBE BB ]
 aexpr -> aexpr . MINUS aexpr [ PLUS MULT MINUS BLE BL BEQ BBE BB ]
 aexpr -> aexpr . MULT aexpr [ PLUS MULT MINUS BLE BL BEQ BBE BB ]
-bexpr -> aexpr . BL aexpr [ THEN RP DO AND ]
-bexpr -> aexpr . BB aexpr [ THEN RP DO AND ]
-bexpr -> aexpr . BEQ aexpr [ THEN RP DO AND ]
-bexpr -> aexpr . BLE aexpr [ THEN RP DO AND ]
-bexpr -> aexpr . BBE aexpr [ THEN RP DO AND ]
+bexpr -> aexpr . BL aexpr [ THEN SC RP DO AND ]
+bexpr -> aexpr . BB aexpr [ THEN SC RP DO AND ]
+bexpr -> aexpr . BEQ aexpr [ THEN SC RP DO AND ]
+bexpr -> aexpr . BLE aexpr [ THEN SC RP DO AND ]
+bexpr -> aexpr . BBE aexpr [ THEN SC RP DO AND ]
 -- On PLUS shift to state 10
 -- On MULT shift to state 12
 -- On MINUS shift to state 14
@@ -311,7 +316,7 @@ bexpr -> aexpr . BBE aexpr [ THEN RP DO AND ]
 -- On BB shift to state 32
 
 State 24:
-bexpr -> aexpr BLE . aexpr [ THEN RP DO AND ]
+bexpr -> aexpr BLE . aexpr [ THEN SC RP DO AND ]
 -- On MINUS shift to state 4
 -- On LP shift to state 5
 -- On INTVAL shift to state 6
@@ -319,20 +324,21 @@ bexpr -> aexpr BLE . aexpr [ THEN RP DO AND ]
 -- On aexpr shift to state 25
 
 State 25:
-aexpr -> aexpr . PLUS aexpr [ THEN RP PLUS MULT MINUS DO AND ]
-aexpr -> aexpr . MINUS aexpr [ THEN RP PLUS MULT MINUS DO AND ]
-aexpr -> aexpr . MULT aexpr [ THEN RP PLUS MULT MINUS DO AND ]
-bexpr -> aexpr BLE aexpr . [ THEN RP DO AND ]
+aexpr -> aexpr . PLUS aexpr [ THEN SC RP PLUS MULT MINUS DO AND ]
+aexpr -> aexpr . MINUS aexpr [ THEN SC RP PLUS MULT MINUS DO AND ]
+aexpr -> aexpr . MULT aexpr [ THEN SC RP PLUS MULT MINUS DO AND ]
+bexpr -> aexpr BLE aexpr . [ THEN SC RP DO AND ]
 -- On PLUS shift to state 10
 -- On MULT shift to state 12
 -- On MINUS shift to state 14
 -- On THEN reduce production bexpr -> aexpr BLE aexpr 
+-- On SC reduce production bexpr -> aexpr BLE aexpr 
 -- On RP reduce production bexpr -> aexpr BLE aexpr 
 -- On DO reduce production bexpr -> aexpr BLE aexpr 
 -- On AND reduce production bexpr -> aexpr BLE aexpr 
 
 State 26:
-bexpr -> aexpr BL . aexpr [ THEN RP DO AND ]
+bexpr -> aexpr BL . aexpr [ THEN SC RP DO AND ]
 -- On MINUS shift to state 4
 -- On LP shift to state 5
 -- On INTVAL shift to state 6
@@ -340,20 +346,21 @@ bexpr -> aexpr BL . aexpr [ THEN RP DO AND ]
 -- On aexpr shift to state 27
 
 State 27:
-aexpr -> aexpr . PLUS aexpr [ THEN RP PLUS MULT MINUS DO AND ]
-aexpr -> aexpr . MINUS aexpr [ THEN RP PLUS MULT MINUS DO AND ]
-aexpr -> aexpr . MULT aexpr [ THEN RP PLUS MULT MINUS DO AND ]
-bexpr -> aexpr BL aexpr . [ THEN RP DO AND ]
+aexpr -> aexpr . PLUS aexpr [ THEN SC RP PLUS MULT MINUS DO AND ]
+aexpr -> aexpr . MINUS aexpr [ THEN SC RP PLUS MULT MINUS DO AND ]
+aexpr -> aexpr . MULT aexpr [ THEN SC RP PLUS MULT MINUS DO AND ]
+bexpr -> aexpr BL aexpr . [ THEN SC RP DO AND ]
 -- On PLUS shift to state 10
 -- On MULT shift to state 12
 -- On MINUS shift to state 14
 -- On THEN reduce production bexpr -> aexpr BL aexpr 
+-- On SC reduce production bexpr -> aexpr BL aexpr 
 -- On RP reduce production bexpr -> aexpr BL aexpr 
 -- On DO reduce production bexpr -> aexpr BL aexpr 
 -- On AND reduce production bexpr -> aexpr BL aexpr 
 
 State 28:
-bexpr -> aexpr BEQ . aexpr [ THEN RP DO AND ]
+bexpr -> aexpr BEQ . aexpr [ THEN SC RP DO AND ]
 -- On MINUS shift to state 4
 -- On LP shift to state 5
 -- On INTVAL shift to state 6
@@ -361,20 +368,21 @@ bexpr -> aexpr BEQ . aexpr [ THEN RP DO AND ]
 -- On aexpr shift to state 29
 
 State 29:
-aexpr -> aexpr . PLUS aexpr [ THEN RP PLUS MULT MINUS DO AND ]
-aexpr -> aexpr . MINUS aexpr [ THEN RP PLUS MULT MINUS DO AND ]
-aexpr -> aexpr . MULT aexpr [ THEN RP PLUS MULT MINUS DO AND ]
-bexpr -> aexpr BEQ aexpr . [ THEN RP DO AND ]
+aexpr -> aexpr . PLUS aexpr [ THEN SC RP PLUS MULT MINUS DO AND ]
+aexpr -> aexpr . MINUS aexpr [ THEN SC RP PLUS MULT MINUS DO AND ]
+aexpr -> aexpr . MULT aexpr [ THEN SC RP PLUS MULT MINUS DO AND ]
+bexpr -> aexpr BEQ aexpr . [ THEN SC RP DO AND ]
 -- On PLUS shift to state 10
 -- On MULT shift to state 12
 -- On MINUS shift to state 14
 -- On THEN reduce production bexpr -> aexpr BEQ aexpr 
+-- On SC reduce production bexpr -> aexpr BEQ aexpr 
 -- On RP reduce production bexpr -> aexpr BEQ aexpr 
 -- On DO reduce production bexpr -> aexpr BEQ aexpr 
 -- On AND reduce production bexpr -> aexpr BEQ aexpr 
 
 State 30:
-bexpr -> aexpr BBE . aexpr [ THEN RP DO AND ]
+bexpr -> aexpr BBE . aexpr [ THEN SC RP DO AND ]
 -- On MINUS shift to state 4
 -- On LP shift to state 5
 -- On INTVAL shift to state 6
@@ -382,20 +390,21 @@ bexpr -> aexpr BBE . aexpr [ THEN RP DO AND ]
 -- On aexpr shift to state 31
 
 State 31:
-aexpr -> aexpr . PLUS aexpr [ THEN RP PLUS MULT MINUS DO AND ]
-aexpr -> aexpr . MINUS aexpr [ THEN RP PLUS MULT MINUS DO AND ]
-aexpr -> aexpr . MULT aexpr [ THEN RP PLUS MULT MINUS DO AND ]
-bexpr -> aexpr BBE aexpr . [ THEN RP DO AND ]
+aexpr -> aexpr . PLUS aexpr [ THEN SC RP PLUS MULT MINUS DO AND ]
+aexpr -> aexpr . MINUS aexpr [ THEN SC RP PLUS MULT MINUS DO AND ]
+aexpr -> aexpr . MULT aexpr [ THEN SC RP PLUS MULT MINUS DO AND ]
+bexpr -> aexpr BBE aexpr . [ THEN SC RP DO AND ]
 -- On PLUS shift to state 10
 -- On MULT shift to state 12
 -- On MINUS shift to state 14
 -- On THEN reduce production bexpr -> aexpr BBE aexpr 
+-- On SC reduce production bexpr -> aexpr BBE aexpr 
 -- On RP reduce production bexpr -> aexpr BBE aexpr 
 -- On DO reduce production bexpr -> aexpr BBE aexpr 
 -- On AND reduce production bexpr -> aexpr BBE aexpr 
 
 State 32:
-bexpr -> aexpr BB . aexpr [ THEN RP DO AND ]
+bexpr -> aexpr BB . aexpr [ THEN SC RP DO AND ]
 -- On MINUS shift to state 4
 -- On LP shift to state 5
 -- On INTVAL shift to state 6
@@ -403,14 +412,15 @@ bexpr -> aexpr BB . aexpr [ THEN RP DO AND ]
 -- On aexpr shift to state 33
 
 State 33:
-aexpr -> aexpr . PLUS aexpr [ THEN RP PLUS MULT MINUS DO AND ]
-aexpr -> aexpr . MINUS aexpr [ THEN RP PLUS MULT MINUS DO AND ]
-aexpr -> aexpr . MULT aexpr [ THEN RP PLUS MULT MINUS DO AND ]
-bexpr -> aexpr BB aexpr . [ THEN RP DO AND ]
+aexpr -> aexpr . PLUS aexpr [ THEN SC RP PLUS MULT MINUS DO AND ]
+aexpr -> aexpr . MINUS aexpr [ THEN SC RP PLUS MULT MINUS DO AND ]
+aexpr -> aexpr . MULT aexpr [ THEN SC RP PLUS MULT MINUS DO AND ]
+bexpr -> aexpr BB aexpr . [ THEN SC RP DO AND ]
 -- On PLUS shift to state 10
 -- On MULT shift to state 12
 -- On MINUS shift to state 14
 -- On THEN reduce production bexpr -> aexpr BB aexpr 
+-- On SC reduce production bexpr -> aexpr BB aexpr 
 -- On RP reduce production bexpr -> aexpr BB aexpr 
 -- On DO reduce production bexpr -> aexpr BB aexpr 
 -- On AND reduce production bexpr -> aexpr BB aexpr 
@@ -436,29 +446,31 @@ bexpr -> aexpr . BBE aexpr [ RP AND ]
 -- On BB shift to state 32
 
 State 35:
-bexpr -> bexpr . AND bexpr [ THEN RP DO AND ]
-bexpr -> NOT bexpr . [ THEN RP DO AND ]
+bexpr -> bexpr . AND bexpr [ THEN SC RP DO AND ]
+bexpr -> NOT bexpr . [ THEN SC RP DO AND ]
 -- On THEN reduce production bexpr -> NOT bexpr 
+-- On SC reduce production bexpr -> NOT bexpr 
 -- On RP reduce production bexpr -> NOT bexpr 
 -- On DO reduce production bexpr -> NOT bexpr 
 -- On AND reduce production bexpr -> NOT bexpr 
 
 State 36:
 bexpr -> bexpr . AND bexpr [ DO AND ]
-com -> WHILE bexpr . DO com DONE [ SC EOF END ELSE DONE ]
+com -> WHILE bexpr . DO com DONE [ SC RP EOF END ELSE DONE ]
 -- On DO shift to state 37
 -- On AND shift to state 21
 
 State 37:
-com -> WHILE bexpr DO . com DONE [ SC EOF END ELSE DONE ]
+com -> WHILE bexpr DO . com DONE [ SC RP EOF END ELSE DONE ]
 -- On WHILE shift to state 1
 -- On IF shift to state 38
 -- On ID shift to state 41
--- On com shift to state 51
+-- On FOR shift to state 44
+-- On com shift to state 64
 
 State 38:
-com -> IF . bexpr THEN com ELSE com END [ SC EOF END ELSE DONE ]
-com -> IF . bexpr THEN com END [ SC EOF END ELSE DONE ]
+com -> IF . bexpr THEN com ELSE com END [ SC RP EOF END ELSE DONE ]
+com -> IF . bexpr THEN com END [ SC RP EOF END ELSE DONE ]
 -- On TRUE shift to state 2
 -- On NOT shift to state 3
 -- On MINUS shift to state 4
@@ -471,25 +483,26 @@ com -> IF . bexpr THEN com END [ SC EOF END ELSE DONE ]
 
 State 39:
 bexpr -> bexpr . AND bexpr [ THEN AND ]
-com -> IF bexpr . THEN com ELSE com END [ SC EOF END ELSE DONE ]
-com -> IF bexpr . THEN com END [ SC EOF END ELSE DONE ]
+com -> IF bexpr . THEN com ELSE com END [ SC RP EOF END ELSE DONE ]
+com -> IF bexpr . THEN com END [ SC RP EOF END ELSE DONE ]
 -- On THEN shift to state 40
 -- On AND shift to state 21
 
 State 40:
-com -> IF bexpr THEN . com ELSE com END [ SC EOF END ELSE DONE ]
-com -> IF bexpr THEN . com END [ SC EOF END ELSE DONE ]
+com -> IF bexpr THEN . com ELSE com END [ SC RP EOF END ELSE DONE ]
+com -> IF bexpr THEN . com END [ SC RP EOF END ELSE DONE ]
 -- On WHILE shift to state 1
 -- On IF shift to state 38
 -- On ID shift to state 41
--- On com shift to state 44
+-- On FOR shift to state 44
+-- On com shift to state 59
 
 State 41:
-com -> ID . ASSIGN aexpr [ SC EOF END ELSE DONE ]
+com -> ID . ASSIGN aexpr [ SC RP EOF END ELSE DONE ]
 -- On ASSIGN shift to state 42
 
 State 42:
-com -> ID ASSIGN . aexpr [ SC EOF END ELSE DONE ]
+com -> ID ASSIGN . aexpr [ SC RP EOF END ELSE DONE ]
 -- On MINUS shift to state 4
 -- On LP shift to state 5
 -- On INTVAL shift to state 6
@@ -497,97 +510,193 @@ com -> ID ASSIGN . aexpr [ SC EOF END ELSE DONE ]
 -- On aexpr shift to state 43
 
 State 43:
-aexpr -> aexpr . PLUS aexpr [ SC PLUS MULT MINUS EOF END ELSE DONE ]
-aexpr -> aexpr . MINUS aexpr [ SC PLUS MULT MINUS EOF END ELSE DONE ]
-aexpr -> aexpr . MULT aexpr [ SC PLUS MULT MINUS EOF END ELSE DONE ]
-com -> ID ASSIGN aexpr . [ SC EOF END ELSE DONE ]
+aexpr -> aexpr . PLUS aexpr [ SC RP PLUS MULT MINUS EOF END ELSE DONE ]
+aexpr -> aexpr . MINUS aexpr [ SC RP PLUS MULT MINUS EOF END ELSE DONE ]
+aexpr -> aexpr . MULT aexpr [ SC RP PLUS MULT MINUS EOF END ELSE DONE ]
+com -> ID ASSIGN aexpr . [ SC RP EOF END ELSE DONE ]
 -- On PLUS shift to state 10
 -- On MULT shift to state 12
 -- On MINUS shift to state 14
 -- On SC reduce production com -> ID ASSIGN aexpr 
+-- On RP reduce production com -> ID ASSIGN aexpr 
 -- On EOF reduce production com -> ID ASSIGN aexpr 
 -- On END reduce production com -> ID ASSIGN aexpr 
 -- On ELSE reduce production com -> ID ASSIGN aexpr 
 -- On DONE reduce production com -> ID ASSIGN aexpr 
 
 State 44:
-com -> com . SC com [ SC END ELSE ]
-com -> IF bexpr THEN com . ELSE com END [ SC EOF END ELSE DONE ]
-com -> IF bexpr THEN com . END [ SC EOF END ELSE DONE ]
--- On SC shift to state 45
--- On END shift to state 47
--- On ELSE shift to state 48
+com -> FOR . LP ID ASSIGN aexpr SC bexpr SC com RP DO com DONE [ SC RP EOF END ELSE DONE ]
+-- On LP shift to state 45
 
 State 45:
-com -> com SC . com [ SC EOF END ELSE DONE ]
+com -> FOR LP . ID ASSIGN aexpr SC bexpr SC com RP DO com DONE [ SC RP EOF END ELSE DONE ]
+-- On ID shift to state 46
+
+State 46:
+com -> FOR LP ID . ASSIGN aexpr SC bexpr SC com RP DO com DONE [ SC RP EOF END ELSE DONE ]
+-- On ASSIGN shift to state 47
+
+State 47:
+com -> FOR LP ID ASSIGN . aexpr SC bexpr SC com RP DO com DONE [ SC RP EOF END ELSE DONE ]
+-- On MINUS shift to state 4
+-- On LP shift to state 5
+-- On INTVAL shift to state 6
+-- On ID shift to state 7
+-- On aexpr shift to state 48
+
+State 48:
+aexpr -> aexpr . PLUS aexpr [ SC PLUS MULT MINUS ]
+aexpr -> aexpr . MINUS aexpr [ SC PLUS MULT MINUS ]
+aexpr -> aexpr . MULT aexpr [ SC PLUS MULT MINUS ]
+com -> FOR LP ID ASSIGN aexpr . SC bexpr SC com RP DO com DONE [ SC RP EOF END ELSE DONE ]
+-- On SC shift to state 49
+-- On PLUS shift to state 10
+-- On MULT shift to state 12
+-- On MINUS shift to state 14
+
+State 49:
+com -> FOR LP ID ASSIGN aexpr SC . bexpr SC com RP DO com DONE [ SC RP EOF END ELSE DONE ]
+-- On TRUE shift to state 2
+-- On NOT shift to state 3
+-- On MINUS shift to state 4
+-- On LP shift to state 17
+-- On INTVAL shift to state 6
+-- On ID shift to state 7
+-- On FALSE shift to state 18
+-- On bexpr shift to state 50
+-- On aexpr shift to state 23
+
+State 50:
+bexpr -> bexpr . AND bexpr [ SC AND ]
+com -> FOR LP ID ASSIGN aexpr SC bexpr . SC com RP DO com DONE [ SC RP EOF END ELSE DONE ]
+-- On SC shift to state 51
+-- On AND shift to state 21
+
+State 51:
+com -> FOR LP ID ASSIGN aexpr SC bexpr SC . com RP DO com DONE [ SC RP EOF END ELSE DONE ]
 -- On WHILE shift to state 1
 -- On IF shift to state 38
 -- On ID shift to state 41
--- On com shift to state 46
+-- On FOR shift to state 44
+-- On com shift to state 52
 
-State 46:
-com -> com . SC com [ SC EOF END ELSE DONE ]
-com -> com SC com . [ SC EOF END ELSE DONE ]
+State 52:
+com -> com . SC com [ SC RP ]
+com -> FOR LP ID ASSIGN aexpr SC bexpr SC com . RP DO com DONE [ SC RP EOF END ELSE DONE ]
+-- On SC shift to state 53
+-- On RP shift to state 55
+
+State 53:
+com -> com SC . com [ SC RP EOF END ELSE DONE ]
+-- On WHILE shift to state 1
+-- On IF shift to state 38
+-- On ID shift to state 41
+-- On FOR shift to state 44
+-- On com shift to state 54
+
+State 54:
+com -> com . SC com [ SC RP EOF END ELSE DONE ]
+com -> com SC com . [ SC RP EOF END ELSE DONE ]
 -- On SC reduce production com -> com SC com 
+-- On RP reduce production com -> com SC com 
 -- On EOF reduce production com -> com SC com 
 -- On END reduce production com -> com SC com 
 -- On ELSE reduce production com -> com SC com 
 -- On DONE reduce production com -> com SC com 
 
-State 47:
-com -> IF bexpr THEN com END . [ SC EOF END ELSE DONE ]
+State 55:
+com -> FOR LP ID ASSIGN aexpr SC bexpr SC com RP . DO com DONE [ SC RP EOF END ELSE DONE ]
+-- On DO shift to state 56
+
+State 56:
+com -> FOR LP ID ASSIGN aexpr SC bexpr SC com RP DO . com DONE [ SC RP EOF END ELSE DONE ]
+-- On WHILE shift to state 1
+-- On IF shift to state 38
+-- On ID shift to state 41
+-- On FOR shift to state 44
+-- On com shift to state 57
+
+State 57:
+com -> com . SC com [ SC DONE ]
+com -> FOR LP ID ASSIGN aexpr SC bexpr SC com RP DO com . DONE [ SC RP EOF END ELSE DONE ]
+-- On SC shift to state 53
+-- On DONE shift to state 58
+
+State 58:
+com -> FOR LP ID ASSIGN aexpr SC bexpr SC com RP DO com DONE . [ SC RP EOF END ELSE DONE ]
+-- On SC reduce production com -> FOR LP ID ASSIGN aexpr SC bexpr SC com RP DO com DONE 
+-- On RP reduce production com -> FOR LP ID ASSIGN aexpr SC bexpr SC com RP DO com DONE 
+-- On EOF reduce production com -> FOR LP ID ASSIGN aexpr SC bexpr SC com RP DO com DONE 
+-- On END reduce production com -> FOR LP ID ASSIGN aexpr SC bexpr SC com RP DO com DONE 
+-- On ELSE reduce production com -> FOR LP ID ASSIGN aexpr SC bexpr SC com RP DO com DONE 
+-- On DONE reduce production com -> FOR LP ID ASSIGN aexpr SC bexpr SC com RP DO com DONE 
+
+State 59:
+com -> com . SC com [ SC END ELSE ]
+com -> IF bexpr THEN com . ELSE com END [ SC RP EOF END ELSE DONE ]
+com -> IF bexpr THEN com . END [ SC RP EOF END ELSE DONE ]
+-- On SC shift to state 53
+-- On END shift to state 60
+-- On ELSE shift to state 61
+
+State 60:
+com -> IF bexpr THEN com END . [ SC RP EOF END ELSE DONE ]
 -- On SC reduce production com -> IF bexpr THEN com END 
+-- On RP reduce production com -> IF bexpr THEN com END 
 -- On EOF reduce production com -> IF bexpr THEN com END 
 -- On END reduce production com -> IF bexpr THEN com END 
 -- On ELSE reduce production com -> IF bexpr THEN com END 
 -- On DONE reduce production com -> IF bexpr THEN com END 
 
-State 48:
-com -> IF bexpr THEN com ELSE . com END [ SC EOF END ELSE DONE ]
+State 61:
+com -> IF bexpr THEN com ELSE . com END [ SC RP EOF END ELSE DONE ]
 -- On WHILE shift to state 1
 -- On IF shift to state 38
 -- On ID shift to state 41
--- On com shift to state 49
+-- On FOR shift to state 44
+-- On com shift to state 62
 
-State 49:
+State 62:
 com -> com . SC com [ SC END ]
-com -> IF bexpr THEN com ELSE com . END [ SC EOF END ELSE DONE ]
--- On SC shift to state 45
--- On END shift to state 50
+com -> IF bexpr THEN com ELSE com . END [ SC RP EOF END ELSE DONE ]
+-- On SC shift to state 53
+-- On END shift to state 63
 
-State 50:
-com -> IF bexpr THEN com ELSE com END . [ SC EOF END ELSE DONE ]
+State 63:
+com -> IF bexpr THEN com ELSE com END . [ SC RP EOF END ELSE DONE ]
 -- On SC reduce production com -> IF bexpr THEN com ELSE com END 
+-- On RP reduce production com -> IF bexpr THEN com ELSE com END 
 -- On EOF reduce production com -> IF bexpr THEN com ELSE com END 
 -- On END reduce production com -> IF bexpr THEN com ELSE com END 
 -- On ELSE reduce production com -> IF bexpr THEN com ELSE com END 
 -- On DONE reduce production com -> IF bexpr THEN com ELSE com END 
 
-State 51:
+State 64:
 com -> com . SC com [ SC DONE ]
-com -> WHILE bexpr DO com . DONE [ SC EOF END ELSE DONE ]
--- On SC shift to state 45
--- On DONE shift to state 52
+com -> WHILE bexpr DO com . DONE [ SC RP EOF END ELSE DONE ]
+-- On SC shift to state 53
+-- On DONE shift to state 65
 
-State 52:
-com -> WHILE bexpr DO com DONE . [ SC EOF END ELSE DONE ]
+State 65:
+com -> WHILE bexpr DO com DONE . [ SC RP EOF END ELSE DONE ]
 -- On SC reduce production com -> WHILE bexpr DO com DONE 
+-- On RP reduce production com -> WHILE bexpr DO com DONE 
 -- On EOF reduce production com -> WHILE bexpr DO com DONE 
 -- On END reduce production com -> WHILE bexpr DO com DONE 
 -- On ELSE reduce production com -> WHILE bexpr DO com DONE 
 -- On DONE reduce production com -> WHILE bexpr DO com DONE 
 
-State 53:
+State 66:
 prog' -> prog . [ # ]
 -- On # accept prog
 
-State 54:
+State 67:
 com -> com . SC com [ SC EOF ]
 prog -> com . EOF [ # ]
--- On SC shift to state 45
--- On EOF shift to state 55
+-- On SC shift to state 53
+-- On EOF shift to state 68
 
-State 55:
+State 68:
 prog -> com EOF . [ # ]
 -- On # reduce production prog -> com EOF 
 
