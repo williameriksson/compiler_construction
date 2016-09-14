@@ -37,13 +37,18 @@ prog:
   
 com: 
   | com SC com                     { Cseq ($1, $3) }
+	| com SC                         { $1 }
   | ID ASSIGN aexpr                { Cassign ($1, $3) }
   | IF bexpr THEN com ELSE com END { Cif ($2, $4, $6) }  
   | IF bexpr THEN com END          { Cif ($2, $4, Cskip) }  
   | WHILE bexpr DO com DONE        { Cwhile ($2, $4) }
   | FOR LP initID = ID ASSIGN initexp = aexpr SC cond = bexpr SC addcom = com RP DO body = com DONE {
         Cseq(Cassign (initID, initexp), Cwhile (cond, Cseq (body, addcom)))	 
-    }  
+    }
+	| ID PLUS PLUS                   { Cassign ($1, Aadd (Avar ($1), Anum (of_int 1))) }
+	| ID MINUS MINUS                 { Cassign ($1, Asub (Avar ($1), Anum (of_int 1))) }
+	| ID PLUS BEQ aexpr              { Cassign($1, Aadd (Avar $1, $4)) }
+	| ID MINUS BEQ aexpr             { Cassign($1, Asub (Avar $1, $4)) }
 
 bexpr:
   | LP bexpr RP                    { $2 }
@@ -66,6 +71,7 @@ aexpr:
   | aexpr MINUS aexpr              { Asub ($1, $3) }
   | aexpr MULT aexpr               { Amul ($1, $3) }
 	| MINUS aexpr                    { Asub (Anum (of_int 0), $2) }
+
 
 
 
