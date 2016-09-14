@@ -1,0 +1,8 @@
+ocaml/_build/
+ocaml/extract/
+.metadata/
+.paths
+.project
+.projectSettings
+.settings/
+
