@@ -1,0 +1,66 @@
+(* David Periera, 2016 (part of nat development) *)
+theory Nat
+
+ type nat = O | S nat
+ 
+ (* Main operations *)
+
+ function add (n m:nat) : nat =
+ match n with
+ | O -> m
+ | S p -> S (add p m)
+ end
+
+ function pred (n:nat) : nat =
+ match n with
+ | O -> n
+ | S u -> u
+ end
+
+ function sub (n m:nat) : nat =
+ match n, m with
+ | S k, S l -> sub k l
+ | _, _ -> n
+ end
+
+ function mul (n m:nat) : nat =
+ match n with
+ | O -> O
+ | S p -> add m (mul p m)
+ end
+
+ inductive le nat nat =
+ | Le_n : forall n:nat. le n n
+ | Le_S : forall n m:nat. le n m -> le n (S m)
+
+ predicate (<) (x y:nat) = le (S x) y
+
+end
+
+
+theory NatLeLt
+
+  use import Nat
+
+  lemma le_refl: forall n:nat. le n n
+
+  lemma le_trans: forall n "induction" m o:nat. le n m -> le m o -> le n o
+
+  lemma le_n_0_eq: forall n:nat. le n O -> O = n
+
+  lemma le_n_S : forall n "induction" m:nat. le n m -> le (S n) (S m)
+
+  lemma le_S_n : forall n m:nat. le (S n) (S m) -> le n m
+
+  lemma le_Sn_le : forall n m:nat. le (S n) m -> le n m
+
+  lemma lt_not_eq : forall n "induction" m:nat. n < m -> n <> m
+
+  lemma lt_le_S: forall n m:nat. n < m -> le (S n) m
+
+  lemma lt_n_Sm_le: forall n m:nat. n < S m -> le n m
+
+  lemma le_lt_n_Sm: forall n m:nat. le n m -> n < S m
+
+end
+

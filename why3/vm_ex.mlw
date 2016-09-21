@@ -1,0 +1,171 @@
+(*
+module ReflTransClosureEx
+
+  type parameter
+  type state
+  predicate transition parameter state state
+
+  inductive transition_star parameter (x y:state) =
+    | Refl: forall p x. transition_star p x x
+    | Step: forall p x y z.
+        transition p x y -> transition_star p y z -> transition_star p x z
+
+  lemma transition_star_one: forall p s1 s2.
+    transition p s1 s2 -> transition_star p s1 s2
+
+  lemma transition_star_transitive: forall p s1 s2 s3.
+    transition_star p s1 s2 -> transition_star p s2 s3 ->
+      transition_star p s1 s3
+
+end
+*)
+
+module VmEx
+
+  use import vm.Vm
+
+  use import int.Int
+  use import list.List
+  use import list.Nth
+  use import list.NthLength
+  use import list.HdTlNoOpt
+  use import list.Append
+  use import list.NthLengthAppend
+  use import option.Option
+
+  use import state.StateEx
+  use import listaux.TakeDrop
+  use import nat.Nat
+
+  type machine_state_ex = VMS_EX pos stack state_ex (* virtual machine configuration *)
+  
+  exception VmErr
+  exception VmEnd
+  
+  let pop (s:stack) : (int, stack)
+    ensures {
+      let (rv, rs) = result in
+      Cons rv rs  = s (* original stack *)
+    }
+    raises { VmErr }
+  =
+    match s with
+    | Nil        -> raise VmErr
+    | Cons rv rs -> (rv, rs)
+    end
+
+  function to_VMS (vms:machine_state_ex) : machine_state =
+    match vms with
+    | VMS_EX pos stack state -> VMS pos stack (get_view state)
+    end
+
+use map.Map
+
+let vm_ex_one (c:code) (pos : pos) (stack : stack) (state : state_ex) : (pos, stack, state_ex)
+    ensures  {
+      let (p, s, m) = result in transition c (VMS pos stack state.view) (VMS p s m.view)
+    }
+    raises   { VmErr }
+    raises   { VmEnd -> nth pos c = Some Ihalt }
+  =
+      match nth pos c with
+      | None       -> raise VmErr   (* return if index out of bounds *)
+      | Some instr ->
+        assert { instr = hd (drop (of_int pos) c) };
+        assert { Cons instr Nil = Cons (hd (drop (of_int pos) c)) Nil };
+        let ghost c1 = take pos c in
+        let ghost c2 = drop pos c in
+        assert { c1 ++ c2 = c }; 
+        let ghost c3 = take 1 c2 in
+        assert { c3 = (Cons instr Nil) }; 
+        assert { length c1 = pos };  
+
+        assert { codeseq_at c pos (Cons instr Nil) }; 
+	 
+        match instr with
+        | Iconst n     -> (*   push the constant v                           *)
+          (pos + 1, push n stack, state)
+          
+        | Ivar id      -> (*   push the value of variable                    *)
+          (pos + 1, push state[id] stack, state)
+          
+        | Isetvar id   -> (*   pop an integer, assign it to variable         *)
+          let (rv, rs) = pop stack in
+          (pos + 1, rs, state[id <- rv])
+          
+        | Ibranch ofs  -> (*   skip ofs instructions                         *)
+          (pos + 1 + ofs, stack, state)
+          
+        | Iadd         -> (*   pop two values, push their sum                *)
+          let (rv1, rs1) = pop stack in
+          let (rv2, rs2) = pop rs1 in
+          (pos + 1, push (rv1 + rv2) rs2, state)
+          
+        | Isub         -> (*   pop two values, push their difference         *)
+          let (rv1, rs1) = pop stack in
+          let (rv2, rs2) = pop rs1 in
+          (pos + 1, push (rv2 - rv1) rs2, state)
+          
+        | Imul         -> (*   pop two values, push their product            *)
+          let (rv1, rs1) = pop stack in
+          let (rv2, rs2) = pop rs1 in
+          (pos + 1, push (rv1 * rv2) rs2, state)
+          
+        | Ibeq ofs     -> (*   pop n2, pop n1, skip ofs forward if n1 =  n2  *)
+          let (rv1, rs1) = pop stack in
+          let (rv2, rs2) = pop rs1 in
+          match rv1 = rv2 with
+          | True -> (pos + 1 + ofs, rs2, state)
+          | _    -> (pos + 1, rs2, state )
+          end
+          
+        | Ibne ofs     -> (*   pop n2, pop n1, skip ofs forward if n1 <> n2  *)
+          let (rv1, rs1) = pop stack in
+          let (rv2, rs2) = pop rs1 in
+          match rv1 <> rv2 with
+          | True -> (pos + 1 + ofs, rs2, state)
+          | _    -> (pos + 1, rs2, state )
+          end
+          
+        | Ible ofs     -> (*   pop n2, pop n1, skip ofs forward if n1 <= n2  *)
+          let (rv1, rs1) = pop stack in
+          let (rv2, rs2) = pop rs1 in
+          match rv2 <= rv1 with
+          | True -> (pos + 1 + ofs, rs2, state)
+          | _    -> (pos + 1, rs2, state )
+          end
+
+        | Ibgt ofs     -> (*   pop n2, pop n1, skip ofs forward if n1 >  n2  *)
+          let (rv1, rs1) = pop stack in
+          let (rv2, rs2) = pop rs1 in
+          match rv2 > rv1 with
+          | True -> (pos + 1 + ofs, rs2, state)
+          | _    -> (pos + 1, rs2, state )
+          end 
+
+        | Ihalt        -> (*   end of program                                *) 
+          raise VmEnd
+        end   
+      end    
+
+exception VmNotEnd 
+
+let rec vm_ex_mult (c:code) (pos:pos) (stack:stack) (state:state_ex) (n : nat) : (pos, stack, state_ex, nat)
+    variant { n }
+    raises  { VmErr }
+    raises  { VmNotEnd } 
+    ensures { let (p, _ , _, _) = result in nth p c = Some Ihalt }
+  =
+    match n with
+    | O -> raise VmNotEnd
+    | S n' ->
+      try 
+        let (p, s, m) = vm_ex_one c pos stack state in
+        vm_ex_mult c p s m n'
+      with
+      | VmEnd -> (pos, stack, state, n')
+      end
+    end
+
+
+end

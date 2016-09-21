@@ -1,0 +1,43 @@
+(* Per Lindgren, 2016 *)
+
+module ImpEx
+
+  use import imp.Imp
+  use import state.StateEx
+  use import bool.Bool
+  use import nat.Nat
+  use import nat.NatLeLt
+  use import int.Int
+
+
+  exception CErr (* partial correctness *)
+
+  let rec aeval  (st:state_ex) (e:aexpr) : int
+    variant  { e }
+    ensures  { aeval st.view e = result } (* relating result to "logic" function *)
+  =
+    match e with
+      | Anum n      -> n
+      | Avar x      -> st[x] 
+      | Aadd e1 e2  -> aeval st e1 + aeval st e2
+      | Asub e1 e2  -> aeval st e1 - aeval st e2
+      | Amul e1 e2  -> aeval st e1 * aeval st e2
+    end
+
+  let rec ceval_ex (st : state_ex) com n : state_ex
+    variant  { n }
+    ensures  { ceval st.view com result.view }
+    raises   { CErr }
+  =
+    if n = O then raise CErr else
+    
+    match com with
+    (* skip *)
+    | Cskip -> st
+
+    (* match all cases, your code here *)
+    | _ -> st
+
+    end
+
+end

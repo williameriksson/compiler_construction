@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE why3session PUBLIC "-//Why3//proof session v5//EN"
+"http://why3.lri.fr/why3session.dtd">
+<why3session shape_version="4">
+<prover id="0" name="Alt-Ergo" version="1.01" timelimit="5" steplimit="1" memlimit="1000"/>
+<prover id="1" name="Coq" version="8.5pl2" timelimit="5" memlimit="1000"/>
+<file name="../peano_nat.why" expanded="true">
+<theory name="Nat" sum="d41d8cd98f00b204e9800998ecf8427e" expanded="true">
+</theory>
+<theory name="TestAdd" sum="ce51669212fce03a17f44ca0283c7fbd">
+ <goal name="g_0_0">
+ <proof prover="0"><result status="valid" time="0.00" steps="2"/></proof>
+ <transf name="compute_in_goal">
+ </transf>
+ </goal>
+ <goal name="g_0_1">
+ <proof prover="0"><result status="valid" time="0.00" steps="2"/></proof>
+ <transf name="compute_in_goal">
+ </transf>
+ </goal>
+ <goal name="g_2_1">
+ <proof prover="0"><result status="valid" time="0.00" steps="12"/></proof>
+ <transf name="compute_in_goal">
+ </transf>
+ </goal>
+</theory>
+<theory name="Add" sum="2ed666c393b632466f9936315668b908">
+ <goal name="plus_o_left">
+ <proof prover="0"><result status="valid" time="0.00" steps="2"/></proof>
+ <transf name="compute_in_goal">
+ </transf>
+ </goal>
+ <goal name="plus_o_right">
+ <transf name="inline_goal">
+  <goal name="plus_o_right.1" expl="1.">
+  <transf name="induction_ty_lex">
+   <goal name="plus_o_right.1.1" expl="1.">
+   <proof prover="0"><result status="valid" time="0.00" steps="5"/></proof>
+   </goal>
+  </transf>
+  </goal>
+ </transf>
+ </goal>
+ <goal name="l_plus_o_right">
+ <transf name="inline_goal">
+  <goal name="l_plus_o_right.1" expl="1.">
+  <transf name="induction_ty_lex">
+   <goal name="l_plus_o_right.1.1" expl="1.">
+   <proof prover="0"><result status="valid" time="0.00" steps="5"/></proof>
+   </goal>
+  </transf>
+  </goal>
+ </transf>
+ </goal>
+ <goal name="plus_Snm_nSm">
+ <transf name="inline_goal">
+  <goal name="plus_Snm_nSm.1" expl="1.">
+  <transf name="induction_ty_lex">
+   <goal name="plus_Snm_nSm.1.1" expl="1.">
+   <proof prover="0"><result status="valid" time="0.00" steps="18"/></proof>
+   </goal>
+  </transf>
+  </goal>
+ </transf>
+ </goal>
+ <goal name="plus_S">
+ <proof prover="0"><result status="valid" time="0.00" steps="2"/></proof>
+ <transf name="compute_in_goal">
+  <goal name="plus_S.1" expl="1.">
+  </goal>
+ </transf>
+ </goal>
+ <goal name="plus_comm">
+ <transf name="inline_goal">
+  <goal name="plus_comm.1" expl="1.">
+  <transf name="induction_ty_lex">
+   <goal name="plus_comm.1.1" expl="1.">
+   <proof prover="0"><result status="valid" time="0.00" steps="5"/></proof>
+   </goal>
+  </transf>
+  </goal>
+ </transf>
+ </goal>
+</theory>
+<theory name="Sub" sum="c8727164108408e9488b0bf83f7830ba" expanded="true">
+ <goal name="sub_complete" expanded="true">
+ <proof prover="0" steplimit="-1"><result status="unknown" time="3.39"/></proof>
+ <proof prover="1" steplimit="1"><unedited/></proof>
+ <transf name="compute_in_goal" expanded="true">
+  <goal name="sub_complete.1" expl="1." expanded="true">
+  <proof prover="0" steplimit="-1"><result status="timeout" time="5.01"/></proof>
+  <transf name="split_goal_wp" expanded="true">
+   <goal name="sub_complete.1.1" expl="1." expanded="true">
+   <proof prover="0" steplimit="-1"><result status="timeout" time="5.01"/></proof>
+   <proof prover="1"><unedited/></proof>
+   </goal>
+   <goal name="sub_complete.1.2" expl="2." expanded="true">
+   <proof prover="0" steplimit="-1"><result status="timeout" time="5.01"/></proof>
+   <proof prover="1"><unedited/></proof>
+   </goal>
+  </transf>
+  </goal>
+ </transf>
+ </goal>
+</theory>
+<theory name="Inconsistency" sum="f3e80bbed28751bc0ff4165928fc971e">
+ <goal name="degenerate">
+ <proof prover="0"><result status="unknown" time="0.00"/></proof>
+ <transf name="compute_in_goal">
+  <goal name="degenerate.1" expl="1.">
+  </goal>
+ </transf>
+ </goal>
+ <goal name="degenerated">
+ <proof prover="0"><result status="valid" time="0.00" steps="0"/></proof>
+ <transf name="compute_in_goal">
+  <goal name="degenerated.1" expl="1.">
+  </goal>
+ </transf>
+ </goal>
+</theory>
+<theory name="AddTest" sum="aa817cf96c074f3afc01f1d768cf1f72">
+ <goal name="f_proof">
+ <proof prover="0"><result status="valid" time="0.00" steps="16"/></proof>
+ <transf name="compute_in_goal">
+  <goal name="f_proof.1" expl="1.">
+  </goal>
+ </transf>
+ </goal>
+ <goal name="g_proof1">
+ <transf name="inline_goal">
+  <goal name="g_proof1.1" expl="1.">
+  <transf name="induction_ty_lex">
+   <goal name="g_proof1.1.1" expl="1.">
+   <proof prover="0"><result status="valid" time="0.00" steps="11"/></proof>
+   </goal>
+  </transf>
+  </goal>
+ </transf>
+ </goal>
+</theory>
+</file>
+</why3session>

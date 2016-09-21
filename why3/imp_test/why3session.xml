@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE why3session PUBLIC "-//Why3//proof session v5//EN"
+"http://why3.lri.fr/why3session.dtd">
+<why3session shape_version="4">
+<prover id="0" name="Alt-Ergo" version="1.01" timelimit="5" memlimit="1000"/>
+<file name="../imp_test.mlw" expanded="true">
+<theory name="Imp_test" sum="0cffe3b72df94cb0b19c10135380ec48" expanded="true">
+ <goal name="WP_parameter ex1" expl="VC for ex1" expanded="true">
+ <proof prover="0"><result status="valid" time="0.01" steps="3"/></proof>
+ </goal>
+</theory>
+</file>
+<file name="../imp_test.why" expanded="true">
+<theory name="Imp_test" sum="b1518d94eed6596313a48aef4e0de81c" expanded="true">
+ <goal name="ex1" expanded="true">
+ <proof prover="0"><result status="valid" time="0.01" steps="12"/></proof>
+ </goal>
+ <goal name="ex2" expanded="true">
+ <proof prover="0"><result status="valid" time="0.01" steps="18"/></proof>
+ </goal>
+ <goal name="ex3" expanded="true">
+ <proof prover="0"><result status="valid" time="0.01" steps="14"/></proof>
+ </goal>
+ <goal name="ex4" expanded="true">
+ <proof prover="0"><result status="valid" time="0.01" steps="13"/></proof>
+ </goal>
+ <goal name="ex5" expanded="true">
+ <proof prover="0"><result status="valid" time="0.01" steps="13"/></proof>
+ </goal>
+ <goal name="ex6" expanded="true">
+ <proof prover="0"><result status="valid" time="0.00" steps="4"/></proof>
+ </goal>
+ <goal name="ex7" expanded="true">
+ <proof prover="0"><result status="valid" time="0.01" steps="13"/></proof>
+ </goal>
+ <goal name="ex8" expanded="true">
+ <proof prover="0"><result status="valid" time="0.01" steps="14"/></proof>
+ </goal>
+</theory>
+</file>
+</why3session>

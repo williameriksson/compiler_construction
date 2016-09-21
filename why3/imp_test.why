@@ -1,0 +1,44 @@
+theory Imp_test
+
+  use import state.State
+  use import bool.Bool
+  use import int.Int
+  use import map.Const
+  
+  use import imp.Imp
+
+  constant st : state = const 0
+  
+  goal ex1: (* 1 + 2 *)
+    aeval st (Aadd (Anum 1) (Anum 2)) = 3
+
+  goal ex2: (* (1 - 2) + 2 *)
+    aeval st (Aadd (Asub (Anum 1) (Anum 2)) (Anum 2)) = 1
+    
+  goal ex3: (* a = 0, a + 2 *) 
+    aeval st (Aadd (Avar (Id 1)) (Anum 2)) = 2
+
+  goal ex4: (* a = 7, a + 2 *)
+    let st = st[(Id 1) <- 7] in 
+    aeval st (Aadd (Avar (Id 1)) (Anum 2)) = 9
+
+  constant a_id : id = Id 1
+  
+  goal ex5: (* a = 7, a + 2 *)
+    let st = st[a_id <- 7] in 
+    aeval st (Aadd (Avar a_id) (Anum 2)) = 9
+
+  goal ex6:
+    forall a. a > 2 -> 2 + a > 4
+
+  goal ex7:
+    forall a. a > 2 ->
+    aeval st (Aadd (Anum a) (Anum 2)) > 4
+
+  goal ex8:
+    forall a. a > 2 ->
+      let st = st[a_id <- a] in 
+      aeval st (Aadd (Avar a_id) (Anum 2)) > 4
+
+
+end

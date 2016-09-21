@@ -1,0 +1,159 @@
+module TakeDrop
+
+  use import nat.Nat
+  use import int.Int     (* overrides Nat operators *)
+  use import list.List
+  use import list.Append
+  use import list.Length
+  use import list.HdTlNoOpt
+  use import list.Nth
+  use import option.Option
+  (* use import HighOrd *)
+
+  function take (n : nat) (l : list 'a) : (list 'a) =
+    match n with
+    | S n' ->
+      match l with
+      | Nil -> Nil
+      | Cons e ll -> Cons e (take n' ll)
+      end
+    | O -> Nil
+    end
+
+
+  function drop (n : nat) (l : list 'a) : (list 'a) =
+    match n with
+    | S n' ->
+      match l with
+      | Nil -> Nil
+      | Cons _ ll -> (drop n' ll)
+      end
+    | O -> l
+    end
+
+  lemma take_drop :
+    forall l : list 'a, n.
+      take n l ++ drop n l = l 
+  (* trans: induction_ty_lex, split *)
+  
+  function to_int (n:nat):int =
+  match n with
+  | O -> 0
+  | S n' -> 1 + (to_int n')
+  end
+
+  function of_int int:nat
+
+  axiom of_int_def:
+    forall i.
+      0 <= i ->
+      forall n.
+        i = to_int n <-> n = of_int i
+
+  let rec of_int (i : int)
+    variant { i }
+    ensures { i >= 0 -> to_int result = i }
+  =
+    match i > 0 with
+    | True -> S (of_int (i - 1))
+    | _    -> O
+    end
+
+  let rec take (i: int) (l : list 'a) : (list 'a)
+    requires { 0 <= i }
+    variant  { i }
+    ensures  { result = take (of_int i) l }
+  =
+    match 0 < i  with
+    | True ->
+      match l with
+      | Nil -> Nil
+      | Cons e ll -> Cons e (take (i-1) ll)
+      end
+    | False -> Nil
+    end
+
+  let rec drop (i : int) (l : list 'a) : (list 'a)
+    requires { 0 <= i }
+    variant  { i }
+    ensures  { result = drop (of_int i) l }
+  =
+    match 0 < i with
+    | True ->
+      match l with
+      | Nil -> Nil
+      | Cons _ ll -> (drop (i-1) ll)
+      end
+    | False -> l
+    end
+
+
+(*
+  lemma let_take_drop:
+    forall n i.
+      i = to_int n ->
+      forall l : list 'a.
+      take n l ++ drop n l = l
+*)
+
+  lemma nat_int1:
+    forall i n. 0 <= i ->
+      n = of_int i -> i = to_int n
+
+  lemma nat_int2:
+    forall i n. 0 <= i ->
+      i = to_int n -> n = of_int i 
+
+  lemma nat_int_pos:
+    forall n. 
+      0 <= to_int n
+  (* trans : induction_ty_lex, split *)
+  
+  lemma at_n:
+    forall n, l:list 'a.
+      match nth (to_int n) l with
+      | Some e -> hd (drop n l) = e 
+      | None -> true
+      end
+  (* trans : induction_ty_lex, split *)
+    
+  function length_n (l : list 'a) : nat =
+    match l with
+    | Nil -> O
+    | Cons _ ll -> S (length_n ll)
+    end
+    
+  lemma length_ni:
+    forall l:list 'a.
+      length l = to_int (length_n l)
+  (* trans : induction_ty_lex, split *)
+  
+  lemma take_length:
+    forall n, l : list 'a.
+      length_n (take n l) = n \/ length l < to_int n 
+  (* trans : induction_ty_lex, split *)
+  
+  lemma drop_length_n:
+    forall l: list 'a.
+      drop (length_n l) l = Nil
+
+  lemma drop_app1:
+    forall l1 ld l2 l:list 'a, n.
+      n = length_n l1 ->
+      drop n l1 = ld -> 
+      l = ld ++ l2 ->
+      l = l2
+
+  lemma drop_app2:
+    forall l1 l2:list 'a, n.
+      n = length_n l1 ->
+      drop n l1 = Nil /\
+      drop n (l1 ++ l2) = l2
+  (* trans : induction_ty_lex, split *)
+  
+  lemma at_n_l1_l2:
+    forall l1 l2 l:list 'a.
+      l = l1 ++ l2 ->
+      drop (of_int (length l1)) l = l2
+  
+end

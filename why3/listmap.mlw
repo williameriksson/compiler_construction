@@ -1,0 +1,394 @@
+(* Per Lindgren, 2016 *)
+
+(* Tested under why3 0.82.3, with CVC4 1.4 *)
+
+(*
+Pasted here from the 0.82.3 stdlibrary for convenience
+
+theory Map
+
+  type map 'a 'b
+
+(* if 'b is an infinite type, then map 'a 'b is infinite *)
+
+  meta "material_type_arg" type map, 1
+
+  function get (map 'a ~'b) 'a : 'b
+  function set (map 'a ~'b) 'a 'b : map 'a 'b
+
+(* syntactic sugar *)
+
+  function ([])   (a : map 'a 'b) (i : 'a) : 'b = get a i
+  function ([<-]) (a : map 'a 'b) (i : 'a) (v : 'b) : map 'a 'b = set a i v
+
+  axiom Select_eq :
+    forall m : map 'a 'b. forall a1 a2 : 'a.
+    forall b : 'b [m[a1 <- b][a2]].
+    a1 = a2 -> m[a1 <- b][a2]  = b
+
+  axiom Select_neq :
+    forall m : map 'a 'b. forall a1 a2 : 'a.
+    forall b : 'b [m[a1 <- b][a2]].
+    a1 <> a2 -> m[a1 <- b][a2] = m[a2]
+
+  (* in separate module for 0.87 *)
+  function const ~'b : map 'a 'b 
+  
+  axiom Const : forall b:'b, a:'a. (const b)[a] = b
+end
+*)
+
+module ListAux
+
+  use import list.List
+  use import list.Mem
+  use import list.NthNoOpt
+  use import list.Length
+  use import list.Distinct
+  use import int.Int
+
+  function fst_occ (x : 'a) (l : list 'a) : int
+
+  axiom ax_fst_occ_0 :
+    forall x : 'a, l.
+      fst_occ x (Cons x l) = 0
+
+  axiom ax_fst_occ_n :
+    forall n : int, x : 'a,  x' l. x <> x' -> (0 <= n < length l) ->
+      fst_occ x l = n ->
+        fst_occ x (Cons x' l) = n + 1
+
+  lemma lemma_fst_occ_range : (* induction_ty_lex, working for CVC4, but not Z3 *)
+    forall x : 'a, l n. mem x l ->
+      n = fst_occ x l -> 0 <= n < length l
+
+  lemma lemma_fst_occ_distinct : (* induction_pr *)
+    forall k1 :'a, k2 m. k1 <> k2 ->
+      distinct m -> mem k1 m -> mem k2 m ->
+        fst_occ k1 m <> fst_occ k2 m
+
+  let rec fst_occ (x : 'a) (l : list 'a) : int
+    requires { mem x l }
+    requires { length l > 0 }
+    variant  { l }
+    ensures  { result = fst_occ x l }
+    ensures  { 0 <= result < length l }
+  =
+    match l with
+    | Nil       -> absurd
+    | Cons y ll -> if x = y then 0 else 1 + fst_occ x ll 
+    end
+
+  let rec write_nth (n : int ) (l : list 'a) (x : 'a) : list 'a
+    requires { 0 < length l }
+    requires { 0 <= n < length l }
+    variant  { n }
+    (* value *)
+    ensures  { nth n result = x }
+    (* preservation *)
+    ensures  {
+      forall n'. 0 <= n' < length l -> n' <> n ->
+        nth n' result = nth n' l
+    } 
+    ensures  { length result = length l }
+  =
+    match n = 0 with 
+    | True -> 
+      match l with
+      | Nil      -> absurd 
+      | Cons _ l -> Cons x l
+      end
+    | False ->
+      match l with
+      | Nil      -> absurd 
+      | Cons e l -> Cons e (write_nth (n - 1) l x)
+      end
+    end
+
+  let rec nth (n : int ) (l : list 'a) : 'a
+    requires { 0 < length l }
+    requires { 0 <= n < length l }
+    variant  { n }
+    (* value *)
+    ensures  { result = nth n l }
+  =
+    match n = 0 with 
+    | True -> 
+      match l with
+      | Nil      -> absurd 
+      | Cons x _ -> x
+      end
+    | False ->
+      match l with
+      | Nil      -> absurd 
+      | Cons _ l -> nth (n - 1) l 
+      end
+    end
+
+end
+
+
+module ListMap
+
+  use import list.List
+  use import list.Length 
+  use import list.Mem
+  use import list.Length
+  use import list.Distinct
+  use import list.NthNoOpt 
+  use import int.Int
+  use import ListAux
+  use map.Map
+  
+  (* use map.Const *)
+
+(* use map.Const separated in 0.87 *) 
+
+  type lm_map 'k 'v = {
+    ghost view : Map.map 'k 'v;
+    c  : 'v;
+    kl : list 'k;
+    vl : list 'v;
+  } invariant {
+    length self.kl = length self.vl /\
+    distinct self.kl /\
+    forall k. Map.get self.view k =
+        match mem k self.kl with
+        | True  -> nth (fst_occ k self.kl) self.vl       
+        | False -> self.c
+        end
+  }
+
+(*  meta "material_type_arg" type map, 1 *)
+
+(*
+  function get (map 'a ~'b) 'a : 'b
+    Map.get m.view k
+
+
+  function set (map 'a ~'b) 'a 'b : map 'a 'b
+    { view = Map.set m.view k v ; c = m.c ; kl = m.kl ; vl = m.vl }
+    
+(* syntactic sugar *)
+
+  function ([])   (a : map 'a 'b) (i : 'a) : 'b = get a i
+  function ([<-]) (a : map 'a 'b) (i : 'a) (v : 'b) : map 'a 'b = set a i v
+
+
+
+  lemma Lm_select_eq :
+    forall m : map 'a 'b. forall a1 a2 : 'a.
+    forall b : 'b [m[a1 <- b][a2]].
+    a1 = a2 -> m[a1 <- b][a2]  = b
+
+  lemma Lm_select_neq :
+    forall m : map 'a 'b. forall a1 a2 : 'a.
+    forall b : 'b [m[a1 <- b][a2]].
+    a1 <> a2 -> m[a1 <- b][a2] = m[a2]
+*)
+
+  function get_view (m : lm_map 'k 'v) : Map.map 'k 'v = m.view (* get the logic view *)
+  
+  (* implementation *)
+
+  let get (m : lm_map 'k 'v) (k : 'k) : 'v
+    ensures  { Map.get m.view k = result }
+  =
+    match mem k m.kl with
+    | True  -> nth (fst_occ k m.kl) m.vl
+    | False -> m.c
+    end
+
+  let ([]) (m : lm_map 'k 'v) (k : 'k) : 'v 
+    ensures  { Map.get m.view k = result }
+  = get m k
+
+  let add_unmapped (m : lm_map 'k 'v) k v : lm_map 'k 'v
+    requires { not mem k m.kl }
+    ensures  { result.view = Map.set m.view k v }
+  =
+    let kl = Cons k m.kl in
+    let vl = Cons v m.vl in
+
+    assert { (* consistency after cons on kl and vl *)
+      forall k' n. mem k' m.kl -> 
+        fst_occ k' m.kl = n -> fst_occ k' kl = n + 1 ->
+          nth n m.vl = nth (n + 1) vl
+    }; 
+
+    { view = Map.set m.view k v ; c = m.c ; kl = kl ; vl = vl }
+
+  let add_mapped (m : lm_map 'k 'v) k v : lm_map 'k 'v
+    requires { mem k m.kl }
+    ensures  { result.view = Map.set m.view k v }
+  =
+    let n = fst_occ k m.kl in (* index in list *)
+    { view = Map.set m.view k v ; c = m.c ; kl = m.kl ; vl = write_nth n m.vl v } 
+
+
+  let set (m: lm_map 'k 'v) (k : 'k) (v : 'v) : lm_map 'k 'v
+    ensures  { Map.set m.view k v = result.view } 
+  =
+    match mem k m.kl with
+    | True  -> add_mapped m k v
+    | False -> add_unmapped m k v
+    end
+
+  let ([<-]) (m: lm_map 'k 'v) (k : 'k) (v : 'v) : lm_map 'k 'v
+    ensures  { Map.set m.view k v = result.view }
+  =
+    set m k v
+end
+
+(*
+theory MapListMap
+  use map.Map as M
+  use import ListMap
+
+  lemma mlm1:
+    forall m : M.map 'a  'b, lm : map 'a 'b, n.
+      M.get m n = get lm n ->
+        forall i v m1 lm1. m1 = M.set m i v /\ lm1 = set lm i v ->
+          forall j. M.get m1 j = get lm1 j 
+end
+*)
+
+module Const
+
+  use import ListMap
+  use import list.List
+  use map.Const 
+  (* use map.Map *)
+
+
+  (* mk_const to avoid name clash on const *)
+  function const (e : 'v) : lm_map 'k 'v =
+    { view = Const.const e ; c = e ; kl = Nil ; vl = Nil } 
+
+  (* implementation *)
+  
+  let const (e : 'v) : lm_map 'k 'v
+    ensures { result = { view = Const.const e ; c = e ; kl = Nil ; vl = Nil } }
+  =
+    { view = Const.const e ; c = e ; kl = Nil ; vl = Nil } 
+    
+end
+
+
+
+(*
+module TestListAux
+
+  use import ListAux
+  use import list.NthNoOpt
+  use import list.List
+  use import int.Int
+  
+  let test_fst_occ () =
+    let l = Cons 2 (Cons 1 Nil) in
+    let fi1 = fst_occ 1 l in
+    assert { fst_occ 1 l = fi1 };
+    assert { fi1 = 1 };
+    assert { nth fi1 l = 1 };
+    
+    let fi2 = fst_occ 2 l in
+    assert { fst_occ 2 l = fi2 };
+    assert { fi2 = 0 };
+    assert { nth fi2 l = 2 };
+
+(*
+    (* will not pass precondition in l *)
+    let fi_n = fst_occ 0 l in 
+    assert { fst_occ 0 l = fi_n };
+    assert { fi_n = 2 };
+*)
+    fi1 + fi2 (* + fi_n *)
+
+end
+
+
+
+module TestMap
+
+  use import map.Map
+  use import map.Const
+  use import int.Int
+  
+  let test_set () =
+    let s = const 0 in
+    assert { s = const 0 };
+
+    (* default constant *)
+    let v = get s 0 in
+    assert { v = 0 };
+    assert { get s 0 = 0 };
+
+    (* set *)
+    let s = set s 1 2 in
+
+    (* preservation *)
+    let v = get s 0 in
+    assert { v = 0 }; 
+    assert { get s 0 = 0 };
+
+    let v = get s 1 in
+    assert { v = 2 };
+    assert { s[1] = 2 };
+
+    (* syntactic sugar *)
+    let s = s[2<-3] in
+    let v = s[2] in
+    assert { v = 3 };
+    assert { s[2] = 3 };
+    assert { (s[3<-4])[3] = 4 };
+    0
+
+end
+
+(*
+
+module TestListMap
+
+  use import ListMap
+ (* use import map.Map*)
+  use import int.Int
+  
+  let test_set () =
+
+    let s : listmap int int = mk_const 0 in
+    (* still not an abstract type, should use model *)
+    
+    (* assert { s.view = Map.const 0 }; *)
+
+    (* default constant *)
+    let v = get s 0 in
+    assert { v = 0 };
+    assert { s[0] = 0 };
+    assert { get s 0 = 0 };
+
+    (* set *)
+    let s = set s 1 2 in
+
+    (* preservation *)
+    let v = get s 0 in
+    assert { v = 0 }; 
+    assert { get s 0 = 0 };
+
+    let v = get s 1 in
+    assert { v = 2 };
+    assert { get s 1 = 2 };
+
+
+    (* syntactic sugar *)
+    let s = s[2<-3] in
+    let v = s[2]  in
+    assert { v = 3 };
+    assert { s[2] = 3 };
+    assert { (s[3<-4])[3] = 4 };
+    assert { s[5] = 0 };
+    0
+
+end
+
+*)
+*)

@@ -1,0 +1,23 @@
+module StateGen
+
+  type id = Id int
+
+end
+
+theory State
+  use export StateGen
+  use export map.Map     (* used in the theories *) 
+  
+  type state = map id int
+
+end
+
+
+module StateEx
+
+  use export StateGen
+  use export listmap.ListMap (* used by the implementations *) 
+
+  type state_ex = lm_map id int
+
+end

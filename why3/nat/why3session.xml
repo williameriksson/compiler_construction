@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE why3session PUBLIC "-//Why3//proof session v5//EN"
+"http://why3.lri.fr/why3session.dtd">
+<why3session shape_version="4">
+<prover id="0" name="CVC4" version="1.4" timelimit="5" memlimit="1000"/>
+<prover id="1" name="Alt-Ergo" version="1.01" timelimit="5" memlimit="1000"/>
+<file name="../nat.why" expanded="true">
+<theory name="Nat" sum="d41d8cd98f00b204e9800998ecf8427e">
+</theory>
+<theory name="NatLeLt" sum="ba3372194100aef415df92902d203e1b">
+ <goal name="le_refl">
+ <proof prover="1"><result status="valid" time="0.00" steps="2"/></proof>
+ </goal>
+ <goal name="le_trans">
+ <transf name="induction_pr">
+  <goal name="le_trans.1" expl="1.">
+  <proof prover="1"><result status="valid" time="0.00" steps="4"/></proof>
+  </goal>
+  <goal name="le_trans.2" expl="2.">
+  <transf name="induction_pr">
+   <goal name="le_trans.2.1" expl="1.">
+   <proof prover="0"><result status="valid" time="0.00"/></proof>
+   </goal>
+   <goal name="le_trans.2.2" expl="2.">
+   <proof prover="0"><result status="valid" time="0.00"/></proof>
+   </goal>
+  </transf>
+  </goal>
+ </transf>
+ </goal>
+ <goal name="le_n_0_eq">
+ <proof prover="1"><result status="valid" time="0.00" steps="6"/></proof>
+ </goal>
+ <goal name="le_n_S">
+ <transf name="induction_pr">
+  <goal name="le_n_S.1" expl="1.">
+  <proof prover="1"><result status="valid" time="0.00" steps="5"/></proof>
+  </goal>
+  <goal name="le_n_S.2" expl="2.">
+  <proof prover="1"><result status="valid" time="0.00" steps="15"/></proof>
+  </goal>
+ </transf>
+ </goal>
+ <goal name="le_S_n">
+ <transf name="induction_pr">
+  <goal name="le_S_n.1" expl="1.">
+  <proof prover="1"><result status="valid" time="0.00" steps="10"/></proof>
+  </goal>
+  <goal name="le_S_n.2" expl="2.">
+  <proof prover="1"><result status="valid" time="0.02" steps="134"/></proof>
+  </goal>
+ </transf>
+ </goal>
+ <goal name="le_Sn_le">
+ <proof prover="1"><result status="valid" time="0.00" steps="12"/></proof>
+ </goal>
+ <goal name="lt_not_eq">
+ <transf name="induction_ty_lex">
+  <goal name="lt_not_eq.1" expl="1.">
+  <proof prover="1"><result status="valid" time="0.01" steps="42"/></proof>
+  </goal>
+ </transf>
+ </goal>
+ <goal name="lt_le_S">
+ <proof prover="1"><result status="valid" time="0.00" steps="3"/></proof>
+ </goal>
+ <goal name="lt_n_Sm_le">
+ <proof prover="1"><result status="valid" time="0.00" steps="4"/></proof>
+ </goal>
+ <goal name="le_lt_n_Sm">
+ <proof prover="1"><result status="valid" time="0.00" steps="10"/></proof>
+ </goal>
+</theory>
+</file>
+</why3session>
