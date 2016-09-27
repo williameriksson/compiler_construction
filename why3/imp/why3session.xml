@@ -6,9 +6,9 @@
 <prover id="1" name="Alt-Ergo" version="1.01" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="2" name="Alt-Ergo" version="0.99.1" timelimit="5" steplimit="0" memlimit="1000"/>
 <file name="../imp.why" expanded="true">
-<theory name="Imp" sum="a489bd010f1bbef482d9c716a49b9bfd">
- <goal name="ceval_deterministic_aux">
- <transf name="induction_pr">
+<theory name="Imp" sum="a489bd010f1bbef482d9c716a49b9bfd" expanded="true">
+ <goal name="ceval_deterministic_aux" expanded="true">
+ <transf name="induction_pr" expanded="true">
   <goal name="ceval_deterministic_aux.1" expl="1.">
   <transf name="inversion_pr">
    <goal name="ceval_deterministic_aux.1.1" expl="1.">
@@ -234,7 +234,7 @@
   </goal>
  </transf>
  </goal>
- <goal name="ceval_deterministic">
+ <goal name="ceval_deterministic" expanded="true">
  <proof prover="0"><result status="valid" time="0.02"/></proof>
  <proof prover="1" steplimit="-1"><result status="valid" time="0.01" steps="25"/></proof>
  </goal>

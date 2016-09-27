@@ -15,11 +15,12 @@ open Listmap__ListMap
 open Vm_ex__VmEx
 open Imp_ex__ImpEx
 
+
 open Env
 open Why3extract.Why3__BigInt
 
 let main () =
-  
+
   cmd; (* parse command line options and put into opt *)
   p_stderr (string_of_opt opt);
   
@@ -35,6 +36,7 @@ let main () =
       lexbuf.lex_curr_p <- { lexbuf.lex_curr_p with pos_fname = opt.infile };
       try
         let prog = Parser.prog Lexer.lex lexbuf in
+        
         if opt.d_ast then
           p_stderr ("Raw AST : \n" ^ of_com prog ^ nl);
         if opt.d_past then

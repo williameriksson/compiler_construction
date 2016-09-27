@@ -84,4 +84,3 @@ theory Imp
       ceval mi c mf1 ->  ceval mi c mf2 -> mf1 = mf2
 
 end
-

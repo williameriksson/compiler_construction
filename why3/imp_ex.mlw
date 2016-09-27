@@ -18,10 +18,23 @@ module ImpEx
   =
     match e with
       | Anum n      -> n
-      | Avar x      -> st[x] 
+      | Avar x      -> st[x]
       | Aadd e1 e2  -> aeval st e1 + aeval st e2
       | Asub e1 e2  -> aeval st e1 - aeval st e2
       | Amul e1 e2  -> aeval st e1 * aeval st e2
+    end
+
+  let rec beval  (st:state_ex) (b:bexpr) : bool
+    variant  { b }
+    ensures  { beval st.view b = result } (* relating result to "logic" function *)
+  =
+    match b with
+      | Btrue      -> true
+      | Bfalse     -> false
+      | Bnot b'    -> notb (beval st b')
+      | Band b1 b2 -> andb (beval st b1) (beval st b2)
+      | Beq a1 a2  -> aeval st a1 = aeval st a2
+      | Ble a1 a2  -> aeval st a1 <= aeval st a2
     end
 
   let rec ceval_ex (st : state_ex) com n : state_ex
@@ -30,14 +43,23 @@ module ImpEx
     raises   { CErr }
   =
     if n = O then raise CErr else
-    
+
     match com with
     (* skip *)
     | Cskip -> st
+    | Cassign x a -> st[x <- aeval st a]
+    | Cseq cmd1 cmd2 -> let nextst = ceval_ex st cmd1 (pred n) in ceval_ex nextst cmd2 (pred n)
+    | Cif cond cmd1 cmd2 -> match beval st cond with
+      | True  -> ceval_ex st cmd1 (pred n)
+      | False -> ceval_ex st cmd2 (pred n)
+      end
+    | Cwhile cond cmd -> match beval st cond with
+      | True -> ceval_ex (ceval_ex st cmd (pred n)) (Cwhile cond cmd) (pred n)
+      | False -> st
+      end
 
-    (* match all cases, your code here *)
+    (* match all cases, your code here
     | _ -> st
-
+    *)
     end
-
 end
