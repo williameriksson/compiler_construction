@@ -14,10 +14,11 @@ open Listmap__Const
 open Listmap__ListMap
 open Vm_ex__VmEx
 open Imp_ex__ImpEx
-
-
 open Env
 open Why3extract.Why3__BigInt
+open ImpToMips
+
+
 
 let main () =
 
@@ -36,6 +37,13 @@ let main () =
       lexbuf.lex_curr_p <- { lexbuf.lex_curr_p with pos_fname = opt.infile };
       try
         let prog = Parser.prog Lexer.lex lexbuf in
+				 let m_prog = m_compile_com prog in
+         p_stderr ("MIPS Out : " ^ nl ^ string_of_m_prog m_prog ^ nl); 
+        
+        
+        let oc = open_out opt.outfile in
+        p_oc oc (string_of_m_prog m_prog);
+        close_out oc;
         
         if opt.d_ast then
           p_stderr ("Raw AST : \n" ^ of_com prog ^ nl);
