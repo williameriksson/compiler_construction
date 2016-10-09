@@ -1,0 +1,57 @@
+module AexprOpt
+
+  use export state.State
+  use export bool.Bool
+  use export int.Int
+  use export imp.Imp
+
+  let rec aexpr_opt (e : aexpr) : aexpr
+    variant { e }
+    ensures { forall s. aeval s result = aeval s e }
+  =
+    match e with
+    | Anum n    ->  Anum n
+    | Aadd (Anum n1) (Anum n2) -> Anum (n1 + n2)
+    | Aadd (Anum n) (Avar x)   ->  if n = 0 then Avar x else Aadd (Anum n) (Avar x);
+    | Aadd (Avar x) (Anum n)   ->  if n = 0 then Avar x else Aadd (Anum n) (Avar x);
+    | Aadd l r                 ->  Aadd l r
+    | Asub (Anum n1) (Anum n2) -> Anum (n1 - n2)
+    | Asub (Avar x) (Anum n)   ->  if n = 0 then Avar x else Asub (Anum n) (Avar x);  (* this does not pass.. *)
+    | Asub l r ->  if l = r then Anum 0 else Asub l r;
+    | Amul l r ->  if l = Anum 0 || r = Anum 0 then Anum 0 else Amul l r;
+    | Avar x ->  Avar x
+    end
+
+  let rec bexpr_opt (e : bexpr) : bexpr
+    variant { e }
+    ensures { forall s. beval s result = beval s e }
+  =
+    match e with
+    | Btrue      -> Btrue
+    | Bfalse     -> Bfalse
+    | Band Btrue Btrue -> Btrue
+    | Band _ Bfalse -> Bfalse
+    | Band Bfalse _ -> Bfalse
+    | Band b1 b2 -> if b1 = b2 then b1 else Band b1 b2;
+    | Bnot Btrue -> Bfalse
+    | Bnot Bfalse -> Btrue
+    | Bnot b -> bexpr_opt b
+    | Beq a1 a2 -> if (aexpr_opt a1 = aexpr_opt a2) then Btrue else Bfalse;
+    | Ble a1 a2 -> Ble a1 a2 (* TODO *)
+    end
+
+  let rec com_opt (e : com) : com
+    variant { e }
+    ensures { forall s. ceval s result = ceval s e }
+  =
+    match e with
+    | Cskip -> Cskip
+    | Cassign id a -> Cassign id (aexpr_opt a)
+    | Cif b c1 c2 -> if (bexpr_opt b) = Btrue then com_opt c1 else com_opt c2;
+    | Cseq c1 c2 -> Cseq (com_opt c1) (com_opt c2)
+    | Cwhile Btrue c -> com_opt c
+    | Cwhile Bfalse c -> Cskip
+    | Cwhile b c -> Cwhile (bexpr_opt b) (com_opt c)
+    (*| Cwhile b c -> if bexpr_opt b = Btrue then com_opt c else Cskip;*)
+    end
+end

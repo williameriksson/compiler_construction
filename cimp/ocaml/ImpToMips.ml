@@ -7,7 +7,7 @@ open State__StateGen
 open List
 
 type m_reg =
-	| ZE | T0 | T1 | T2 | SP | GP
+	| ZE | T0 | T1 | T2 | T3 | T4 | T5 | T6 | T7 | SP | GP
 
 type m_instr =
 	| Mlab of string
@@ -26,6 +26,8 @@ type m_instr =
 	| Mlw of m_reg * int * m_reg
 
 type m_instr_list = m_instr list
+type reg_list = m_reg list
+
 
 let reg_to_str (reg : m_reg) : string =
 	match reg with
@@ -33,6 +35,11 @@ let reg_to_str (reg : m_reg) : string =
 	| T0 -> "$t0"
 	| T1 -> "$t1"
 	| T2 -> "$t2"
+	| T3 -> "$t3"
+	| T4 -> "$t4"
+	| T5 -> "$t5"
+	| T6 -> "$t6"
+	| T7 -> "$t7"
 	| SP -> "$sp"
 	| GP -> "$gp"
 
@@ -46,6 +53,34 @@ let push reg = [Maddi (SP, SP, -4); Msw(reg, 0, SP)]
 let pop reg = [Mlw (reg, 0, SP); Maddi (SP, SP, 4)]
 (*let li n = [Mlui (T0, n / 65536); Mori (T0, T0, n)] (* 2^16 = 65536 *) *)
 
+let available_regs = ref [T0; T1; T2; T3; T4; T5; T6; T7]
+let reg_stack : reg_list ref = ref []
+
+let getReg (l : reg_list) : m_reg =
+	match l with
+	(*| l -> List.hd l *)
+  | [] -> T0
+  | hd :: l -> hd
+
+let removeReg (l : reg_list) : reg_list =
+	match l with
+	(*| l -> List.tl l *)
+  | [] -> []
+  | hd :: l -> l
+
+let restoreReg r = available_regs := r :: !available_regs
+
+let retrieveReg () =
+  let reg = getReg !available_regs in
+    available_regs := removeReg !available_regs;
+		reg_stack := reg :: !reg_stack;
+		reg
+
+let pop_reg () =
+	let reg = getReg !reg_stack in
+	  reg_stack := removeReg !reg_stack;
+		restoreReg reg;
+		reg
 
 let count = ref (0)
 let newlabel () =
@@ -72,12 +107,20 @@ let instr_to_str (instr : m_instr) : string =
 	| Mlw (rt, ofs, rs)  -> "lw   " ^ (rofsr rt ofs rs)
 
 let rec compile_aexpr (exp : aexpr) : m_instr_list =
+    match exp with
+    | Anum n       -> [Mli (retrieveReg (), to_int n)]
+    | Avar (Id id) -> [Mlw (retrieveReg (), (to_int id)*4, GP)]
+    | Aadd (a, b)  -> compile_aexpr a @ compile_aexpr b @ let dest_reg = pop_reg () in Madd (dest_reg, dest_reg, pop_reg ()) :: push dest_reg
+    | Asub (a, b)  -> compile_aexpr a @ compile_aexpr b @ pop T0 @ pop T1 @ Msub (T0, T1, T0) :: push T0
+    | Amul (a, b)  -> raise (CompilerError "multiplication currently not supported") (* TODO *)
+(*
+let rec compile_aexpr (exp : aexpr) : m_instr_list =
 	match exp with
 	| Anum n       -> Mli (T0, to_int n) :: push T0
 	| Avar (Id id) -> Mlw (T0, (to_int id)*4, GP) :: push T0
 	| Aadd (a, b)  -> compile_aexpr a @ compile_aexpr b @ pop T0 @ pop T1 @ Madd (T0, T0, T1) :: push T0
 	| Asub (a, b)  -> compile_aexpr a @ compile_aexpr b @ pop T0 @ pop T1 @ Msub (T0, T1, T0) :: push T0
-	| Amul (a, b)  -> raise (CompilerError "multiplication currently not supported") (* TODO *)
+	| Amul (a, b)  -> raise (CompilerError "multiplication currently not supported") (* TODO *) *)
 
 let rec compile_bexpr (exp : bexpr) (label : string) (not_op : bool) =
 	match exp with
