@@ -21,7 +21,7 @@ module AexprOpt
     | Amul l r ->  if l = Anum 0 || r = Anum 0 then Anum 0 else Amul l r;
     | Avar x ->  Avar x
     end
-
+(* FIXA ATT DEN ALLTID EVALUERAR OPTIMERADE EXPR *)
   let rec bexpr_opt (e : bexpr) : bexpr
     variant { e }
     ensures { forall s. beval s result = beval s e }
@@ -32,25 +32,31 @@ module AexprOpt
     | Band Btrue Btrue -> Btrue
     | Band _ Bfalse -> Bfalse
     | Band Bfalse _ -> Bfalse
-    | Band b1 b2 -> if b1 = b2 then b1 else Band b1 b2;
+    | Band b1 b2 -> let opt_b1 = bexpr_opt b1 in
+                    let opt_b2 = bexpr_opt b2 in
+                    if opt_b1 = opt_b2 then opt_b1 else Band opt_b1 opt_b2;
     | Bnot Btrue -> Bfalse
     | Bnot Bfalse -> Btrue
-    | Bnot b -> bexpr_opt b
-    | Beq a1 a2 -> if (aexpr_opt a1 = aexpr_opt a2) then Btrue else Bfalse;
-    | Ble a1 a2 -> Ble a1 a2 (* TODO *)
+    | Bnot b -> Bnot (bexpr_opt b)
+    | Beq (Anum n1) (Anum n2) -> if n1 = n2 then Btrue else Bfalse;
+    | Beq a1 a2 -> Beq (aexpr_opt a1) (aexpr_opt a2)
+    | Ble (Anum n1) (Anum n2) -> if n1 <= n2 then Btrue else Bfalse;
+    | Ble a1 a2 -> Ble (aexpr_opt a1) (aexpr_opt a2)
     end
 
   let rec com_opt (e : com) : com
     variant { e }
-    ensures { forall s. ceval s result = ceval s e }
+    ensures { forall s. ceval s result s = ceval s e s }
   =
     match e with
     | Cskip -> Cskip
     | Cassign id a -> Cassign id (aexpr_opt a)
-    | Cif b c1 c2 -> if (bexpr_opt b) = Btrue then com_opt c1 else com_opt c2;
+    | Cif Btrue c1 _ -> com_opt c1
+    | Cif Bfalse _ c2 -> com_opt c2
+    | Cif b c1 c2 -> Cif (bexpr_opt b) (com_opt c1) (com_opt c2)
     | Cseq c1 c2 -> Cseq (com_opt c1) (com_opt c2)
     | Cwhile Btrue c -> com_opt c
-    | Cwhile Bfalse c -> Cskip
+    | Cwhile Bfalse _ -> Cskip
     | Cwhile b c -> Cwhile (bexpr_opt b) (com_opt c)
     (*| Cwhile b c -> if bexpr_opt b = Btrue then com_opt c else Cskip;*)
     end

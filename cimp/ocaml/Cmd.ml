@@ -21,6 +21,7 @@ let d_code      = ref false
 let d_pcode     = ref false  
 let imp_ex      = ref 0 
 let vm_ex       = ref 0  
+let optim       = ref false
 
   
 let speclist = 
@@ -30,6 +31,7 @@ let speclist =
     
     ("-v", Arg.Set o_verbose,         "\t\t: verbose mode (default disable)");
     ("-D", Arg.Set o_debug,           "\t\t: debug mode (default disable)");
+		("-O", Arg.Set optim,             "\t\t: optimization (default disable)");
   
     ("-d_ast", Arg.Set d_ast,         "\t: dump AST");   
     ("-d_past", Arg.Set d_past,       "\t: dump pretty AST");
@@ -77,6 +79,7 @@ let cmd =
     (* general options *)
     opt.debug     <- ! o_debug;
     opt.verbose   <- ! o_verbose;
+		opt.optim     <- ! optim;
     opt.d_ast     <- ! d_ast;  
     opt.d_past    <- ! d_past;  
     opt.d_code    <- ! d_code;  

@@ -23,6 +23,7 @@ type options =
    mutable d_pcode:     bool;
    mutable imp_ex:      int;
    mutable vm_ex:       int;
+	 mutable optim:       bool;
   }
   
 let opt = 
@@ -38,6 +39,7 @@ let opt =
    d_pcode   = false;
    imp_ex    = 0;
    vm_ex     = 0;
+	 optim     = false;
   } 
         
 let string_of_opt opt = 
@@ -47,6 +49,7 @@ let string_of_opt opt =
   "outfile      : " ^ opt.outfile ^ nl ^
   "verbose      : " ^ string_of_bool opt.verbose ^ nl ^
   "debug        : " ^ string_of_bool opt.debug ^ nl ^
+	"opt_level    : " ^ string_of_bool opt.optim ^ "optimization" ^ nl ^
   "d_ast        : " ^ string_of_bool opt.d_ast ^ nl ^
   "d_past       : " ^ string_of_bool opt.d_past ^ nl ^
   "d_code       : " ^ string_of_bool opt.d_code ^ nl ^

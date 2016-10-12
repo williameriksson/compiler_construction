@@ -17,6 +17,7 @@ open Imp_ex__ImpEx
 open Env
 open Why3extract.Why3__BigInt
 open ImpToMips
+open Ast_opt__AexprOpt
 
 
 
@@ -38,7 +39,11 @@ let main () =
       try
         let prog = Parser.prog Lexer.lex lexbuf in
 				 let m_prog = m_compile_com prog in
-         p_stderr ("MIPS Out : " ^ nl ^ string_of_m_prog m_prog ^ nl); 
+				 
+         if opt.optim then 
+            let m_prog = m_compile_com (com_opt prog);
+         
+				p_stderr ("MIPS Out : " ^ nl ^ string_of_m_prog m_prog ^ nl); 
         
         
         let oc = open_out opt.outfile in
