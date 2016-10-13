@@ -20,6 +20,11 @@ open ImpToMips
 open Ast_opt__AexprOpt
 
 
+let getProg (opt : bool) (lexbuf : lexbuf) : Imp__Imp.com =
+	match opt with
+	| false -> Parser.prog Lexer.lex lexbuf
+	| true -> com_opt (Parser.prog Lexer.lex lexbuf)
+
 
 let main () =
 
@@ -37,12 +42,13 @@ let main () =
       let lexbuf = Lexing.from_channel inBuffer in
       lexbuf.lex_curr_p <- { lexbuf.lex_curr_p with pos_fname = opt.infile };
       try
-        let prog = Parser.prog Lexer.lex lexbuf in
-				 let m_prog = m_compile_com prog in
-				 
-         if opt.optim then 
-            let m_prog = m_compile_com (com_opt prog);
-         
+				let prog = getProg opt.optim lexbuf in
+				(*let prog = Parser.prog Lexer.lex lexbuf in
+        if opt.optim then 
+           let prog = com_opt prog in
+				*)
+				
+				let m_prog = m_compile_com prog in
 				p_stderr ("MIPS Out : " ^ nl ^ string_of_m_prog m_prog ^ nl); 
         
         
