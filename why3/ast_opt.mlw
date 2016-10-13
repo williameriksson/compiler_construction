@@ -13,7 +13,7 @@ module AexprOpt
     | Anum n    ->  Anum n
     | Aadd (Anum n1) (Anum n2) -> Anum (n1 + n2)
     | Aadd (Anum n) (Avar x)   ->  if n = 0 then Avar x else Aadd (Anum n) (Avar x);
-    | Aadd (Avar x) (Anum n)   ->  if n = 0 then Avar x else Aadd (Anum n) (Avar x);
+    | Aadd (Avar x) (Anum n)   ->  if n = 0 then Avar x else Aadd (Avar x) (Anum n);
     | Aadd l r                 ->  Aadd (aexpr_opt l) (aexpr_opt r)
     | Asub (Anum n1) (Anum n2) -> Anum (n1 - n2)
     | Asub (Avar x) (Anum n)   ->  if n = 0 then Avar x else Asub (Avar x) (Anum n);
@@ -53,10 +53,14 @@ module AexprOpt
     | Cassign id a -> Cassign id (aexpr_opt a)
     | Cif Btrue c1 _ -> com_opt c1
     | Cif Bfalse _ c2 -> com_opt c2
-    | Cif b c1 c2 -> Cif (bexpr_opt b) (com_opt c1) (com_opt c2)
+    | Cif b c1 c2 -> let opt_b = bexpr_opt b in
+                     let opt_c1 = com_opt c1 in
+                     let opt_c2 = com_opt c2 in
+                     if opt_b = Btrue then opt_c1
+                     else if opt_b = Bfalse then opt_c2
+                     else Cif opt_b opt_c1 opt_c2;
     | Cseq c1 c2 -> Cseq (com_opt c1) (com_opt c2)
     | Cwhile Bfalse _ -> Cskip
     | Cwhile b c -> Cwhile (bexpr_opt b) (com_opt c)
-    (*| Cwhile b c -> if bexpr_opt b = Btrue then com_opt c else Cskip;*)
     end
 end
