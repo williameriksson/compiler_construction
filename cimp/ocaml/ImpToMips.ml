@@ -7,7 +7,7 @@ open State__StateGen
 open List
 
 type m_reg =
-	| ZE | T0 | T1 | T2 | T3 | T4 | T5 | T6 | T7 | SP | GP
+	| ZE | T0 | T1 | T2 | T3 | T4 | T5 | T6 | T7 | SP | GP | AT
 
 type m_instr =
 	| Mlab of string
@@ -42,6 +42,7 @@ let reg_to_str (reg : m_reg) : string =
 	| T7 -> "$t7"
 	| SP -> "$sp"
 	| GP -> "$gp"
+	| AT -> "$at"
 
 let rrr rd rs rt = (reg_to_str rd) ^ ", " ^ (reg_to_str rs) ^ ", " ^ (reg_to_str rt)
 let rrofs rs rt ofs = (reg_to_str rs) ^ ", " ^ (reg_to_str rt) ^ ", " ^ (string_of_int ofs)
@@ -51,16 +52,50 @@ let rn rt n = (reg_to_str rt) ^ ", " ^ (string_of_int n)
 
 let push reg = [Maddi (SP, SP, -4); Msw(reg, 0, SP)]
 let pop reg = [Mlw (reg, 0, SP); Maddi (SP, SP, 4)]
-(*let li n = [Mlui (T0, n / 65536); Mori (T0, T0, n)] (* 2^16 = 65536 *) *)
+
+type var_reg_tuple = int * m_reg
+type tuple_list = var_reg_tuple list
+
+let first = function (x, y) -> x;;
+let second = function (x, y) -> y;;
 
 let available_regs = ref [T0; T1; T2; T3; T4; T5; T6; T7]
+let alloc_regs : tuple_list ref = ref []
+
+
+let storeVar _id n =
+  if List.length !available_regs >= 1 then
+		let reg =	List.hd !available_regs in        (* Take the first available register *)
+		let new_tuple = (_id, reg) in               (* Make a new tuple with the id and the register *)
+		alloc_regs := new_tuple :: !alloc_regs;     (* Add the new  tuple to the list with allocated registers *)
+    available_regs := List.tl !available_regs;  (* Remove the register from the list of available registers *)
+		[Mli (reg, n)]                              (* Return the instruction *)                                        
+	else
+		let tuple = List.hd !alloc_regs in          (* Take the first tuple from the allocated registers list *)
+		let oldId = first tuple in                  (* Take the id from the tuple which shall be stored to memory *)
+		let reg = second tuple in                   (* Take the register from the tuple which holds the value that shall be stored to memory *)
+		alloc_regs := List.tl !alloc_regs;          (* Remove the first tuple from the list *)
+		alloc_regs := (_id, reg) :: !alloc_regs;    (* Add the new tuple to the list *)
+		[Msw (reg, oldId*4, GP)] @ [Mli (reg, n)]   (* Save the old value to memory and load the new value to the register *)
+		
+
+let loadValue _id =
+	if List.exists (fun (a_id, _) -> a_id = _id) !alloc_regs then
+		let tuple = List.find (fun (a_id, _) -> a_id = _id) !alloc_regs in
+		let reg = second tuple in
+		reg
+	else
+		[]
+
+ 
+
+(*let li n = [Mlui (T0, n / 65536); Mori (T0, T0, n)] (* 2^16 = 65536 *) *)
+
+(*
+
 let reg_stack : reg_list ref = ref []
 
-let getReg (l : reg_list) : m_reg =
-	match l with
-	(*| l -> List.hd l *)
-  | [] -> T0
-  | hd :: l -> hd
+
 
 let removeReg (l : reg_list) : reg_list =
 	match l with
@@ -81,7 +116,7 @@ let pop_reg () =
 	  reg_stack := removeReg !reg_stack;
 		restoreReg reg;
 		reg
-
+*)
 let count = ref (0)
 let newlabel () =
     incr count;
@@ -106,21 +141,21 @@ let instr_to_str (instr : m_instr) : string =
 	| Msw (rt, ofs, rs)  -> "sw   " ^ (rofsr rt ofs rs)
 	| Mlw (rt, ofs, rs)  -> "lw   " ^ (rofsr rt ofs rs)
 
-let rec compile_aexpr (exp : aexpr) : m_instr_list =
+(*let rec compile_aexpr (exp : aexpr) : m_instr_list =
     match exp with
     | Anum n       -> [Mli (retrieveReg (), to_int n)]
     | Avar (Id id) -> [Mlw (retrieveReg (), (to_int id)*4, GP)]
     | Aadd (a, b)  -> compile_aexpr a @ compile_aexpr b @ let dest_reg = pop_reg () in Madd (dest_reg, dest_reg, pop_reg ()) :: push dest_reg
     | Asub (a, b)  -> compile_aexpr a @ compile_aexpr b @ pop T0 @ pop T1 @ Msub (T0, T1, T0) :: push T0
-    | Amul (a, b)  -> raise (CompilerError "multiplication currently not supported") (* TODO *)
-(*
+    | Amul (a, b)  -> raise (CompilerError "multiplication currently not supported") (* TODO *) *)
+
 let rec compile_aexpr (exp : aexpr) : m_instr_list =
 	match exp with
 	| Anum n       -> Mli (T0, to_int n) :: push T0
 	| Avar (Id id) -> Mlw (T0, (to_int id)*4, GP) :: push T0
 	| Aadd (a, b)  -> compile_aexpr a @ compile_aexpr b @ pop T0 @ pop T1 @ Madd (T0, T0, T1) :: push T0
 	| Asub (a, b)  -> compile_aexpr a @ compile_aexpr b @ pop T0 @ pop T1 @ Msub (T0, T1, T0) :: push T0
-	| Amul (a, b)  -> raise (CompilerError "multiplication currently not supported") (* TODO *) *)
+	| Amul (a, b)  -> raise (CompilerError "multiplication currently not supported") (* TODO *)
 
 let rec compile_bexpr (exp : bexpr) (label : string) (not_op : bool) =
 	match exp with
@@ -147,9 +182,9 @@ let rec compile_bexpr (exp : bexpr) (label : string) (not_op : bool) =
 		let expr1 = compile_aexpr a in
     let expr2 = compile_aexpr b in
     expr1 @ expr2 @ pop T0 @ pop T1 @ if not_op then 
-			  [Mslt (T2, T0, T1); Mbeq (T2, ZE, label)]
+			  [Mslt (AT, T0, T1); Mbeq (AT, ZE, label)]
 			else
-        [Mslt (T2, T0, T1); Mbne (T2, ZE, label)]
+        [Mslt (AT, T0, T1); Mbne (AT, ZE, label)]
 				
 let pre_str = "\t.data" ^ nl ^ 
   "\t.space 1024\t\t# just a placholder" ^ nl ^ 
