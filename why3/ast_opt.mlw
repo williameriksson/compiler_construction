@@ -14,14 +14,14 @@ module AexprOpt
     | Aadd (Anum n1) (Anum n2) -> Anum (n1 + n2)
     | Aadd (Anum n) (Avar x)   ->  if n = 0 then Avar x else Aadd (Anum n) (Avar x);
     | Aadd (Avar x) (Anum n)   ->  if n = 0 then Avar x else Aadd (Anum n) (Avar x);
-    | Aadd l r                 ->  Aadd l r
+    | Aadd l r                 ->  Aadd (aexpr_opt l) (aexpr_opt r)
     | Asub (Anum n1) (Anum n2) -> Anum (n1 - n2)
-    | Asub (Avar x) (Anum n)   ->  if n = 0 then Avar x else Asub (Anum n) (Avar x);  (* this does not pass.. *)
-    | Asub l r ->  if l = r then Anum 0 else Asub l r;
-    | Amul l r ->  if l = Anum 0 || r = Anum 0 then Anum 0 else Amul l r;
+    | Asub (Avar x) (Anum n)   ->  if n = 0 then Avar x else Asub (Avar x) (Anum n);
+    | Asub l r ->  if (aexpr_opt l) = (aexpr_opt r) then Anum 0 else Asub (aexpr_opt l) (aexpr_opt r);
+    | Amul l r ->  if (aexpr_opt l) = Anum 0 || (aexpr_opt r) = Anum 0 then Anum 0 else Amul (aexpr_opt l) (aexpr_opt r);
     | Avar x ->  Avar x
     end
-(* FIXA ATT DEN ALLTID EVALUERAR OPTIMERADE EXPR *)
+
   let rec bexpr_opt (e : bexpr) : bexpr
     variant { e }
     ensures { forall s. beval s result = beval s e }
@@ -55,7 +55,6 @@ module AexprOpt
     | Cif Bfalse _ c2 -> com_opt c2
     | Cif b c1 c2 -> Cif (bexpr_opt b) (com_opt c1) (com_opt c2)
     | Cseq c1 c2 -> Cseq (com_opt c1) (com_opt c2)
-    | Cwhile Btrue c -> com_opt c
     | Cwhile Bfalse _ -> Cskip
     | Cwhile b c -> Cwhile (bexpr_opt b) (com_opt c)
     (*| Cwhile b c -> if bexpr_opt b = Btrue then com_opt c else Cskip;*)
