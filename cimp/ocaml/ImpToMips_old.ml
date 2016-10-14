@@ -7,7 +7,7 @@ open State__StateGen
 open List
 
 type m_reg =
-	| ZE | T of int | S0 | S1 | SP | GP | AT
+	| ZE | T0 | T1 | T2 | T3 | T4 | T5 | T6 | T7 | T8 | T9 | S0 | S1 | SP | GP | AT
 
 type m_instr =
 	| Mlab of string
@@ -29,12 +29,20 @@ type m_instr =
 type m_instr_list = m_instr list
 type reg_list = m_reg list
 
-let k = ref (10)
 
 let reg_to_str (reg : m_reg) : string =
 	match reg with
 	| ZE -> "$zero"
-	| T n -> "$t" ^ string_of_int n
+	| T0 -> "$t0"
+	| T1 -> "$t1"
+	| T2 -> "$t2"
+	| T3 -> "$t3"
+	| T4 -> "$t4"
+	| T5 -> "$t5"
+	| T6 -> "$t6"
+	| T7 -> "$t7"
+	| T8 -> "$t8"
+	| T9 -> "$t9"
 	| S0 -> "$s0"
 	| S1 -> "$s1"
 	| SP -> "$sp"
@@ -51,19 +59,60 @@ let rr rs rt = (reg_to_str rs) ^ ", " ^ (reg_to_str rt)
 let push reg = [Maddi (SP, SP, -4); Msw(reg, 0, SP)]
 let pop reg = [Mlw (reg, 0, SP); Maddi (SP, SP, 4)]
 
+type var_reg_tuple = int * m_reg
+type tuple_list = var_reg_tuple list
+
+let first = function (x, y) -> x;;
+let second = function (x, y) -> y;;
+
+let available_regs = ref [T0; T1; T2; T3; T4; T5; T6; T7; T8; T9]
+let alloc_regs : tuple_list ref = ref []
+
+let start_toggle = ref false
+let toggle =
+	if !start_toggle = false then
+		start_toggle := true
+	else
+		start_toggle := false;
+	match !start_toggle with
+	| true -> S0
+	| false -> S1
+
+let storeVar _id =
+  if List.length !available_regs >= 1 then
+		let reg =	List.hd !available_regs in        (* Take the first available register *)
+		let new_tuple = (_id, reg) in               (* Make a new tuple with the id and the register *)
+		alloc_regs := new_tuple :: !alloc_regs;     (* Add the new  tuple to the list with allocated registers *)
+    available_regs := List.tl !available_regs;  (* Remove the register from the list of available registers *)
+		[Mmove (S0, reg)]                              (* Return the instruction *)                                        
+	else
+		let tuple = List.hd !alloc_regs in          (* Take the first tuple from the allocated registers list *)
+		let oldId = first tuple in                  (* Take the id from the tuple which shall be stored to memory *)
+		let reg = second tuple in                   (* Take the register from the tuple which holds the value that shall be stored to memory *)
+		alloc_regs := List.tl !alloc_regs;          (* Remove the first tuple from the list *)
+		alloc_regs := (_id, reg) :: !alloc_regs;    (* Add the new tuple to the list *)
+		[Msw (reg, oldId*4, GP)] @ [Mmove (S0, reg)]   (* Save the old value to memory and load the new value to the register *)
+		
+
+let loadValue _id =
+	if List.exists (fun (a_id, _) -> a_id = _id) !alloc_regs then
+		let tuple = List.find (fun (a_id, _) -> a_id = _id) !alloc_regs in
+		let reg = second tuple in
+		[Mmove (reg, toggle)]
+	else
+		[Mlw (toggle, _id*4, GP)]
+
  
+
 (*let li n = [Mlui (T0, n / 65536); Mori (T0, T0, n)] (* 2^16 = 65536 *) *)
+
 
 let count = ref (0)
 let newlabel () =
     incr count;
     !count
 
-
-let alloc_regs = ref (-1)
-let get_reg = incr alloc_regs; !alloc_regs
-
-let branch l = [Mbeq (AT, AT, l)]
+let branch l = [Mbeq (T0, T0, l)]
 
 let instr_to_str (instr : m_instr) : string =
 	match instr with
@@ -83,13 +132,14 @@ let instr_to_str (instr : m_instr) : string =
 	| Mlw (rt, ofs, rs)   -> "lw   " ^ (rofsr rt ofs rs)
 	| Mmove (rt, rs)      -> "move " ^ (rr rt rs)
 
-let rec compile_aexpr (exp : aexpr) (reg : int) : m_instr_list =
+let rec compile_aexpr (exp : aexpr) : m_instr_list =
     match exp with
-    | Anum n       -> [Mli (T reg, to_int n)]
-    | Avar (Id id) -> [Mlw (T reg, (to_int id)*4, GP)]
-    | Aadd (a, b)  -> compile_aexpr a reg @ compile_aexpr b (reg + 1) @ [Madd (T reg,T reg,T (reg + 1))]
-    | Asub (a, b)  -> compile_aexpr a reg @ compile_aexpr b (reg + 1) @ [Msub (T reg, T reg, T (reg + 1))]
-    | Amul (a, b)  -> raise (CompilerError "multiplication currently not supported") (* TODO *)
+    | Anum n       -> [Mli (toggle, to_int n)]
+    | Avar (Id id) -> loadValue (to_int id)
+    | Aadd (a, b)  -> compile_aexpr a @ compile_aexpr b @ [Madd (S0, S0, S1)]
+    | Asub (a, b)  -> compile_aexpr a @ compile_aexpr b @ pop T0 @ pop T1 @ Msub (T0, T1, T0) :: push T0
+    | Amul (a, b)  -> raise (CompilerError "multiplication currently not supported") (* TODO *) 
+
 (*
 let rec compile_aexpr (exp : aexpr) : m_instr_list =
 	match exp with
@@ -100,38 +150,6 @@ let rec compile_aexpr (exp : aexpr) : m_instr_list =
 	| Amul (a, b)  -> raise (CompilerError "multiplication currently not supported") (* TODO *)
 *)
 
-let rec compile_bexpr (exp : bexpr) (reg : int) (label : string) (not_op : bool) =
-    match exp with
-    | Btrue -> if not_op then branch label else [] 
-    | Bfalse -> if not_op then [] else branch label 
-    | Bnot b -> compile_bexpr b reg label (not not_op)
-    (*| Bnot a -> if (a = Btrue) then (compile_bexpr Bfalse label) else (compile_bexpr Btrue label) *)
-    (*| Band (b1, b2) -> if (b1 = Bfalse || b2 = Bfalse) then (branch label) else [] *)
-    | Band (b1, b2) -> 
-        let labelnr = newlabel () in
-        let _and = "and" ^ string_of_int labelnr in
-        let _dest = if not_op then _and else label in 
-        let cond1 = compile_bexpr b1 reg _dest false in
-        let cond2 = compile_bexpr b2 (reg + 1) label not_op in
-        cond1 @ [Mlab _and] @ cond2
-    | Beq (a, b) -> 
-        let expr1 = compile_aexpr a reg in
-        let expr2 = compile_aexpr b (reg + 1) in
-        expr1 @ expr2 @ if not_op then
-              [Mbeq (T reg, T (reg + 1), label)] 
-            else 
-                [Mbne (T reg, T (reg + 1), label)]
-    | Ble (a, b) -> 
-        let expr1 = compile_aexpr a reg in
-        let expr2 = compile_aexpr b (reg + 1) in
-          expr1 @ expr2 @ 
-					if not_op then 
-            [Mslt (AT, T reg, T (reg + 1)); Mbeq (AT, ZE, label)]
-          else
-            [Mslt (AT, T reg, T (reg + 1)); Mbne (AT, ZE, label)]
-
-
-(*
 let rec compile_bexpr (exp : bexpr) (label : string) (not_op : bool) =
 	match exp with
 	| Btrue -> if not_op then branch label else [] 
@@ -159,7 +177,7 @@ let rec compile_bexpr (exp : bexpr) (label : string) (not_op : bool) =
     expr1 @ expr2 @ pop T0 @ pop T1 @ if not_op then 
 			  [Mslt (AT, T0, T1); Mbeq (AT, ZE, label)]
 			else
-        [Mslt (AT, T0, T1); Mbne (AT, ZE, label)] *)
+        [Mslt (AT, T0, T1); Mbne (AT, ZE, label)]
 				
 let pre_str = "\t.data" ^ nl ^ 
   "\t.space 1024\t\t# just a placholder" ^ nl ^ 
@@ -174,29 +192,28 @@ let string_of_m_prog p =
     | Mlab label :: ilist -> instr_to_str (Mlab label) ^ nl ^ prog_print ilist
 	  | instr :: ilist -> "\t" ^ instr_to_str instr ^ nl ^ prog_print ilist
 	  | [] -> ""
-	in pre_str ^ prog_print(p @ Mlab "halt" :: [Mbeq (AT, AT, "halt")])
+	in pre_str ^ prog_print(p @ Mlab "halt" :: [Mbeq (T0, T0, "halt")])
 
 
 let rec m_compile_com (cmd : com) =
     match cmd with
     | Cskip                  -> []
-    | Cassign (Id id, n)     -> let reg = get_reg in compile_aexpr n reg @ [Msw (T reg, (to_int id)*4, GP)]
+    | Cassign (Id id, n)     -> compile_aexpr n @ storeVar (to_int id)
     | Cif (cond, tcmd, fcmd) -> 
         let labelnr = newlabel () in
         let _else = "else" ^ string_of_int labelnr in 
         let _endif = "endif" ^ string_of_int labelnr in
         let true_code = m_compile_com tcmd @ branch _endif in
         let false_code = m_compile_com fcmd in
-         compile_bexpr cond get_reg _else false @ true_code @ [Mlab _else] @ false_code @ [Mlab _endif]
+         compile_bexpr cond _else false @ true_code @ [Mlab _else] @ false_code @ [Mlab _endif]
     | Cseq (cmd1, cmd2) -> m_compile_com cmd1 @ m_compile_com cmd2
     | Cwhile (cond, cmd) -> 
         let labelnr = newlabel () in
-        let _while = "while" ^ string_of_int labelnr in 
-        let _endwhile = "endwhile" ^ string_of_int labelnr in
+    let _while = "while" ^ string_of_int labelnr in 
+    let _endwhile = "endwhile" ^ string_of_int labelnr in
         let code = m_compile_com cmd in
-				let reg = get_reg in
-        let w_cond = compile_bexpr cond reg _endwhile false in
-        [Mlab _while] @ w_cond @ code @ [Mbeq(T reg, T reg, _while)] @ [Mlab _endwhile]
+        let w_cond = compile_bexpr cond _endwhile false in
+        [Mlab _while] @ w_cond @ code @ [Mbeq(T0, T0, _while)] @ [Mlab _endwhile]
 (*
 let rec m_compile_com (cmd : com) =
 	match cmd with
