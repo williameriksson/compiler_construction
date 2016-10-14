@@ -39,6 +39,8 @@ rule lex = parse
   | "TRUE"               { TRUE } 
   | "FALSE"              { FALSE }
   | "&&"                 { AND } 
+	| "||"                 { OR }
+	| "^^"                 { BXR }
   | "NOT"                { NOT }
   | "="                  { BEQ }
 	| "<"                  { BL  }
@@ -48,6 +50,7 @@ rule lex = parse
  
   | ';'                  { SC } 
   | ":="                 { ASSIGN }
+	| "!="								 { BNE }
   | '+'                  { PLUS }
   | '-'                  { MINUS }
   | '*'                  { MULT }              

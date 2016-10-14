@@ -6,7 +6,7 @@
 %token <State__StateGen.id> ID 
 %token <int> INTVAL
 %token IF THEN ELSE END WHILE DO DONE FOR
-%token TRUE FALSE AND NOT BEQ BLE BBE BL BB
+%token TRUE FALSE AND NOT BEQ BLE BBE BL BB BNE OR BXR
 %token SC LP RP ASSIGN PLUS MINUS MULT
 %token EOF
 %token <string> STRINGVAL
@@ -55,12 +55,15 @@ bexpr:
   | TRUE                           { Btrue }
   | FALSE                          { Bfalse }
   | bexpr AND bexpr                { Band ($1, $3) }
+	| bexpr OR bexpr                 { Bnot (Band (Bnot $1, Bnot $3)) }
+	| bexpr BXR bexpr                { Band (Bnot (Band (Bnot $1, Bnot $3)), Bnot (Band ($1, $3)))  }
   | NOT bexpr                      { Bnot ($2) }
 	| aexpr BL aexpr                 { Ble ($1, Asub ($3, Anum (of_int 1))) }
 	| aexpr BB aexpr                 { Ble (Aadd ($3, Anum (of_int 1)), $1 ) }
   | aexpr BEQ aexpr                { Beq ($1, $3) }
   | aexpr BLE aexpr                { Ble ($1, $3) }
 	| aexpr BBE aexpr                { Ble ($3, $1) }
+	| aexpr BNE aexpr                { Bnot (Beq ($1, $3)) }
 
 
 aexpr:
