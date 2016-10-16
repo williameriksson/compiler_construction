@@ -57,8 +57,48 @@ let pop reg = [Mlw (reg, 0, SP); Maddi (SP, SP, 4)]
  
 (*let li n = [Mlui (T0, n / 65536); Mori (T0, T0, n)] (* 2^16 = 65536 *) *)
 
+let first = function (x, y) -> x
+let second = function (x, y) -> y
 let cache_list : (int * int) list ref = ref [] (* [ (id1,reg1); (id2, reg2) ]  *)
 
+let rec print_list = function 
+  | [] -> ()
+  | e::l -> print_string "("; print_int (first e) ; print_string "," ; print_int (second e) ; print_string ")"; print_list l
+
+let rec replace_var _id reg lst =
+	match lst with
+	| [] -> (_id, reg) :: []
+	| ((a_id, a_reg) :: l) when a_id = _id -> (_id, reg) :: l
+	| (a :: l) -> a :: (replace_var _id reg l)
+
+
+let cache_var _id reg =
+	(*print_list !cache_list;*)
+	(*print_int (List.length !cache_list);
+	print_string (", ");*)
+	cache_list := replace_var _id reg !cache_list
+
+let rec find_var _id lst =
+    match lst with
+    | [] -> 1337
+    | ((a_id, a_reg) :: l) when a_id = _id -> a_reg
+    | (a :: l) -> (find_var _id l)
+
+let get_cached _id =
+	
+	  (*print_int (_id);
+		print_string (", ");*)
+    find_var _id !cache_list
+(*
+let get_cached _id =
+	print_int (_id);
+	let tuple = List.find (fun (a_id, _) -> a_id = _id) !cache_list in
+	second tuple*)
+(*
+let cache_var _id reg = 
+	if List.exists (fun (a_id, _) -> a_id = _id) !cache_list then
+    let tuple = List.find (fun (a_id, _) -> a_id = _id) !cache_list in
+*)		
 
 let count = ref (0)
 let newlabel () =
@@ -94,6 +134,25 @@ let instr_to_str (instr : m_instr) : string =
 	| Mlw (rt, ofs, rs)   -> "lw   " ^ (rofsr rt ofs rs)
 	| Mmove (rt, rs)      -> "move " ^ (rr rt rs)
 
+
+
+let rec compile_aexpr (exp : aexpr) (reg : int) : m_instr_list =
+    match exp with
+    | Anum n       -> [Mli (T reg, to_int n)]
+    | Avar (Id id) -> [](*[Mlw (T reg, (to_int id)*4, GP)]*)
+		| Aadd (Avar (Id x), Avar (Id y)) -> let reg_x = get_cached (to_int x) in
+		                                     let reg_y = get_cached (to_int y) in
+																				 [Madd (T reg, T reg_x, T reg_y)]
+		| Aadd (Avar (Id x), Anum n) -> let reg_x = get_cached (to_int x) in
+                                    [Madd (T reg, T reg_x, T reg); Mli (T reg, (to_int n))]
+    | Aadd ((Anum n), Avar (Id x)) -> let reg_x = get_cached (to_int x) in
+                                      [Madd (T reg, T reg, T reg_x)] @ [Mli (T reg, to_int n)]
+		| Aadd ((Anum n1), (Anum n2)) ->  [Madd (T reg, T reg, T (reg + 1))] @ [Mli (T (reg + 1), to_int n2)] @ [Mli (T reg, to_int n1)]
+    | Aadd (a, b)  -> [Madd (T reg, T reg, T (reg + 1))] @ compile_aexpr b (reg + 1) @ compile_aexpr a reg
+    | Asub (a, b)  -> [Msub (T reg, T reg, T (reg + 1))] @ compile_aexpr b (reg + 1) @ compile_aexpr a reg  
+    | Amul (a, b)  -> raise (CompilerError "multiplication currently not supported") (* TODO *)
+
+(*
 let rec compile_aexpr (exp : aexpr) (reg : int) : m_instr_list =
     match exp with
     | Anum n       -> [Mli (T reg, to_int n)]
@@ -101,7 +160,7 @@ let rec compile_aexpr (exp : aexpr) (reg : int) : m_instr_list =
     | Aadd (a, b)  -> compile_aexpr a reg @ compile_aexpr b (reg + 1) @ [Madd (T reg, T reg, T (reg + 1))]
     | Asub (a, b)  -> compile_aexpr a reg @ compile_aexpr b (reg + 1) @ [Msub (T reg, T reg, T (reg + 1))]
     | Amul (a, b)  -> raise (CompilerError "multiplication currently not supported") (* TODO *)
-
+*)
 
 let rec compile_bexpr (exp : bexpr) (reg : int) (label : string) (not_op : bool) =
     match exp with
@@ -116,23 +175,22 @@ let rec compile_bexpr (exp : bexpr) (reg : int) (label : string) (not_op : bool)
         let _dest = if not_op then _and else label in 
         let cond1 = compile_bexpr b1 reg _dest false in
         let cond2 = compile_bexpr b2 (reg + 1) label not_op in
-        cond1 @ [Mlab _and] @ cond2
+        cond2 @ [Mlab _and] @ cond1
     | Beq (a, b) -> 
         let expr1 = compile_aexpr a reg in
         let expr2 = compile_aexpr b (reg + 1) in
-        expr1 @ expr2 @ if not_op then
+        expr2 @ expr1 @ if not_op then
               [Mbeq (T reg, T (reg + 1), label)] 
             else 
               [Mbne (T reg, T (reg + 1), label)]
     | Ble (a, b) -> 
         let expr1 = compile_aexpr a reg in
         let expr2 = compile_aexpr b (reg + 1) in
-          expr1 @ expr2 @ 
 					if not_op then 
-						[Msub (AT, T reg, T (reg + 1)); Mblez (AT, label)]
+						[Mblez (AT, label); Msub (AT, T reg, T (reg + 1))] @ expr2 @ expr1
            (* [Mslt (AT, T reg, T (reg + 1)); Mbne (AT, ZE, label)] *) (* This is off by one... *)
           else
-						[Msub (AT, T (reg + 1), T reg); Mbltz (AT, label)]
+						[Mbltz (AT, label); Msub (AT, T (reg + 1), T reg)] @ expr2 @ expr1
            (* [Mslt (AT, T reg, T (reg + 1)); Mbeq (AT, ZE, label)]*) (* This is off by one... *)
 
 				
@@ -151,8 +209,33 @@ let string_of_m_prog p =
 	  | [] -> ""
 	in pre_str ^ prog_print(p @ Mlab "halt" :: [Mbeq (AT, AT, "halt")])
 
+(* TODO: match all cases for Cassign, Aadd, Asub and so on to be able to get cached vars, that is, for e.g. Cassign (Id id, Anum n) Cassign (Id id, Avar x)*)
 
 let rec m_compile_com (cmd : com) =
+    match cmd with
+    | Cskip                  -> []
+		(*| Cassign (Id id, Anum n) ->*) 
+    | Cassign (Id id, n)     -> let reg = get_reg () in cache_var (to_int id) reg; compile_aexpr n reg (*@ [Msw (T reg, (to_int id)*4, GP)]*)
+    | Cif (cond, tcmd, fcmd) -> 
+        let labelnr = newlabel () in
+        let _else = "else" ^ string_of_int labelnr in 
+        let _endif = "endif" ^ string_of_int labelnr in
+        let true_code = m_compile_com tcmd @ branch _endif in
+        let false_code = m_compile_com fcmd in
+                let reg = get_reg () in
+                [Mlab _endif] @ false_code @ [Mlab _else] @ true_code @ compile_bexpr cond reg _else false
+    | Cseq (cmd1, cmd2) -> m_compile_com cmd2 @ m_compile_com cmd1
+    | Cwhile (cond, cmd) -> 
+        let labelnr = newlabel () in
+        let _while = "while" ^ string_of_int labelnr in 
+        let _endwhile = "endwhile" ^ string_of_int labelnr in
+        let code = m_compile_com cmd in
+                let reg = get_reg () in
+        let w_cond = compile_bexpr cond reg _endwhile false in
+            [Mlab _endwhile] @ [Mbeq(T reg, T reg, _while)] @ code @ w_cond @ [Mlab _while]
+				
+
+(*let rec m_compile_com (cmd : com) =
     match cmd with
     | Cskip                  -> []
     | Cassign (Id id, n)     -> let reg = get_reg () in compile_aexpr n reg @ [Msw (T reg, (to_int id)*4, GP)]
@@ -172,5 +255,5 @@ let rec m_compile_com (cmd : com) =
         let code = m_compile_com cmd in
 				let reg = get_reg () in
         let w_cond = compile_bexpr cond reg _endwhile false in
-        [Mlab _while] @ w_cond @ code @ [Mbeq(T reg, T reg, _while)] @ [Mlab _endwhile]
+        [Mlab _while] @ w_cond @ code @ [Mbeq(T reg, T reg, _while)] @ [Mlab _endwhile] *)
 
