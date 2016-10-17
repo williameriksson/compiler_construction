@@ -139,17 +139,25 @@ let instr_to_str (instr : m_instr) : string =
 let rec compile_aexpr (exp : aexpr) (reg : int) : m_instr_list =
     match exp with
     | Anum n       -> [Mli (T reg, to_int n)]
-    | Avar (Id id) -> [](*[Mlw (T reg, (to_int id)*4, GP)]*)
+    | Avar (Id id) -> [Mmove (T reg, T (get_cached (to_int id)))](*[Mlw (T reg, (to_int id)*4, GP)]*)
 		| Aadd (Avar (Id x), Avar (Id y)) -> let reg_x = get_cached (to_int x) in
 		                                     let reg_y = get_cached (to_int y) in
 																				 [Madd (T reg, T reg_x, T reg_y)]
 		| Aadd (Avar (Id x), Anum n) -> let reg_x = get_cached (to_int x) in
-                                    [Madd (T reg, T reg_x, T reg); Mli (T reg, (to_int n))]
+                                    [Maddi (T reg, T reg_x, to_int n)](*; Mli (T reg, (to_int n))]*)
     | Aadd ((Anum n), Avar (Id x)) -> let reg_x = get_cached (to_int x) in
-                                      [Madd (T reg, T reg, T reg_x)] @ [Mli (T reg, to_int n)]
+                                      [Maddi (T reg, T reg_x, to_int n)](* @ [Mli (T reg, to_int n)]*)
 		| Aadd ((Anum n1), (Anum n2)) ->  [Madd (T reg, T reg, T (reg + 1))] @ [Mli (T (reg + 1), to_int n2)] @ [Mli (T reg, to_int n1)]
-    | Aadd (a, b)  -> [Madd (T reg, T reg, T (reg + 1))] @ compile_aexpr b (reg + 1) @ compile_aexpr a reg
-    | Asub (a, b)  -> [Msub (T reg, T reg, T (reg + 1))] @ compile_aexpr b (reg + 1) @ compile_aexpr a reg  
+    | Aadd (a, b)  -> (*[Madd (T reg, T reg, T (reg + 1))] @*) compile_aexpr b (reg + 1) @ compile_aexpr a reg
+		| Asub (Avar (Id x), Avar (Id y)) -> let reg_x = get_cached (to_int x) in
+                                         let reg_y = get_cached (to_int y) in
+                                         [Msub (T reg, T reg_x, T reg_y)]
+    | Asub (Avar (Id x), Anum n) -> let reg_x = get_cached (to_int x) in
+                                    [Maddi (T reg, T reg_x, -(to_int n))](*; Mli (T reg, (to_int n))]*)
+    | Asub ((Anum n), Avar (Id x)) -> let reg_x = get_cached (to_int x) in
+                                      [Maddi (T reg, T reg_x, -(to_int n))](* @ [Mli (T reg, to_int n)]*)
+    | Asub ((Anum n1), (Anum n2)) ->  [Msub (T reg, T reg, T (reg + 1))] @ [Mli (T (reg + 1), to_int n2)] @ [Mli (T reg, to_int n1)]
+    | Asub (a, b)  -> (*[Msub (T reg, T reg, T (reg + 1))] @*) compile_aexpr b (reg + 1) @ compile_aexpr a reg  
     | Amul (a, b)  -> raise (CompilerError "multiplication currently not supported") (* TODO *)
 
 (*
