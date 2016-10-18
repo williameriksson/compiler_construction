@@ -5,22 +5,39 @@ module AexprOpt
   use export int.Int
   use export imp.Imp
 
+
   let rec aexpr_opt (e : aexpr) : aexpr
     variant { e }
     ensures { forall s. aeval s result = aeval s e }
   =
     match e with
     | Anum n    ->  Anum n
-    | Aadd (Anum n1) (Anum n2) -> Anum (n1 + n2)
-    | Aadd (Anum n) (Avar x)   ->  if n = 0 then Avar x else Aadd (Anum n) (Avar x);
-    | Aadd (Avar x) (Anum n)   ->  if n = 0 then Avar x else Aadd (Avar x) (Anum n);
-    | Aadd l r                 ->  Aadd (aexpr_opt l) (aexpr_opt r)
-    | Asub (Anum n1) (Anum n2) -> Anum (n1 - n2)
-    | Asub (Avar x) (Anum n)   ->  if n = 0 then Avar x else Asub (Avar x) (Anum n);
-    | Asub l r ->  if (aexpr_opt l) = (aexpr_opt r) then Anum 0 else Asub (aexpr_opt l) (aexpr_opt r);
-    | Amul l r ->  if (aexpr_opt l) = Anum 0 || (aexpr_opt r) = Anum 0 then Anum 0 else Amul (aexpr_opt l) (aexpr_opt r);
+    | Aadd a1 a2 -> let opt_a1 = aexpr_opt a1 in
+                    let opt_a2 = aexpr_opt a2 in
+                      match opt_a1, opt_a2 with
+                      | (Anum n1), (Anum n2) -> Anum (n1 + n2)
+                      | _ , (Anum n)         -> if n = 0 then opt_a1 else Aadd opt_a1 opt_a2
+                      | (Anum n), _          -> if n = 0 then opt_a2 else Aadd opt_a1 opt_a2
+                      | _ , _                -> Aadd opt_a1 opt_a2
+                      end
+    | Asub a1 a2 -> let opt_a1 = aexpr_opt a1 in
+                    let opt_a2 = aexpr_opt a2 in
+                      match opt_a1, opt_a2 with
+                      | (Anum n1), (Anum n2) -> Anum (n1 - n2)
+                      | _ , (Anum n)         -> if n = 0 then opt_a1 else Asub opt_a1 opt_a2
+                      | _ , _                -> if opt_a1 = opt_a2 then Anum 0 else Asub opt_a1 opt_a2
+                      end
+    | Amul a1 a2 -> let opt_a1 = aexpr_opt a1 in
+                    let opt_a2 = aexpr_opt a2 in
+                      match opt_a1, opt_a2 with
+                      | _ , (Anum n) -> if n = 0 then Anum 0 else Amul opt_a1 opt_a2
+                      | (Anum n), _  -> if n = 0 then Anum 0 else Amul opt_a1 opt_a2
+                      | _ , _        -> Amul opt_a1 opt_a2
+                      end
     | Avar x ->  Avar x
     end
+
+
 
   let rec bexpr_opt (e : bexpr) : bexpr
     variant { e }
@@ -29,38 +46,130 @@ module AexprOpt
     match e with
     | Btrue      -> Btrue
     | Bfalse     -> Bfalse
-    | Band Btrue Btrue -> Btrue
-    | Band _ Bfalse -> Bfalse
-    | Band Bfalse _ -> Bfalse
     | Band b1 b2 -> let opt_b1 = bexpr_opt b1 in
                     let opt_b2 = bexpr_opt b2 in
-                    if opt_b1 = opt_b2 then opt_b1 else Band opt_b1 opt_b2;
-    | Bnot Btrue -> Bfalse
-    | Bnot Bfalse -> Btrue
-    | Bnot b -> Bnot (bexpr_opt b)
-    | Beq (Anum n1) (Anum n2) -> if n1 = n2 then Btrue else Bfalse;
-    | Beq a1 a2 -> Beq (aexpr_opt a1) (aexpr_opt a2)
-    | Ble (Anum n1) (Anum n2) -> if n1 <= n2 then Btrue else Bfalse;
-    | Ble a1 a2 -> Ble (aexpr_opt a1) (aexpr_opt a2)
+                      match opt_b1, opt_b2 with
+                      | Btrue, Btrue -> Btrue
+                      | _ , Bfalse   -> Bfalse
+                      | Bfalse, _    -> Bfalse
+                      | _ , _        -> if opt_b1 = opt_b2 then
+                                          opt_b1
+                                        else
+                                          Band opt_b1 opt_b2
+                      end
+    | Bnot b -> let opt_b = bexpr_opt b in
+                  match opt_b with
+                  | Btrue  -> Bfalse
+                  | Bfalse -> Btrue
+                  | _      -> Bnot opt_b
+                  end
+    | Beq a1 a2 -> let opt_a1 = aexpr_opt a1 in
+                   let opt_a2 = aexpr_opt a2 in
+                     match opt_a1, opt_a2 with
+                     | (Anum n1), (Anum n2) -> if n1 = n2 then Btrue else Bfalse
+                     | _ , _                -> if opt_a1 = opt_a2 then Btrue else Beq opt_a1 opt_a2
+                     end
+    | Ble a1 a2 -> let opt_a1 = aexpr_opt a1 in
+                   let opt_a2 = aexpr_opt a2 in
+                     match opt_a1, opt_a2 with
+                     | (Anum n1), (Anum n2) -> if n1 <= n2 then Btrue else Bfalse;
+                     | _ , _ -> if opt_a1 = opt_a2 then Btrue else Ble opt_a1 opt_a2
+                     end
     end
+
+
+
 
   let rec com_opt (e : com) : com
     variant { e }
-    ensures { forall s. ceval s result s = ceval s e s }
+    ensures { forall s s2. ceval s result s2 = ceval s e s2 }
   =
     match e with
     | Cskip -> Cskip
     | Cassign id a -> Cassign id (aexpr_opt a)
-    | Cif Btrue c1 _ -> com_opt c1
-    | Cif Bfalse _ c2 -> com_opt c2
-    | Cif b c1 c2 -> let opt_b = bexpr_opt b in
-                     let opt_c1 = com_opt c1 in
-                     let opt_c2 = com_opt c2 in
-                     if opt_b = Btrue then opt_c1
-                     else if opt_b = Bfalse then opt_c2
-                     else Cif opt_b opt_c1 opt_c2;
-    | Cseq c1 c2 -> Cseq (com_opt c1) (com_opt c2)
-    | Cwhile Bfalse _ -> Cskip
-    | Cwhile b c -> Cwhile (bexpr_opt b) (com_opt c)
+    | Cif b c1 c2  -> let opt_b = bexpr_opt b in
+                      let opt_c1 = com_opt c1 in
+                      let opt_c2 = com_opt c2 in
+                        match opt_b with
+                        | Btrue  -> opt_c1
+                        | Bfalse -> opt_c2
+                        | _      -> Cif opt_b opt_c1 opt_c2
+                        end
+    | Cseq c1 c2   -> Cseq (com_opt c1) (com_opt c2)
+    | Cwhile b c   -> let opt_b = bexpr_opt b in
+                      let opt_c = com_opt c in
+                        match opt_b with
+                        | Bfalse -> Cskip
+                        | _      -> Cwhile opt_b opt_c
+                        end
     end
 end
+
+
+
+(*
+  let rec aexpr_opt (e : aexpr) : aexpr
+    variant { e }
+    ensures { forall s. aeval s result = aeval s e }
+  =
+    match e with
+    | Anum n    ->  Anum n
+    | Aadd (Anum n1) (Anum n2) -> Anum (n1 + n2)
+    | Aadd (Anum n) (Avar x)   -> if n = 0 then Avar x else Aadd (Anum n) (Avar x);
+    | Aadd (Avar x) (Anum n)   -> if n = 0 then Avar x else Aadd (Avar x) (Anum n);
+    | Aadd l r                 -> Aadd (aexpr_opt l) (aexpr_opt r)
+    | Asub (Anum n1) (Anum n2) -> Anum (n1 - n2)
+    | Asub (Avar x) (Anum n)   ->  if n = 0 then Avar x else Asub (Avar x) (Anum n);
+    | Asub l r ->  if (aexpr_opt l) = (aexpr_opt r) then Anum 0 else Asub (aexpr_opt l) (aexpr_opt r);
+    | Amul l r ->  if (aexpr_opt l) = Anum 0 || (aexpr_opt r) = Anum 0 then Anum 0 else Amul (aexpr_opt l) (aexpr_opt r);
+    | Avar x ->  Avar x
+    end
+*)
+
+(*
+
+let rec bexpr_opt (e : bexpr) : bexpr
+  variant { e }
+  ensures { forall s. beval s result = beval s e }
+=
+  match e with
+  | Btrue      -> Btrue
+  | Bfalse     -> Bfalse
+  | Band Btrue Btrue -> Btrue
+  | Band _ Bfalse -> Bfalse
+  | Band Bfalse _ -> Bfalse
+  | Band b1 b2 -> let opt_b1 = bexpr_opt b1 in
+                  let opt_b2 = bexpr_opt b2 in
+                  if opt_b1 = opt_b2 then opt_b1 else Band opt_b1 opt_b2;
+  | Bnot Btrue -> Bfalse
+  | Bnot Bfalse -> Btrue
+  | Bnot b -> Bnot (bexpr_opt b)
+  | Beq (Anum n1) (Anum n2) -> if n1 = n2 then Btrue else Bfalse;
+  | Beq a1 a2 -> Beq (aexpr_opt a1) (aexpr_opt a2)
+  | Ble (Anum n1) (Anum n2) -> if n1 <= n2 then Btrue else Bfalse;
+  | Ble a1 a2 -> Ble (aexpr_opt a1) (aexpr_opt a2)
+  end
+
+*)
+(*
+let rec com_opt (e : com) : com
+  variant { e }
+  ensures { forall s s2. ceval s result s2 = ceval s e s2 }
+=
+  match e with
+  | Cskip -> Cskip
+  | Cassign id a -> Cassign id (aexpr_opt a)
+  | Cif Btrue c1 _ -> com_opt c1
+  | Cif Bfalse _ c2 -> com_opt c2
+  | Cif b c1 c2 -> let opt_b = bexpr_opt b in
+                   let opt_c1 = com_opt c1 in
+                   let opt_c2 = com_opt c2 in
+                   if opt_b = Btrue then opt_c1
+                   else if opt_b = Bfalse then opt_c2
+                   else Cif opt_b opt_c1 opt_c2;
+  | Cseq c1 c2 -> Cseq (com_opt c1) (com_opt c2)
+  | Cwhile Bfalse _ -> Cskip
+  | Cwhile b c -> Cwhile (bexpr_opt b) (com_opt c)
+  end
+
+*)
