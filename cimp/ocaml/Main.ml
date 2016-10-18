@@ -49,11 +49,11 @@ let main () =
 				*)
 				
 				let m_prog = m_compile_com prog in
-				p_stderr ("MIPS Out : " ^ nl ^ string_of_m_prog (List.rev m_prog) ^ nl); 
+				p_stderr ("MIPS Out : " ^ nl ^ string_of_m_prog m_prog ^ nl); 
         
         
         let oc = open_out opt.outfile in
-        p_oc oc (string_of_m_prog (List.rev m_prog));
+        p_oc oc (string_of_m_prog m_prog);
         close_out oc;
         
         if opt.d_ast then
