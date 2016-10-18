@@ -48,7 +48,9 @@ let main () =
            let prog = com_opt prog in
 				*)
 				
-				let m_prog = m_compile_com prog in
+				
+				let m_prog = compile_mips prog in
+				
 				p_stderr ("MIPS Out : " ^ nl ^ string_of_m_prog m_prog ^ nl); 
         
         

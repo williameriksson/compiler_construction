@@ -92,7 +92,14 @@ let get_cached _id =
   find_var _id !cache_list
 
 let is_cached _id =
-  List.exists (fun (a_id, _) -> a_id = _id) !cache_list 
+  List.exists (fun (a_id, _) -> a_id = _id) !cache_list
+	
+
+let rec write_back_cache lst =
+	match lst with
+	| [] -> [] 
+  | (id, reg) :: l -> [Msw (T reg, id * 4 , GP)] @ write_back_cache l
+
 
 let count = ref (0)
 let newlabel () =
@@ -211,12 +218,14 @@ let rec compile_bexpr (exp : bexpr) (reg : int) (label : string) (not_op : bool)
   | Btrue         -> if not_op then branch label else [] 
   | Bfalse        -> if not_op then [] else branch label 
   | Bnot b        -> compile_bexpr b reg label (not not_op)
+
   | Band (b1, b2) -> let labelnr = newlabel () in
                      let _and = "and" ^ string_of_int labelnr in
                      let _dest = if not_op then _and else label in 
                      let cond1 = compile_bexpr b1 reg _dest false in
                      let cond2 = compile_bexpr b2 (reg + 1) label not_op in
                        cond2 @ [Mlab _and] @ cond1
+											
   | Beq (a, b)    -> let expr1 = compile_aexpr a reg in
                      let expr2 = compile_aexpr b (reg + 1) in
                        expr2 @ expr1 @ 
@@ -224,7 +233,20 @@ let rec compile_bexpr (exp : bexpr) (reg : int) (label : string) (not_op : bool)
                          [Mbeq (T reg, T (reg + 1), label)] 
                        else 
                          [Mbne (T reg, T (reg + 1), label)]
-  | Ble (a, b)    -> let expr1 = compile_aexpr a reg in (* Probably need to make specific cases here also and above *)
+								
+	| Ble (Avar (Id x), Anum n) -> let reg_x = get_cached (to_int x) in
+                                   if is_cached (to_int x) then
+															       if not_op then 
+                                       [Mblez (AT, label); Msub (AT, T reg_x, T reg); Mli (T reg, (to_int n))]
+                                     else
+                                       [Mbltz (AT, label); Msub (AT, T reg, T reg_x); Mli (T reg, (to_int n))]
+                                   else
+																     if not_op then 
+                                       [Mblez (AT, label); Msub (AT, T reg, T (reg + 1)); Mlw (T reg, (to_int x)*4, GP); Mli (T (reg + 1), (to_int n))]
+                                     else
+                                       [Mbltz (AT, label); Msub (AT, T (reg + 1), T reg); Mlw (T reg, (to_int x)*4, GP); Mli (T (reg + 1), (to_int n))]
+																			
+  | Ble (a, b)    -> let expr1 = compile_aexpr a reg in
                      let expr2 = compile_aexpr b (reg + 1) in
                        if not_op then 
                          [Mblez (AT, label); Msub (AT, T reg, T (reg + 1))] @ expr2 @ expr1
@@ -250,6 +272,7 @@ let string_of_m_prog p =
 let cache_helper _id reg n=
 	cache_var _id reg;
 	compile_aexpr n reg
+
 	
 let rec m_compile_com (cmd : com) =
   match cmd with
@@ -279,4 +302,8 @@ let rec m_compile_com (cmd : com) =
                               let code = m_compile_com cmd in
                               let reg = get_reg () in
                               let w_cond = compile_bexpr cond reg _endwhile false in
-                                [Mlab _endwhile] @ [Mbeq (T reg, T reg, _while)] @ code @ w_cond @ [Mlab _while]
+                                [Mlab _endwhile] @ [Mbeq (AT, AT, _while)] @ code @ w_cond @ [Mlab _while]
+																
+let compile_mips (cmd : com) =
+  let the_prog = m_compile_com cmd in
+    write_back_cache !cache_list @ the_prog
