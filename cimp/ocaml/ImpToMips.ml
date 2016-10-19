@@ -154,7 +154,7 @@ let rec compile_aexpr (exp : aexpr) (reg : int) : m_instr_list =
                                            [Madd (T reg, T reg_y, T reg)] @ compile_aexpr (Anum x) reg
                                          else
                                            [Madd (T reg, T reg, T (reg + 1))] @ compile_aexpr (Anum y) (reg + 1) @ compile_aexpr (Anum x) reg
-																						
+																						(*above is wrong? should be Avar y and Avar x???*)
   | Aadd (Avar (Id x), Anum n)      -> let reg_x = get_cached (to_int x) in
                                          if is_cached (to_int x) then
                                            [Maddi (T reg, T reg_x, to_int n)]

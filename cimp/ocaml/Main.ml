@@ -16,7 +16,8 @@ open Vm_ex__VmEx
 open Imp_ex__ImpEx
 open Env
 open Why3extract.Why3__BigInt
-open ImpToMips
+(* open ImpToMips *)
+open ImpToMips_pass_l
 open Ast_opt__AexprOpt
 
 
@@ -43,14 +44,14 @@ let main () =
       lexbuf.lex_curr_p <- { lexbuf.lex_curr_p with pos_fname = opt.infile };
       try
 				let prog = getProg opt.optim lexbuf in
-				(*let prog = Parser.prog Lexer.lex lexbuf in
-        if opt.optim then 
-           let prog = com_opt prog in
-				*)
 				
 				
-				let m_prog = compile_mips prog in
+				(* let m_prog = compile_mips prog in *)
 				
+				(*let c = second (m_compile_com prog, []) in
+				print_int (List.length c); *)
+				let (m_prog, c) = m_compile_com prog [] in
+				(*let m_prog = m_compile_com prog in *)
 				p_stderr ("MIPS Out : " ^ nl ^ string_of_m_prog m_prog ^ nl); 
         
         
