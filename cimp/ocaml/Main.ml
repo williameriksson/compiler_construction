@@ -52,11 +52,11 @@ let main () =
 				print_int (List.length c); *)
 				let (m_prog, c) = m_compile_com prog [] in
 				(*let m_prog = m_compile_com prog in *)
-				p_stderr ("MIPS Out : " ^ nl ^ string_of_m_prog m_prog ^ nl); 
+				p_stderr ("MIPS Out : " ^ nl ^ string_of_m_prog m_prog c ^ nl); 
         
         
         let oc = open_out opt.outfile in
-        p_oc oc (string_of_m_prog m_prog);
+        p_oc oc (string_of_m_prog m_prog c);
         close_out oc;
         
         if opt.d_ast then
