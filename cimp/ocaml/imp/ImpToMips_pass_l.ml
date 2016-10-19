@@ -126,7 +126,7 @@ let rec compile_aexpr (exp : aexpr) (reg : int) (cache_list : c_list) : tuple =
     | Avar (Id id) -> if is_cached (to_int id) cache_list then 
 		                    [Mmove (T reg, T (get_cached (to_int id) cache_list))], cache_list 
 											else
-											  [Mlw (T reg, (to_int id)*4, GP)], cache_list
+											  [Mlw (T reg, (to_int id)*4, GP)], cache_var (to_int id) reg cache_list
     
 		| Aadd (Avar (Id x), Avar (Id y)) -> let reg_x = get_cached (to_int x) cache_list in
                                          let reg_y = get_cached (to_int y) cache_list in
@@ -229,30 +229,114 @@ let rec compile_bexpr (exp : bexpr) (reg : int) (label : string) (not_op : bool)
           else 
             l1 @ l2 @ [Mbne (T reg, T (reg + 1), label)], c1
     
+		| Ble (Avar (Id x), Avar (Id y)) -> let reg_x = get_cached (to_int x) cache_list in
+		                               let reg_y = get_cached (to_int y) cache_list in
+																	   if is_cached (to_int x) cache_list && is_cached (to_int y) cache_list then
+																		  if not_op then
+																				[Msub (AT, T reg_x, T reg_y);
+                                         Mblez (AT, label)], cache_list
+																			else
+		                                    [Msub (AT, T reg_y, T reg_x);
+                                         Mblez (AT, label)], cache_list
+                                     else if is_cached (to_int x) cache_list then
+																			 let (l, c) = compile_aexpr (Avar (Id y)) reg cache_list in
+																		     if not_op then
+																				   l @ 
+																					 [Msub (AT, T reg_x, T reg);
+																					  Mblez (AT, label)], c
+																					else
+																						l @ 
+                                            [Msub (AT, T reg, T reg_x);
+                                             Mblez (AT, label)], c
+																		 else if is_cached (to_int y) cache_list then
+                                       let (l, c) = compile_aexpr (Avar (Id y)) reg cache_list in
+                                         if not_op then
+                                           l @ 
+                                           [Msub (AT, T reg, T reg_y);
+                                            Mblez (AT, label)], c
+                                         else
+                                           l @ 
+                                           [Msub (AT, T reg_y, T reg);
+                                            Mblez (AT, label)], c   
+																		 else
+																			 let (l1, c1) = compile_aexpr (Avar (Id x)) reg cache_list in
+                                       let (l2, c2) = compile_aexpr (Avar (Id y)) (reg + 1) c1 in
+																		     if not_op then
+																				   l1 @ l2 @
+																					 [Msub (AT, T reg, T (reg + 1));
+                                            Mblez (AT, label)], c2
+																				 else
+                                           [Msub (AT, T (reg + 1), T reg);
+                                            Mblez (AT, label)], c2
+																					
+																			   
+																				   
+																				
     | Ble (Avar (Id x), Anum n) -> let reg_x = get_cached (to_int x) cache_list in
                                      if is_cached (to_int x) cache_list then
                                        if not_op then 
-                                         [Mli (T reg, (to_int n)); Msub (AT, T reg_x, T reg); Mblez (AT, label)], cache_list
-                                       else
-                                         [Mli (T reg, (to_int n)); Msub (AT, T reg, T reg_x); Mbltz (AT, label) ], cache_list
-                                     else
-                                       if not_op then 
-                                         [Mli (T (reg + 1), (to_int n)); 
-																				  Mlw (T reg, (to_int x)*4, GP); 
-																					Msub (AT, T reg, T (reg + 1)); 
+                                         [Mli (T reg, (to_int n));
+																				  Msub (AT, T reg_x, T reg);
 																					Mblez (AT, label)], cache_list
                                        else
-                                         [Mli (T (reg + 1), (to_int n));
-																				  Mlw (T reg, (to_int x)*4, GP);
-																					Msub (AT, T (reg + 1), T reg);
+                                         [Mli (T reg, (to_int n));
+																				  Msub (AT, T reg, T reg_x);
 																					Mbltz (AT, label)], cache_list
-		
+                                     else
+                                       if not_op then
+																				 let (l1, c1) = compile_aexpr (Avar (Id x)) reg cache_list in
+																				 let (l2, c2) = compile_aexpr (Anum n) (reg + 1) c1 in
+																				   l1 @ l2 @
+                                           [Msub (AT, T reg, T (reg + 1)); 
+																					  Mblez (AT, label)], c2
+                                       else
+                                         let (l1, c1) = compile_aexpr (Avar (Id x)) reg cache_list in
+                                         let (l2, c2) = compile_aexpr (Anum n) (reg + 1) c1 in
+                                           l1 @ l2 @
+                                             [Msub (AT, T (reg + 1), T reg); 
+                                              Mblez (AT, label)], c2
+
+    | Ble (Anum n, Avar (Id x)) -> let reg_x = get_cached (to_int x) cache_list in
+                                     if is_cached (to_int x) cache_list then
+                                       if not_op then 
+                                         [Mli (T reg, (to_int n));
+																				  Msub (AT, T reg, T reg_x);
+																					Mblez (AT, label)], cache_list
+                                       else
+                                         [Mli (T reg, (to_int n));
+																				  Msub (AT, T reg_x, T reg);
+																					Mbltz (AT, label)], cache_list
+                                     else
+                                       if not_op then 
+                                         let (l1, c1) = compile_aexpr (Avar (Id x)) reg cache_list in
+                                         let (l2, c2) = compile_aexpr (Anum n) (reg + 1) c1 in
+                                           l1 @ l2 @
+                                             [Msub (AT, T (reg + 1), T reg); 
+                                              Mblez (AT, label)], c2
+                                       else
+                                         let (l1, c1) = compile_aexpr (Avar (Id x)) reg cache_list in
+                                         let (l2, c2) = compile_aexpr (Anum n) (reg + 1) c1 in
+                                           l1 @ l2 @
+                                           [Msub (AT, T reg, T (reg + 1)); 
+                                            Mblez (AT, label)], c2
+																						
+		| Ble (Anum n1, Anum n2) -> if not_op then
+			                            [Mli (T reg, to_int n1);
+		                               Mli (T (reg + 1), to_int n2);
+																   Msub (AT, T reg, T (reg + 1)); 
+                                   Mblez (AT, label)], cache_list
+																else
+																	[Mli (T reg, to_int n1);
+                                   Mli (T (reg + 1), to_int n2);
+                                   Msub (AT, T (reg + 1), T reg); 
+                                   Mblez (AT, label)], cache_list
+
     | Ble (a, b) -> let (l1, c1) = compile_aexpr a reg cache_list in
-                    let (l2, c2) = compile_aexpr b (reg + 1) cache_list in
+                    let (l2, c2) = compile_aexpr b (reg + 1) c1 in
                       if not_op then 
-                        l1 @ l2 @ [Msub (AT, T reg, T (reg + 1)); Mblez (AT, label)], c1
+                        l1 @ l2 @ [Msub (AT, T reg, T (reg + 1)); Mblez (AT, label)], c2
                       else
-                        l1 @ l2 @ [Msub (AT, T (reg + 1), T reg); Mbltz (AT, label)], c1
+                        l1 @ l2 @ [Msub (AT, T (reg + 1), T reg); Mbltz (AT, label)], c2
                 
 let pre_str = "\t.data" ^ nl ^ 
   "\t.space 1024\t\t# just a placholder" ^ nl ^ 
@@ -284,11 +368,11 @@ let rec m_compile_com (cmd : com) (cache_list : c_list) : tuple =
   | Cif (cond, tcmd, fcmd) -> let labelnr = newlabel () in
                               let _else = "else" ^ string_of_int labelnr in 
                               let _endif = "endif" ^ string_of_int labelnr in
-                              let true_code = first (m_compile_com tcmd cache_list) @ branch _endif in
-                              let false_code = first (m_compile_com fcmd cache_list) in
+                              let (true_code, c1) = (m_compile_com tcmd cache_list) in
+                              let (false_code, c2) = m_compile_com fcmd c1 in
                               let reg = get_reg () in
-                              let (l, c) = compile_bexpr cond reg _else false cache_list in
-                                l @ true_code @ [Mlab _else] @ false_code @ [Mlab _endif], c
+                              let (l, c3) = compile_bexpr cond reg _else false c2 in
+                                l @ true_code @ branch _endif @ [Mlab _else] @ false_code @ [Mlab _endif], c3
 																	
   | Cseq (cmd1, cmd2) -> let (l1, c1) = (m_compile_com cmd1 cache_list) in
                          let (l2, c2) = (m_compile_com cmd2 c1) in
@@ -299,5 +383,5 @@ let rec m_compile_com (cmd : com) (cache_list : c_list) : tuple =
                           let _endwhile = "endwhile" ^ string_of_int labelnr in
                           let reg = get_reg () in
                           let (code, c1) = m_compile_com cmd cache_list in
-                          let (w_cond, c2) = compile_bexpr cond reg _endwhile false cache_list in
-                            [Mlab _while] @ w_cond @ code @ [Mbeq(AT, AT, _while)] @ [Mlab _endwhile], c1
+                          let (w_cond, c2) = compile_bexpr cond reg _endwhile false c1 in
+                            [Mlab _while] @ w_cond @ code @ [Mbeq(AT, AT, _while)] @ [Mlab _endwhile], c2
