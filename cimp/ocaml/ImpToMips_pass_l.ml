@@ -158,7 +158,7 @@ let rec compile_aexpr (exp : aexpr) (reg : int) (cache_list : c_list) : tuple =
                                    l1 @ [Madd (T reg, T reg_x, T new_reg)], c1
 
                                  else
-                                   let (l2, c2) = (compile_aexpr (Avar (Id x)) (reg + 1) c1) in
+                                   let (l2, c2) = (compile_aexpr (Avar (Id x)) (new_reg + 1) c1) in
                                     l1 @ l2 @ [Madd (T reg, T (new_reg + 1), T new_reg)], c2
 
     | Aadd (a, Avar (Id x)) -> let new_reg = get_reg () in
@@ -172,7 +172,8 @@ let rec compile_aexpr (exp : aexpr) (reg : int) (cache_list : c_list) : tuple =
 
 
 
-    | Aadd (a, b)  -> let (l1, c1) = compile_aexpr a reg cache_list in (* Need new_reg here? *)
+    | Aadd (a, b)  -> 
+                      let (l1, c1) = compile_aexpr a reg cache_list in (* Need new_reg here? *)
                       let (l2, c2) = compile_aexpr b (reg + 1) c1 in
                         l1 @ l2 @ [Madd (T reg, T reg, T (reg + 1))], c2
 
@@ -309,13 +310,13 @@ let rec compile_bexpr (exp : bexpr) (reg : int) (label : string) (not_op : bool)
                                     else
                                       l1 @ l2 @ [Msub (AT, T (new_reg + 1), T new_reg); Mbltz (AT, label)], c2
 
-    | Ble (a, b) -> (*let new_reg = get_reg () in*)
-                          let (l1, c1) = compile_aexpr a reg cache_list in
-                    let (l2, c2) = compile_aexpr b (reg + 1) c1 in
+    | Ble (a, b) -> let new_reg = get_reg () in
+                    let (l1, c1) = compile_aexpr a new_reg cache_list in
+                    let (l2, c2) = compile_aexpr b (new_reg + 1) c1 in
                       if not_op then
-                        l1 @ l2 @ [Msub (AT, T reg, T (reg + 1)); Mblez (AT, label)], c2
+                        l1 @ l2 @ [Msub (AT, T new_reg, T (new_reg + 1)); Mblez (AT, label)], c2
                       else
-                        l1 @ l2 @ [Msub (AT, T (reg + 1), T reg); Mbltz (AT, label)], c2
+                        l1 @ l2 @ [Msub (AT, T (new_reg + 1), T new_reg); Mbltz (AT, label)], c2
 
 
 
