@@ -164,29 +164,34 @@ let rec compile_aexpr (exp : aexpr) (reg : int) (cache_list : c_list) : tuple =
     | Aadd (a, Avar (Id x)) -> let new_reg = get_reg () in
                                let (l1, c1) = compile_aexpr a new_reg cache_list in
                                let reg_x = get_cached (to_int x) c1 in
+
                                  if is_cached (to_int x) c1 then
                                    l1 @ [Madd (T reg, T new_reg, T reg_x)], c1
+
                                  else
                                    let (l2, c2) = (compile_aexpr (Avar (Id x)) (new_reg + 1) c1) in
                                     l1 @ l2 @ [Madd (T reg, T new_reg, T (new_reg + 1))], c2
 
 
 
-    | Aadd (a, b)  -> 
-                      let (l1, c1) = compile_aexpr a reg cache_list in (* Need new_reg here? *)
+    | Aadd (a, b)  -> let (l1, c1) = compile_aexpr a reg cache_list in (* Need new_reg here? *)
                       let (l2, c2) = compile_aexpr b (reg + 1) c1 in
                         l1 @ l2 @ [Madd (T reg, T reg, T (reg + 1))], c2
 
     | Asub (Avar (Id x), Avar (Id y)) -> let reg_x = get_cached (to_int x) cache_list in (* Need new_reg here? *)
                                          let reg_y = get_cached (to_int y) cache_list in
+
                                            if (is_cached (to_int x) cache_list && is_cached (to_int y) cache_list) then
                                              [Msub (T reg, T reg_x, T reg_y)], cache_list
+
                                            else if is_cached (to_int x) cache_list then
                                              let (l, c) = compile_aexpr (Avar (Id y)) reg cache_list in
                                                l @ [Msub (T reg, T reg_x, T reg)], c
+
                                            else if is_cached (to_int y) cache_list then
                                              let (l, c) = compile_aexpr (Avar (Id x)) reg cache_list in
                                                l @ [Msub (T reg, T reg, T reg_y)], c
+
                                            else
                                             let (l1, c1) = compile_aexpr (Avar (Id x)) reg cache_list in
                                             let (l2, c2) = compile_aexpr (Avar (Id y)) (reg + 1) c1 in
@@ -228,19 +233,86 @@ let rec compile_bexpr (exp : bexpr) (reg : int) (label : string) (not_op : bool)
                        let _and = "and" ^ string_of_int labelnr in
                        let _dest = if not_op then _and else label in
                        let (cond1, c1) = compile_bexpr b1 reg _dest false cache_list in
-                       let (cond2, c2) = compile_bexpr b2 reg label not_op cache_list in
-                         cond1 @ [Mlab _and] @ cond2, c1
+                       let (cond2, c2) = compile_bexpr b2 (reg + 1) label not_op c1 in
+                         cond1 @ [Mlab _and] @ cond2, c2
+
+    | Beq (Avar (Id x), Avar (Id y)) -> let reg_x = get_cached (to_int x) cache_list in
+                                        let reg_y = get_cached (to_int y) cache_list in
+                                        if is_cached (to_int x) cache_list && is_cached (to_int y) cache_list then
+                                          if not_op then
+                                            [Mbeq (T reg_x, T reg_y, label)], cache_list
+                                          else
+                                            [Mbne (T reg_x, T reg_y, label)], cache_list
+
+                                        else if is_cached (to_int x) cache_list then
+                                          let (l, c) = compile_aexpr (Avar (Id y)) reg cache_list in
+                                          if not_op then
+                                            l @ [Mbeq (T reg_x, T reg, label)], c
+                                          else
+                                            l @ [Mbne (T reg_x, T reg, label)], c
+
+                                        else if is_cached (to_int y) cache_list then
+                                          let (l, c) = compile_aexpr (Avar (Id y)) reg cache_list in
+                                          if not_op then
+                                            l @ [Mbeq (T reg_y, T reg, label)], c
+                                          else
+                                            l @ [Mbne (T reg_y, T reg, label)], c
+
+                                        else
+                                          let (l1, c1) = compile_aexpr (Avar (Id x)) reg cache_list in
+                                          let (l2, c2) = compile_aexpr (Avar (Id y)) (reg + 1) c1 in
+                                          if not_op then
+                                            l1 @ l2 @ [Mbeq (T reg, T (reg + 1), label)], c2
+                                          else
+                                            l1 @ l2 @ [Mbne (T reg, T (reg + 1), label)], c2
+
+    | Beq (Avar (Id x), a) -> let new_reg = get_reg () in
+                              let (l1, c1) = compile_aexpr a new_reg cache_list in
+                              let reg_x = get_cached (to_int x) c1 in
+
+                                if is_cached (to_int x) c1 then
+                                  if not_op then
+                                    l1 @ [Mbeq (T reg_x, T new_reg, label)], c1
+                                  else
+                                    l1 @ [Mbne (T reg_x, T new_reg, label)], c1
+                                else
+
+                                  let (l2, c2) = compile_aexpr (Avar (Id x)) (new_reg + 1) c1 in
+                                    if not_op then
+                                      l1 @ l2 @ [Mbeq (T new_reg, T (new_reg + 1), label)], c2
+                                    else
+                                      l1 @ l2 @ [Mbne (T new_reg, T (new_reg + 1), label)], c2
+
+    | Beq (a, Avar (Id x)) -> let new_reg = get_reg () in
+                              let (l1, c1) = compile_aexpr a new_reg cache_list in
+                              let reg_x = get_cached (to_int x) c1 in
+
+                                if is_cached (to_int x) c1 then
+                                  if not_op then
+                                    l1 @ [Mbeq (T reg_x, T new_reg, label)], c1
+                                  else
+                                    l1 @ [Mbne (T reg_x, T new_reg, label)], c1
+
+                                else
+                                  let (l2, c2) = compile_aexpr (Avar (Id x)) (new_reg + 1) c1 in
+                                    if not_op then
+                                      l1 @ l2 @ [Mbeq (T new_reg, T (new_reg + 1), label)], c2
+                                    else
+                                      l1 @ l2 @ [Mbne (T new_reg, T (new_reg + 1), label)], c2
 
     | Beq (a, b) ->
-        let (l1, c1) = compile_aexpr a reg cache_list in
-        let (l2, c2) = compile_aexpr b reg cache_list in
+        let new_reg = get_reg () in
+        let (l1, c1) = compile_aexpr a new_reg cache_list in
+        let (l2, c2) = compile_aexpr b (new_reg + 1) cache_list in
+
           if not_op then
-            l1 @ l2 @ [Mbeq (T reg, T (reg + 1), label)], c1
+            l1 @ l2 @ [Mbeq (T new_reg, T (new_reg + 1), label)], c1
           else
-            l1 @ l2 @ [Mbne (T reg, T (reg + 1), label)], c1
+            l1 @ l2 @ [Mbne (T new_reg, T (new_reg + 1), label)], c1
 
     | Ble (Avar (Id x), Avar (Id y)) -> let reg_x = get_cached (to_int x) cache_list in
                                         let reg_y = get_cached (to_int y) cache_list in
+
                                         if is_cached (to_int x) cache_list && is_cached (to_int y) cache_list then
                                           if not_op then
                                             [Msub (AT, T reg_x, T reg_y);
@@ -248,6 +320,7 @@ let rec compile_bexpr (exp : bexpr) (reg : int) (label : string) (not_op : bool)
                                           else
                                             [Msub (AT, T reg_y, T reg_x);
                                              Mbltz (AT, label)], cache_list
+
                                         else if is_cached (to_int x) cache_list then
                                           let (l, c) = compile_aexpr (Avar (Id y)) reg cache_list in
                                           if not_op then
@@ -258,6 +331,7 @@ let rec compile_bexpr (exp : bexpr) (reg : int) (label : string) (not_op : bool)
                                             l @
                                             [Msub (AT, T reg, T reg_x);
                                              Mbltz (AT, label)], c
+
                                         else if is_cached (to_int y) cache_list then
                                           let (l, c) = compile_aexpr (Avar (Id y)) reg cache_list in
                                           if not_op then
@@ -268,6 +342,7 @@ let rec compile_bexpr (exp : bexpr) (reg : int) (label : string) (not_op : bool)
                                             l @
                                             [Msub (AT, T reg_y, T reg);
                                              Mbltz (AT, label)], c
+
                                         else
                                           let (l1, c1) = compile_aexpr (Avar (Id x)) reg cache_list in
                                           let (l2, c2) = compile_aexpr (Avar (Id y)) (reg + 1) c1 in
@@ -283,11 +358,13 @@ let rec compile_bexpr (exp : bexpr) (reg : int) (label : string) (not_op : bool)
     | Ble (Avar (Id x), a) -> let new_reg = get_reg () in
                               let (l1, c1) = compile_aexpr a new_reg cache_list in
                               let reg_x = get_cached (to_int x) c1 in
+
                                 if is_cached (to_int x) c1 then
                                   if not_op then
                                     l1 @ [Msub (AT, T reg_x, T new_reg); Mblez (AT, label)], c1
                                   else
                                     l1 @ [Msub (AT, T new_reg, T reg_x); Mbltz (AT, label)], c1
+
                                 else
                                   let (l2, c2) = compile_aexpr (Avar (Id x)) (new_reg + 1) c1 in
                                     if not_op then
@@ -298,11 +375,13 @@ let rec compile_bexpr (exp : bexpr) (reg : int) (label : string) (not_op : bool)
     | Ble (a, (Avar (Id x))) -> let new_reg = get_reg () in
                                 let (l1, c1) = compile_aexpr a new_reg cache_list in
                                 let reg_x = get_cached (to_int x) c1 in
+
                                 if is_cached (to_int x) c1 then
                                   if not_op then
                                     l1 @ [Msub (AT, T new_reg, T reg_x); Mblez (AT, label)], c1
                                   else
                                     l1 @ [Msub (AT, T reg_x, T new_reg); Mbltz (AT, label)], c1
+
                                 else
                                   let (l2, c2) = compile_aexpr (Avar (Id x)) (new_reg + 1) c1 in
                                     if not_op then
@@ -313,13 +392,59 @@ let rec compile_bexpr (exp : bexpr) (reg : int) (label : string) (not_op : bool)
     | Ble (a, b) -> let new_reg = get_reg () in
                     let (l1, c1) = compile_aexpr a new_reg cache_list in
                     let (l2, c2) = compile_aexpr b (new_reg + 1) c1 in
+
                       if not_op then
                         l1 @ l2 @ [Msub (AT, T new_reg, T (new_reg + 1)); Mblez (AT, label)], c2
                       else
                         l1 @ l2 @ [Msub (AT, T (new_reg + 1), T new_reg); Mbltz (AT, label)], c2
 
+let pre_str = "\t.data" ^ nl ^
+  "\t.space 1024\t\t# just a placholder" ^ nl ^
+  "\t.set noreorder\t\t# necessary to avoid code optimization" ^ nl ^
+  "\t.set noat\t\t# necessary to avoid warning accessing $at" ^ nl ^
+  "\t.text\t\t\t# .text segment (code)" ^ nl ^
+  "\tla $gp, .data\t\t# set gp to accesible data area" ^ nl ^
+    "\t\t\t\t# sp initialized to 0 x80000000 on reset" ^ nl ^ nl
 
+let string_of_m_prog p l=
+  let rec prog_print = function
+  | Mlab label :: ilist -> instr_to_str (Mlab label) ^ nl ^ prog_print ilist
+  | instr :: ilist -> "\t" ^ instr_to_str instr ^ nl ^ prog_print ilist
+  | [] -> ""
+  in pre_str ^ prog_print(p @ write_back_cache l @ Mlab "halt" :: [Mbeq (AT, AT, "halt")])
 
+let rec m_compile_com (cmd : com) (cache_list : c_list) : tuple =
+  match cmd with
+  | Cskip -> [], cache_list
+
+  | Cassign (Id id, a) -> let cached = is_cached (to_int id) cache_list in
+                          let cached_reg = get_cached (to_int id) cache_list in
+                            if cached = false then
+                              let reg = get_reg () in
+                              compile_aexpr a reg (cache_var (to_int id) reg cache_list)
+                            else
+                              compile_aexpr a cached_reg cache_list
+
+  | Cif (cond, tcmd, fcmd) -> let labelnr = newlabel () in
+                              let _else = "else" ^ string_of_int labelnr in
+                              let _endif = "endif" ^ string_of_int labelnr in
+                              let (true_code, c1) = (m_compile_com tcmd cache_list) in
+                              let (false_code, c2) = m_compile_com fcmd c1 in
+                              let reg = get_reg () in
+                              let (l, c3) = compile_bexpr cond reg _else false c2 in
+                                l @ true_code @ branch _endif @ [Mlab _else] @ false_code @ [Mlab _endif], c3
+
+  | Cseq (cmd1, cmd2) -> let (l1, c1) = (m_compile_com cmd1 cache_list) in
+                         let (l2, c2) = (m_compile_com cmd2 c1) in
+                           l1 @ l2, c2
+
+  | Cwhile (cond, cmd) -> let labelnr = newlabel () in
+                          let _while = "while" ^ string_of_int labelnr in
+                          let _endwhile = "endwhile" ^ string_of_int labelnr in
+                          let reg = get_reg () in
+                          let (code, c1) = m_compile_com cmd cache_list in
+                          let (w_cond, c2) = compile_bexpr cond reg _endwhile false c1 in
+                            [Mlab _while] @ w_cond @ code @ [Mbeq(AT, AT, _while)] @ [Mlab _endwhile], c2
 
 
 
@@ -557,50 +682,3 @@ let rec compile_bexpr (exp : bexpr) (reg : int) (label : string) (not_op : bool)
                       else
                         l1 @ l2 @ [Msub (AT, T (reg + 1), T reg); Mbltz (AT, label)], c2
 *)
-let pre_str = "\t.data" ^ nl ^
-  "\t.space 1024\t\t# just a placholder" ^ nl ^
-  "\t.set noreorder\t\t# necessary to avoid code optimization" ^ nl ^
-  "\t.set noat\t\t# necessary to avoid warning accessing $at" ^ nl ^
-  "\t.text\t\t\t# .text segment (code)" ^ nl ^
-  "\tla $gp, .data\t\t# set gp to accesible data area" ^ nl ^
-    "\t\t\t\t# sp initialized to 0 x80000000 on reset" ^ nl ^ nl
-
-let string_of_m_prog p l=
-  let rec prog_print = function
-  | Mlab label :: ilist -> instr_to_str (Mlab label) ^ nl ^ prog_print ilist
-  | instr :: ilist -> "\t" ^ instr_to_str instr ^ nl ^ prog_print ilist
-  | [] -> ""
-  in pre_str ^ prog_print(p @ write_back_cache l @ Mlab "halt" :: [Mbeq (AT, AT, "halt")])
-
-let rec m_compile_com (cmd : com) (cache_list : c_list) : tuple =
-  match cmd with
-  | Cskip -> [], cache_list
-
-  | Cassign (Id id, a) -> let cached = is_cached (to_int id) cache_list in
-                          let cached_reg = get_cached (to_int id) cache_list in
-                            if cached = false then
-                              let reg = get_reg () in
-                              compile_aexpr a reg (cache_var (to_int id) reg cache_list)
-                            else
-                              compile_aexpr a cached_reg cache_list
-
-  | Cif (cond, tcmd, fcmd) -> let labelnr = newlabel () in
-                              let _else = "else" ^ string_of_int labelnr in
-                              let _endif = "endif" ^ string_of_int labelnr in
-                              let (true_code, c1) = (m_compile_com tcmd cache_list) in
-                              let (false_code, c2) = m_compile_com fcmd c1 in
-                              let reg = get_reg () in
-                              let (l, c3) = compile_bexpr cond reg _else false c2 in
-                                l @ true_code @ branch _endif @ [Mlab _else] @ false_code @ [Mlab _endif], c3
-
-  | Cseq (cmd1, cmd2) -> let (l1, c1) = (m_compile_com cmd1 cache_list) in
-                         let (l2, c2) = (m_compile_com cmd2 c1) in
-                           l1 @ l2, c2
-
-  | Cwhile (cond, cmd) -> let labelnr = newlabel () in
-                          let _while = "while" ^ string_of_int labelnr in
-                          let _endwhile = "endwhile" ^ string_of_int labelnr in
-                          let reg = get_reg () in
-                          let (code, c1) = m_compile_com cmd cache_list in
-                          let (w_cond, c2) = compile_bexpr cond reg _endwhile false c1 in
-                            [Mlab _while] @ w_cond @ code @ [Mbeq(AT, AT, _while)] @ [Mlab _endwhile], c2
