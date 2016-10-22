@@ -14,6 +14,7 @@ type m_instr =
   | Madd of m_reg * m_reg * m_reg
   | Maddi of m_reg * m_reg * int
   | Mand of m_reg * m_reg * m_reg
+  | Mandi of m_reg * m_reg * int
   | Mbeq of m_reg * m_reg * string
   | Mbne of m_reg * m_reg * string
   | Mblez of m_reg * string
@@ -27,6 +28,8 @@ type m_instr =
   | Msw of m_reg * int * m_reg
   | Mlw of m_reg * int * m_reg
   | Mmove of m_reg * m_reg
+  | Msll of m_reg * m_reg * int
+  | Msrl of m_reg * m_reg * int
 
 type m_instr_list = m_instr list
 type reg_list = m_reg list
@@ -105,6 +108,7 @@ let instr_to_str (instr : m_instr) : string =
     | Madd (rd, rs, rt)   -> "add  " ^ (rrr rd rs rt)
     | Maddi (rt, rs, n)   -> "addi " ^ (rrofs rt rs n)
     | Mand (rd, rs, rt)   -> "and  " ^ (rrr rd rs rt)
+    | Mandi (rd, rs, n)   -> "andi " ^ (rrofs rd rs n)
     | Mbeq (rs, rt, lab)  -> "beq  " ^ (rrlab rs rt lab)
     | Mbne (rs, rt, lab)  -> "bne  " ^ (rrlab rs rt lab)
     | Mblez (rs, lab)     -> "blez " ^ (rl rs lab)
@@ -118,6 +122,8 @@ let instr_to_str (instr : m_instr) : string =
     | Msw (rt, ofs, rs)   -> "sw   " ^ (rofsr rt ofs rs)
     | Mlw (rt, ofs, rs)   -> "lw   " ^ (rofsr rt ofs rs)
     | Mmove (rt, rs)      -> "move " ^ (rr rt rs)
+    | Msll (rd, rs, n)    -> "sll  " ^ (rrofs rd rs n)
+    | Msrl (rd, rs, n)    -> "srl  " ^ (rrofs rd rs n)
 
 
 
@@ -219,7 +225,25 @@ let rec compile_aexpr (exp : aexpr) (reg : int) (cache_list : c_list) : tuple =
                       let (l2, c2) = compile_aexpr b (reg + 1) c1 in
                         l1 @ l2 @ [Msub (T reg, T reg, T (reg + 1))], c2
 
-    | Amul (a, b)  -> raise (CompilerError "multiplication currently not supported") (* TODO *)
+    (*currently only works properly for non variable multiplication i.e. a = Anum*Anum *)
+    | Amul (a, b)  -> let reg1 = get_reg () in
+                      let reg2 = get_reg () in
+                      let reg3 = get_reg () in
+                      let reg4 = get_reg () in
+                      let (l1, c1) = compile_aexpr a reg1 cache_list in
+                      let (l2, c2) = compile_aexpr b reg2 c1 in
+                      let labelnr = newlabel () in
+                      let label_multi = "multi" ^ string_of_int labelnr in
+                      let label_bitzero = "bitzero" ^ string_of_int labelnr in
+                      let label_zeromulti = "zeromulti" ^ string_of_int labelnr in
+                      let label_done = "done" ^ string_of_int labelnr in
+                      let z1 = [Mbeq (T reg1, ZE, label_zeromulti)] in
+                      let z2 = [Mbeq (T (reg2), ZE, label_zeromulti)] in
+                      l1 @ l2 @ z1 @ z2 @ [Mlab label_multi] @ [Mbeq (T (reg2), ZE, label_done )] @
+                      [Mandi (T (reg3), T (reg2), 1)] @ [Mbeq (T (reg3), ZE, label_bitzero)] @ [Madd (T (reg4), T (reg4), T (reg1))] @
+                      [Mlab label_bitzero] @ [Msrl (T (reg2), T(reg2), 1)] @ [Msll (T reg1, T reg1, 1)] @
+                      [Mbeq (ZE, ZE, label_multi)] @ [Mlab label_zeromulti] @ [Mli (T (reg4), 0)] @ [Mlab label_done] @
+                      [Maddi (T (reg1-1), T (reg4), 0)], c2
 
 
 let rec compile_bexpr (exp : bexpr) (reg : int) (label : string) (not_op : bool) (cache_list : c_list) : tuple =
