@@ -375,6 +375,7 @@ let rec compile_bexpr (exp : bexpr) (reg : int) (label : string) (not_op : bool)
                                             [Msub (AT, T reg, T (reg + 1));
                                              Mblez (AT, label)], c2
                                           else
+																						l1 @ l2 @ 
                                             [Msub (AT, T (reg + 1), T reg);
                                              Mbltz (AT, label)], c2
 

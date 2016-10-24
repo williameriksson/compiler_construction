@@ -30,6 +30,7 @@ module AexprOpt
     | Amul a1 a2 -> let opt_a1 = aexpr_opt a1 in
                     let opt_a2 = aexpr_opt a2 in
                       match opt_a1, opt_a2 with
+                      | (Anum n1), (Anum n2) -> Anum (n1 * n2)
                       | _ , (Anum n) -> if n = 0 then Anum 0 else Amul opt_a1 opt_a2
                       | (Anum n), _  -> if n = 0 then Anum 0 else Amul opt_a1 opt_a2
                       | _ , _        -> Amul opt_a1 opt_a2

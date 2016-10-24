@@ -49,7 +49,7 @@ let string_of_opt opt =
   "outfile      : " ^ opt.outfile ^ nl ^
   "verbose      : " ^ string_of_bool opt.verbose ^ nl ^
   "debug        : " ^ string_of_bool opt.debug ^ nl ^
-	"opt_level    : " ^ string_of_bool opt.optim ^ "optimization" ^ nl ^
+	"optimization : " ^ string_of_bool opt.optim ^ nl ^
   "d_ast        : " ^ string_of_bool opt.d_ast ^ nl ^
   "d_past       : " ^ string_of_bool opt.d_past ^ nl ^
   "d_code       : " ^ string_of_bool opt.d_code ^ nl ^

@@ -12,6 +12,8 @@
 %token <string> STRINGVAL
 
 %left SC
+%left OR
+%left BXR
 %left AND
 %left MINUS PLUS
 %left MULT
