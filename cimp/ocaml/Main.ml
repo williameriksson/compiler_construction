@@ -76,7 +76,8 @@ let main () =
         if opt.imp_ex > 0 then (
           try
             p_stdout ("Execute : imp_ex " ^ string_of_int opt.imp_ex ^ " steps");
-            let st_end = ceval_ex st0 prog (Listaux__TakeDrop.of_int (of_int opt.imp_ex)) in
+            let (st_end, n1) = ceval_ex st0 prog (Listaux__TakeDrop.of_int (of_int opt.imp_ex)) in
+						p_stdout ("Reached Ihalt in " ^  string_of_int (opt.imp_ex - (to_int (Listaux__TakeDrop.to_int n1))) ^ " steps" ^ nl);
             p_stdout ("Memory : " ^ nl ^ string_of_map st_end);
           with
           | _ -> p_stdout "ceval : Exited with an error\n";

@@ -43,7 +43,7 @@ let opt =
   } 
         
 let string_of_opt opt = 
-  "cimp options:" ^ nl ^  
+  "cimp options :" ^ nl ^  
   "infile       : " ^ opt.infile ^ nl ^
   "informat     : " ^ format_to_string opt.infmat ^ nl ^ 
   "outfile      : " ^ opt.outfile ^ nl ^

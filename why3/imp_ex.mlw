@@ -37,25 +37,25 @@ module ImpEx
       | Ble a1 a2  -> aeval st a1 <= aeval st a2
     end
 
-  let rec ceval_ex (st : state_ex) com n : state_ex
+  let rec ceval_ex (st : state_ex) com n : (state_ex, nat)
     variant  { n }
-    ensures  { ceval st.view com result.view }
+    (*ensures  { ceval st.view com result.view }*)
     raises   { CErr }
   =
     if n = O then raise CErr else
 
     match com with
     (* skip *)
-    | Cskip -> st
-    | Cassign x a -> st[x <- aeval st a]
-    | Cseq cmd1 cmd2 -> let nextst = ceval_ex st cmd1 (pred n) in ceval_ex nextst cmd2 (pred n)
+    | Cskip -> (st, n)
+    | Cassign x a -> (st[x <- aeval st a], (pred n))
+    | Cseq cmd1 cmd2 -> let (nextst, n1) = (ceval_ex st cmd1 (pred n)) in let (finalSt, n2) = (ceval_ex nextst cmd2 (pred n1)) in (finalSt, n2)
     | Cif cond cmd1 cmd2 -> match beval st cond with
-      | True  -> ceval_ex st cmd1 (pred n)
-      | False -> ceval_ex st cmd2 (pred n)
+      | True  -> (ceval_ex st cmd1 (pred n))
+      | False -> (ceval_ex st cmd2 (pred n))
       end
     | Cwhile cond cmd -> match beval st cond with
-      | True -> ceval_ex (ceval_ex st cmd (pred n)) (Cwhile cond cmd) (pred n)
-      | False -> st
+      | True -> let (newState, n1) = ( ceval_ex st cmd (pred n) ) in (ceval_ex newState ( Cwhile cond cmd ) (pred n1))
+      | False -> (st, (pred n))
       end
 
     (* match all cases, your code here
